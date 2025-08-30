@@ -1,4 +1,4 @@
-const Article = ({lanche}) =>{
+const ArticleLanches = ({lanche}) =>{
     return(
         <div>
             <h1>{lanche.item}</h1>
@@ -7,4 +7,15 @@ const Article = ({lanche}) =>{
         </div>
     )
 }
-export default Article
+export default ArticleLanches
+
+export function ArticleSobremessa({doces}) {
+    return (
+        <div>
+            <h1>{doces.item}</h1>
+            <img src={doces.foto} />
+            <p>{doces.descricao}</p>
+        </div>
+
+    )
+}

@@ -1,20 +1,31 @@
 import { Nave } from './Itens/Nav';
-import Article from './Itens/Article';
+import ArticleLanches from './Itens/Article';
+import { ArticleSobremessa } from './Itens/Article';
 import './App.css';
-import { itensDoCardapioLanches } from './cards/itens-card';
+import { itensDoCardapioLanches, itensDoCardapioSobremessas } from './cards/itens-card';
 
 function App() {
   return (
-    <div>
-    <nav>
+    <html>
+      <header>
+      <nav>
       <Nave/>
     </nav>
+    </header>
     <article>
+      <h1>Lanches</h1>
       {itensDoCardapioLanches.map(lanche =>(
-        <Article key={lanche.id} lanche={lanche} />
+        <ArticleLanches key={lanche.id} lanche={lanche} />
       ))}
     </article>
-    </div>
+    <h1>Sobremessa</h1>
+    {itensDoCardapioSobremessas.map(doces =>(
+      <ArticleSobremessa key={doces.id} doces={doces}/>
+    ))}
+    <article>
+
+    </article>
+    </html>
    
    
   );
