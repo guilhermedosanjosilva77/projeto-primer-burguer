@@ -1,9 +1,11 @@
 const ArticleLanches = ({lanche}) =>{
     return(
-        <div>
+        <div className="item-lanche">
             <h1>{lanche.item}</h1>
-            <img src={lanche.foto}/>    
+            <div className="under-title">
+            <img src={lanche.foto}/>  
             <p>{lanche.descricao}</p>
+            </div>
         </div>
     )
 }
@@ -11,10 +13,12 @@ export default ArticleLanches
 
 export function ArticleSobremessa({doces}) {
     return (
-        <div>
+        <div className="item-doce"> 
             <h1>{doces.item}</h1>
-            <img src={doces.foto} />
+            <div className="under-title">
+             <img src={doces.foto} />
             <p>{doces.descricao}</p>
+            </div>
         </div>
 
     )
