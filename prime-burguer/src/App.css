@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  background-color: aqua;
 
 }
 .my-nav{
@@ -13,23 +14,51 @@
   margin-right: 10px;
 }
 img{
+  width: 100px;
   height: 100px;
 }
-.item-lanche,.item-doce{
-  width: 500px;
+section{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 1px solid;
-  border-radius: 10px;
-  margin: 20px;
 }
-.under-title{
+.lanche1,.sobremessa1{
+  display: grid;
+  grid-template-columns: 750px 750px;
+
+}
+.item-lanche,.item-doce{
+  gap: 10px;
+  border: 1px solid;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+
+}
+.under-title {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  gap: 30px; 
+  padding: 10px;
 }
-.styleh1{
-  margin: 10px;
+
+.under-title img {
+  width: 80px; 
+  height: 80px;
+  flex-shrink: 0; 
+}
+
+.titulo-desc {
+  flex: 1; 
+  min-width: 0; 
+}
+
+.titulo-desc p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.titulo-desc,.titulo-desc1{
+  display: flex;
+  flex-direction: column;
 }
