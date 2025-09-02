@@ -3,6 +3,7 @@ import ArticleLanches from './Itens/Article';
 import { ArticleSobremessa } from './Itens/Article';
 import './App.css';
 import { itensDoCardapioLanches, itensDoCardapioSobremessas } from './cards/itens-card';
+import Footer from './Itens/footer';
 function App() {
   return (
     <div>
@@ -30,6 +31,9 @@ function App() {
           </div>
         </section>
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }
