@@ -1,17 +1,19 @@
-const ArticleLanches = ({lanche}) =>{
-    return(
-        <div className="item-lanche">
-            <div className="under-title">
-            <img src={lanche.foto}/>  
-            <div className="titulo-desc">
-            <h1>{lanche.item}</h1>
-            <p>{lanche.descricao}</p>
-            </div>
-            </div>
-        </div>
-    )
+function ArticleLanches({ lanche, adicionarAoCarrinho }) {
+  return (
+    <div className="item-lanche">
+      <img src={lanche.foto} />
+      <p>{lanche.descricao}</p>
+      <p>{lanche.preco}</p>
+      <button onClick={() => adicionarAoCarrinho(lanche)}>
+        Adicionar ao carrinho
+      </button>
+    </div>
+  );
 }
-export default ArticleLanches
+
+export default ArticleLanches;
+
+
 
 export function ArticleSobremessa({doces}) {
     return (
