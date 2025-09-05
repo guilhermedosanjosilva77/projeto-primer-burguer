@@ -18,9 +18,9 @@ export const itensDoCardapioLanches = [
 
 ]
 export const itensDoCardapioSobremessas =[
-    {id:1,item:"Milk-Shake",foto:milkshake,descricao:"Uma delicia gelada de dar agua na boca"},
-    {id:2,item:"Mousse de maracujá com chocolate",foto:mousseMaracuja,descricao:"Uma mistura doce e citrica"},
-    {id:1,item:"Torta de limão",foto:tortaLimao,descricao:"Com o puro sabor da fruta para adocicar sua vida"},
+    {id:1,items:"Milk-Shake",foto:milkshake,descricao:"Uma delicia gelada de dar agua na boca"},
+    {id:2,items:"Mousse de maracujá com chocolate",foto:mousseMaracuja,descricao:"Uma mistura doce e citrica"},
+    {id:1,items:"Torta de limão",foto:tortaLimao,descricao:"Com o puro sabor da fruta para adocicar sua vida"},
 
 
 ]

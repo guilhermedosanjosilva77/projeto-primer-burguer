@@ -1,4 +1,5 @@
 function ArticleLanches({ lanche, adicionarAoCarrinho }) {
+  //mostra o lanche e seus atributos na pag inicial e deixa add no carrinho
   return (
     <div className="item-lanche">
       <img src={lanche.foto} />
@@ -13,20 +14,21 @@ function ArticleLanches({ lanche, adicionarAoCarrinho }) {
 
 export default ArticleLanches;
 
-
-
-export function ArticleSobremessa({doces}) {
-    return (
-        <div className="item-doce"> 
-            
-            <div className="under-title">
-             <img src={doces.foto} />
-             <div className="titulo-desc1">
-             <h1>{doces.item}</h1>
-            <p>{doces.descricao}</p>
-            </div>
-            </div>
+export function ArticleSobremessa({ doces, adicionarAoCarrinho }) {
+  //mostra os doces e seus atributos na pag inicial e deixa add no carrinho
+  return (
+    <div className="item-doce">
+      <div className="under-title">
+        <img src={doces.foto} />
+        <div className="titulo-desc1">
+          <h1>{doces.item}</h1>
+          <p>{doces.descricao}</p>
         </div>
+      </div>
 
-    )
+      <button onClick={() => adicionarAoCarrinho(doces)}>
+        Adicionar ao carrinho
+      </button>
+    </div>
+  );
 }

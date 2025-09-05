@@ -1,6 +1,6 @@
 // src/testeredirecionamento/registro.js
 import React from "react";
-
+//feita p fzr o registro
 export function Register() {
   return (
     <div>
