@@ -1,8 +1,10 @@
-.my-nav, .itens-nav {
+.my-nav,
+.itens-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: aqua;
+  background-color: rgb(100, 130, 130);
+  height: 250px;
 }
 
 .my-nav {
@@ -25,15 +27,17 @@ section {
   flex-direction: column;
 }
 
-.lanche1, .sobremessa1 {
+.lanche1,
+.sobremessa1 {
   display: grid;
-  grid-template-columns: 750px 750px; 
+  grid-template-columns: 750px 750px;
   gap: 20px;
   width: 100%;
   margin: 0 auto;
 }
 
-.item-lanche, .item-doce {
+.item-lanche,
+.item-doce {
   gap: 10px;
   border: 1px solid;
   margin: 10px;
@@ -57,7 +61,8 @@ section {
   flex-shrink: 0;
 }
 
-.titulo-desc, .titulo-desc1 {
+.titulo-desc,
+.titulo-desc1 {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -70,8 +75,9 @@ section {
 }
 
 @media (max-width: 700px) {
-  .lanche1, .sobremessa1 {
-    grid-template-columns: 1fr; 
+  .lanche1,
+  .sobremessa1 {
+    grid-template-columns: 1fr;
   }
 
   .under-title img {
@@ -79,10 +85,46 @@ section {
     max-width: none;
   }
   footer {
-  background-color: #222; /* fundo escuro */
-  color: white;           /* texto branco */
-  text-align: center;     /* centraliza o texto */
-  padding: 15px;
-  margin-top: 20px;       /* espaço antes do footer */
+    background-color: #222; /* fundo escuro */
+    color: white; /* texto branco */
+    text-align: center; /* centraliza o texto */
+    padding: 15px;
+    margin-top: 20px; /* espaço antes do footer */
+  }
 }
+
+.botao0 {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.botao1 {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.botao2 {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.botao3 {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
 }
