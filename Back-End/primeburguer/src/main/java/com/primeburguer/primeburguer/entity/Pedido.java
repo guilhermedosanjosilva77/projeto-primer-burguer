@@ -1,14 +1,13 @@
 package com.primeburguer.primeburguer.entity;
 
+import com.primeburguer.primeburguer.entity.enums.StatusPedido;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pedidos")

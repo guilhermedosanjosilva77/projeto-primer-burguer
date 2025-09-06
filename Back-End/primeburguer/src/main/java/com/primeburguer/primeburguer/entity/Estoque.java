@@ -20,9 +20,4 @@ public class Estoque {
     private Double quantidade;
 
     private String unidadeMedida;
-
-    // Relacionamento com a classe ingrediente
-    @OneToOne
-    @JoinColumn(name = "ingrediente_id")
-    private Ingrediente ingrediente;
 }

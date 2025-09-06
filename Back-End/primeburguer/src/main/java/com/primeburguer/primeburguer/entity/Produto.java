@@ -1,25 +1,22 @@
 package com.primeburguer.primeburguer.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "ingredientes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Ingrediente {
+@Entity
+public class Produto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_ingrediente")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
+    private Double preco;
+    private String descricao;
 
-    // Cada ingrediente possui um estoque vinculado
-    @OneToOne(mappedBy = "ingrediente", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "produto", cascade = CascadeType.ALL)
     private Estoque estoque;
 }
