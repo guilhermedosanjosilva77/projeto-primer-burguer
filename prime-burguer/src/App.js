@@ -12,14 +12,15 @@ import Footer from "./Itens/footer";
 import { Car } from "./testeredirecionamento/car";
 import { Register } from "./testeredirecionamento/registro";
 import { Contact } from "./testeredirecionamento/contato";
-//criação da cost carrinho junto desse useState
+
+//criação da const carrinho junto desse useState JAO
 function App() {
   const [carrinho, setCarrinho] = useState([]);
 
   const adicionarAoCarrinho = (item) => {
     setCarrinho((prevCarrinho) => [...prevCarrinho, item]);
   };
-//criação das rotas (router)
+//criação das rotas (router) JAO
   return (
     <BrowserRouter>
       <header>
@@ -49,7 +50,7 @@ function App() {
     </BrowserRouter>
   );
 }
-//criação da function homepage com o obj de add ao carrinho
+//criação da function homepage com o obj de add ao carrinho JAO
 function HomePage({ adicionarAoCarrinho }) {
   return (
     <div>

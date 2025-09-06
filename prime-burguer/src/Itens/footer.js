@@ -4,7 +4,7 @@ export default function Footer(){
         <div className="foot1">
         <div className="SobreNos">
         <h2>Sobre nós</h2>
-        <p>loren ipsum xana xena xica xota</p>
+        <p>loren ipsum </p>
         </div>
 
         <div className="Contato">

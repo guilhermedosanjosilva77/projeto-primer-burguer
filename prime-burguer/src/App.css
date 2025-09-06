@@ -9,7 +9,7 @@
 
 .my-nav {
   justify-content: space-between;
-  width: 100%;
+  width: 100%
 }
 
 .itens-nav {
@@ -19,7 +19,7 @@
 
 img {
   max-width: 100%;
-  height: auto;
+  height: 100px;
 }
 
 section {
@@ -37,7 +37,7 @@ section {
 }
 
 .item-lanche,
-.item-doce {
+.items-doce {
   gap: 10px;
   border: 1px solid;
   margin: 10px;
@@ -83,13 +83,6 @@ section {
   .under-title img {
     width: 30%;
     max-width: none;
-  }
-  footer {
-    background-color: #222; /* fundo escuro */
-    color: white; /* texto branco */
-    text-align: center; /* centraliza o texto */
-    padding: 15px;
-    margin-top: 20px; /* espaço antes do footer */
   }
 }
 
