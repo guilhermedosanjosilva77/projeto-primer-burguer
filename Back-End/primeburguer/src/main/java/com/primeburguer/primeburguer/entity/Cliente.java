@@ -13,6 +13,7 @@ public class Cliente {
     private String nome;
     private String telefone;
 
+    // Pega os atributos de endereço
     @Embedded
     private Endereco endereco;
 }
