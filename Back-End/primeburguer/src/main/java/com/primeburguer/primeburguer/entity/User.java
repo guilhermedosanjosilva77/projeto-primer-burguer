@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Set;
 
@@ -12,6 +14,8 @@ import java.util.Set;
 @Table(name = "users")
 @Data
 @AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
 @EqualsAndHashCode
 public class User {
