@@ -1,10 +1,15 @@
+
+.body{
+  height: auto;
+  width: auto;
+}
 .my-nav,
 .itens-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: rgb(100, 130, 130);
-  height: 250px;
+  height: 10vh;
 }
 
 .my-nav {
@@ -15,11 +20,6 @@
 .itens-nav {
   gap: 15px;
   margin-right: 10px;
-}
-
-img {
-  max-width: 100%;
-  height: 100px;
 }
 
 section {
@@ -38,41 +38,27 @@ section {
 
 .item-lanche,
 .items-doce {
-  gap: 10px;
+  gap: 10vh;
   border: 1px solid;
   margin: 10px;
   display: flex;
   flex-direction: column;
   word-wrap: break-word;
+  height: 100vh;
 }
 
 .under-title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-  padding: 10px;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-around;
 }
 
-.under-title img {
-  width: 20%;
-  max-width: 80px;
-  height: auto;
-  flex-shrink: 0;
-}
-
-.titulo-desc,
-.titulo-desc1 {
+.buttondesc{
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-width: 0;
 }
 
-.titulo-desc p {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
 
 @media (max-width: 700px) {
   .lanche1,
@@ -120,4 +106,36 @@ section {
   margin: 0;
   outline: none;
   cursor: pointer;
+}
+
+/*GUI Estilo do footer*/
+
+.foot1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5vh;
+  
+}
+.imagemcontato1,.imagemcontato2,.imagemcontato3{
+  display: flex;
+  flex-direction: row;
+  gap: 1.8vh;
+}
+.direitos{
+  text-align: center;
+  margin-bottom: 50vh;
+}
+footer{
+  background-color: beige;
+  height: 40vh;
+
+/*GUI:estilo do banner*/
+}
+.banner{
+  width: auto;
+  height: auto;
+}
+.bannerpicture{
+  width: 100%;
 }

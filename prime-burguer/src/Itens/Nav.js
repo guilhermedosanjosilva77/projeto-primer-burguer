@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import carrinhoIcon from "./carrinho.png";
-import registroIcon from "./registro.png";
-import telefoneIcon from "./telefone.png";
-import homeIcon from "./home.png";
+import carrinhoIcon from "./imagesitens/carrinho.png";
+import registroIcon from ".//imagesitens/registro.png";
+import telefoneIcon from "./imagesitens/telefone.png";
+import homeIcon from "./imagesitens/home.png";
 
 export function Nave() {
   const navigate = useNavigate();

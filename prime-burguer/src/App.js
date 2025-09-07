@@ -12,6 +12,7 @@ import Footer from "./Itens/footer";
 import { Car } from "./testeredirecionamento/car";
 import { Register } from "./testeredirecionamento/registro";
 import { Contact } from "./testeredirecionamento/contato";
+import Banner from "./imagens/Banner.jpg"
 
 //criação da const carrinho junto desse useState JAO
 function App() {
@@ -27,7 +28,12 @@ function App() {
         <nav>
           <Nave />
         </nav>
+        
+        <div className="banner">
+          <img src={Banner} className="bannerpicture" />
+        </div>
       </header>
+  
       
       
       <Routes>
@@ -53,7 +59,7 @@ function App() {
 //criação da function homepage com o obj de add ao carrinho JAO
 function HomePage({ adicionarAoCarrinho }) {
   return (
-    <div>
+    <div className="body">
       <main>
         <section className="lanche">
           <h1 className="styleh1">Lanches</h1>
