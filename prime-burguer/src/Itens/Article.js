@@ -2,10 +2,8 @@ function ArticleLanches({ lanche, adicionarAoCarrinho }) {
   //mostra o lanche e seus atributos na pag inicial e deixa add no carrinho
   return (
     <div className="item-lanche">
-      <img src={lanche.foto} />
-        <h1>{lanche.item}</h1>
-
-
+      <img src={lanche.foto} className="imagelanche"/>
+       <h1 style={{textAlign:"center"}}>{lanche.item}</h1>
       <div className="under-title">
         <h2>{lanche.preco}</h2>
         <div className="buttondesc">
@@ -35,6 +33,7 @@ export function ArticleSobremessa({ doces, adicionarAoCarrinho }) {
 
     <div className="items-doce">
       <img src={doces.foto} />
+      <h1 style={{textAlign:"center"}}>{doces.items}</h1>
       <div className="under-title">
        
         <h2>{doces.preco}</h2>

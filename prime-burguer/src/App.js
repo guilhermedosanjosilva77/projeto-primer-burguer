@@ -61,7 +61,7 @@ function HomePage({ adicionarAoCarrinho }) {
   return (
     <div className="body">
       <main>
-        <section className="lanche">
+        <section className="lanche" style={{textAlign:"center"}}>
           <h1 className="styleh1">Lanches</h1>
           <div className="lanche1">
             {itensDoCardapioLanches.map((lanche) => (

@@ -1,8 +1,8 @@
-
-.body{
+.body {
   height: auto;
   width: auto;
 }
+
 .my-nav,
 .itens-nav {
   display: flex;
@@ -30,37 +30,71 @@ section {
 .lanche1,
 .sobremessa1 {
   display: grid;
-  grid-template-columns: 750px 750px;
+  grid-template-columns: 450px 450px;
+  justify-content: center;
   gap: 20px;
   width: 100%;
   margin: 0 auto;
 }
 
+/* INÍCIO DAS ALTERAÇÕES (algumas alterações usando o gemini)*/
+
 .item-lanche,
 .items-doce {
-  gap: 10vh;
+  gap: 5vh;
   border: 1px solid;
+  border-radius: 5vh;
   margin: 10px;
   display: flex;
   flex-direction: column;
   word-wrap: break-word;
-  height: 100vh;
+  height: 90vh;
+  width: 50vh;
+  overflow: hidden;
 }
 
+.imagelanche {
+  height: 40vh;
+  width: 100%;
+  
+}
+
+/* Adicionado estilo para as imagens dos doces, já que elas não tinham uma classe específica */
+.items-doce img {
+  height: 50vh;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 5vh;
+  border-top-right-radius: 5vh;
+}
+/* Ajuste o layout do 'under-title' para que os elementos internos se ajustem */
 .under-title {
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-around;
-}
-
-.buttondesc{
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 0 15px;
+  flex-grow: 1;
+}
+
+/* Ajusta o layout do 'buttondesc' para empilhar descrição e botão */
+.buttondesc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  box-sizing: border-box;
+  padding: 2vh;
+  width: 100%;
+}
+
+/* FIM DAS ALTERAÇÕES */
+.titlelanche {
+  text-align: center;
 }
 
 
 @media (max-width: 700px) {
+
   .lanche1,
   .sobremessa1 {
     grid-template-columns: 1fr;
@@ -110,32 +144,39 @@ justify-content: space-around;
 
 /*GUI Estilo do footer*/
 
-.foot1{
+.foot1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 5vh;
-  
+
 }
-.imagemcontato1,.imagemcontato2,.imagemcontato3{
+
+.imagemcontato1,
+.imagemcontato2,
+.imagemcontato3 {
   display: flex;
   flex-direction: row;
   gap: 1.8vh;
 }
-.direitos{
+
+.direitos {
   text-align: center;
   margin-bottom: 50vh;
 }
-footer{
+
+footer {
   background-color: beige;
   height: 40vh;
 
-/*GUI:estilo do banner*/
+  /*GUI:estilo do banner*/
 }
-.banner{
+
+.banner {
   width: auto;
   height: auto;
 }
-.bannerpicture{
+
+.bannerpicture {
   width: 100%;
 }
