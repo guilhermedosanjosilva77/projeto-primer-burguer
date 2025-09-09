@@ -18,8 +18,9 @@ public class Cliente {
     private Long id;
     private String nome;
     private String telefone;
+    private String rua;
+    private String bairro;
+    private String numeroCasa;
+    private String cidade;
 
-    // Pega os atributos de endereço
-    @Embedded
-    private Endereco endereco;
 }
