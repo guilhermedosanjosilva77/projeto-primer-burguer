@@ -13,23 +13,22 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                // Permite o acesso aos endpoints de registro sem autenticação
-                .requestMatchers("/users/cadastro/**").permitAll()
-                // Apenas usuários com a role ADMIN podem acessar as rotas /admin
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                // Apenas usuários com a role CLIENTE podem acessar as rotas /cliente
-                .requestMatchers("/cliente/**").hasRole("CLIENTE")
-                // Todas as outras requisições precisam ser autenticadas
-                .anyRequest().authenticated()
-            )
-            .httpBasic(Customizer.withDefaults())
-            .build();
-    }
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        return http
+//            .csrf(csrf -> csrf.disable())
+//            .authorizeHttpRequests(auth -> auth
+//                .requestMatchers("/users/cadastro/**").permitAll()
+//                // Apenas usuários com a role ADMIN podem acessar as rotas /admin
+//                .requestMatchers("/admin/**").hasRole("ADMIN")
+//                // Apenas usuários com a role CLIENTE podem acessar as rotas /cliente
+//                .requestMatchers("/cliente/**").hasRole("CLIENTE")
+//                .anyRequest().authenticated()
+//            )
+//            .httpBasic(Customizer.withDefaults())
+//            .build();
+//    }
+//    http://localhost:8080/swagger-ui/index.html
 
     @Bean
     public PasswordEncoder passwordEncoder() {
