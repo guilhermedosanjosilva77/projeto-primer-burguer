@@ -32,7 +32,7 @@ public class UserService {
                 : roleRepository.findById(Role.Values.CLIENTE.getId()).orElseThrow();
 
         User user = new User();
-        user.setEmail(dto.nome()); 
+        user.setEmail(dto.email());
         user.setSenha(passwordEncoder.encode(dto.senha()));
         user.setRoles(Set.of(role));
 

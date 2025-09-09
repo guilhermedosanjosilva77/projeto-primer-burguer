@@ -12,12 +12,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Data
-@AllArgsConstructor
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
 public class User {
 
     @Id
@@ -35,4 +29,45 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "id_role")
     )
     private Set<Role> roles;
+
+    public User(Long id, String email, String senha, Set<Role> roles) {
+        this.id = id;
+        this.email = email;
+        this.senha = senha;
+        this.roles = roles;
+    }
+
+    public User() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }
