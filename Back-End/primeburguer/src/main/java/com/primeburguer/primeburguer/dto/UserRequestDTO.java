@@ -4,5 +4,5 @@ import com.primeburguer.primeburguer.entity.Role;
 
 import java.util.Set;
 
-public record UserRequestDTO(String nome, String senha, Set<Role> roles) {
+public record UserRequestDTO(String email, String senha, Set<Role> roles) {
 }
