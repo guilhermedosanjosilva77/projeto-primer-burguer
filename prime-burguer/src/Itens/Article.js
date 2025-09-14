@@ -9,7 +9,7 @@ function ArticleLanches({ lanche, adicionarAoCarrinho }) {
         <div className="buttondesc">
         <p>{lanche.descricao}</p>
 
-        <button onClick={() => adicionarAoCarrinho(lanche)}>
+        <button onClick={() => adicionarAoCarrinho(lanche)} className="lanchebuttom">
           Adicionar ao carrinho
         </button>
         </div>
@@ -33,14 +33,14 @@ export function ArticleSobremessa({ doces, adicionarAoCarrinho }) {
 
     <div className="items-doce">
       <img src={doces.foto} />
-      <h1 style={{textAlign:"center"}}>{doces.items}</h1>
+      <h1 style={{textAlign:"center"}}>{doces.items}</h1> 
       <div className="under-title">
        
         <h2>{doces.preco}</h2>
         <div className="buttondesc">
           <p>{doces.descricao}</p>
 
-          <button onClick={() => adicionarAoCarrinho(doces)}>
+          <button className="docebuttom" onClick={() => adicionarAoCarrinho(doces)}>
             Adicionar ao carrinho
 
           </button>

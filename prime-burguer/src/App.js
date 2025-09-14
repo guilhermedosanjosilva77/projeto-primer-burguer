@@ -62,7 +62,7 @@ function HomePage({ adicionarAoCarrinho }) {
     <div className="body">
       <main>
         <section className="lanche" style={{textAlign:"center"}}>
-          <h1 className="styleh1">Lanches</h1>
+          <h1 className="styleh1" style={{fontSize:"90px"}}>Lanches</h1>
           <div className="lanche1">
             {itensDoCardapioLanches.map((lanche) => (
               <ArticleLanches
@@ -75,7 +75,7 @@ function HomePage({ adicionarAoCarrinho }) {
         </section>
 
         <section className="sobremessa">
-          <h1>Sobremessa</h1>
+          <h1 className="styleh1" style={{textAlign:"center", fontSize:"90px"}}>Sobremesa</h1>
           <div className="sobremessa1">
             {itensDoCardapioSobremessas.map((doce) => (
               <ArticleSobremessa
