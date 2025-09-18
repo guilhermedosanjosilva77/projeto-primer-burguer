@@ -9,7 +9,7 @@ import {
   itensDoCardapioSobremessas,
 } from "./cards/itens-card";
 import Footer from "./Itens/footer";
-import { Car } from "./testeredirecionamento/car";
+import { Car } from "./cards/testeredirecionamento/car";
 import { Register } from "./testeredirecionamento/registro";
 import { Contact } from "./testeredirecionamento/contato";
 import Banner from "./imagens/Banner.jpg"
