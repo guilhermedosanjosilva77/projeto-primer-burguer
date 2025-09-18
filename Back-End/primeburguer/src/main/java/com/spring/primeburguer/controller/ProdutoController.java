@@ -2,7 +2,10 @@ package com.spring.primeburguer.controller;
 
 import com.spring.primeburguer.dto.ProdutoRequestDTO;
 import com.spring.primeburguer.dto.ProdutoResponseDTO;
+import com.spring.primeburguer.dto.UserRequestDTO;
+import com.spring.primeburguer.dto.UserResponseDTO;
 import com.spring.primeburguer.service.ProdutoService;
+import com.spring.primeburguer.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,13 +18,15 @@ public class ProdutoController {
     private final ProdutoService produtoService;
 
     public ProdutoController(ProdutoService produtoService) {
+
         this.produtoService = produtoService;
     }
 
     // Criar
     @PostMapping
-    public ResponseEntity<ProdutoResponseDTO> createProduto(@RequestBody ProdutoRequestDTO requestDTO) {
-        return ResponseEntity.ok(produtoService.createProduto(requestDTO));
+    public ResponseEntity<ProdutoResponseDTO> createProduct(@RequestBody ProdutoRequestDTO requestDTO) {
+        ProdutoResponseDTO response = produtoService.createProduto(requestDTO);
+        return ResponseEntity.ok(response);
     }
 
     // Listar todos
@@ -30,7 +35,7 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.getAllProdutos());
     }
 
-    // Buscar por ID
+    // Buscar por id
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoResponseDTO> getProdutoById(@PathVariable Long id) {
         return produtoService.getProdutoById(id)
@@ -52,8 +57,8 @@ public class ProdutoController {
     public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
         boolean deleted = produtoService.deleteProduto(id);
         if (deleted) {
-            return ResponseEntity.noContent().build(); // 204
+            return ResponseEntity.noContent().build(); // 204 No Content
         }
-        return ResponseEntity.notFound().build(); // 404
+        return ResponseEntity.notFound().build(); // 404 Not Found
     }
 }

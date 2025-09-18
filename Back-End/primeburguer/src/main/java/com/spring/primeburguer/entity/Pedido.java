@@ -12,9 +12,9 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "pedidos")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,4 +36,63 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
+
+    public Pedido() {}
+
+    public Pedido(Long id, double valorTotal, Integer quantidade, Cliente cliente, Instant data, StatusPedido status) {
+        this.id = id;
+        this.valorTotal = valorTotal;
+        this.quantidade = quantidade;
+        this.cliente = cliente;
+        this.data = data;
+        this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Instant getData() {
+        return data;
+    }
+
+    public void setData(Instant data) {
+        this.data = data;
+    }
+
+    public StatusPedido getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPedido status) {
+        this.status = status;
+    }
 }

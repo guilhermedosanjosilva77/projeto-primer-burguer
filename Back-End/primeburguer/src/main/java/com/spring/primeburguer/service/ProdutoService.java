@@ -30,14 +30,14 @@ public class ProdutoService {
         return new ProdutoResponseDTO(savedProduto.getId(), savedProduto.getNome(), savedProduto.getPreco(), savedProduto.getDescricao());
     }
 
-    // Buscar todos
+    // Listar todos
     public List<ProdutoResponseDTO> getAllProdutos() {
         return produtoRepository.findAll().stream()
                 .map(produto -> new ProdutoResponseDTO(produto.getId(), produto.getNome(), produto.getPreco(), produto.getDescricao()))
                 .collect(Collectors.toList());
     }
 
-    // Buscar por ID
+    // Buscar por id
     public Optional<ProdutoResponseDTO> getProdutoById(Long id) {
         return produtoRepository.findById(id)
                 .map(produto -> new ProdutoResponseDTO(produto.getId(), produto.getNome(), produto.getPreco(), produto.getDescricao()));
