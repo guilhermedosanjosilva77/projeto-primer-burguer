@@ -10,8 +10,8 @@ import {
 } from "./cards/itens-card";
 import Footer from "./Itens/footer";
 import { Car } from "./cards/testeredirecionamento/car";
-import { Register } from "./testeredirecionamento/registro";
-import { Contact } from "./testeredirecionamento/contato";
+import { Register } from "./cards/testeredirecionamento/registro";
+import { Contact } from "./cards/testeredirecionamento/contato";
 import Banner from "./imagens/Banner.jpg"
 
 //criação da const carrinho junto desse useState JAO
@@ -21,21 +21,21 @@ function App() {
   const adicionarAoCarrinho = (item) => {
     setCarrinho((prevCarrinho) => [...prevCarrinho, item]);
   };
-//criação das rotas (router) JAO
+  //criação das rotas (router) JAO
   return (
     <BrowserRouter>
       <header>
         <nav>
           <Nave />
         </nav>
-        
+
         <div className="banner">
-          <img src={Banner} className="bannerpicture" />
-        </div>
+    <img src={Banner} className="bannerpicture" alt="Banner da Lanchonete, com a logo e pratos" />
+  </div>
       </header>
-  
-      
-      
+
+
+
       <Routes>
         <Route
           path="/"
@@ -61,8 +61,8 @@ function HomePage({ adicionarAoCarrinho }) {
   return (
     <div className="body">
       <main>
-        <section className="lanche" style={{textAlign:"center"}}>
-          <h1 className="styleh1" style={{fontSize:"90px"}}>Lanches</h1>
+        <section className="lanche" style={{ textAlign: "center" }}>
+          <h1 className="styleh1" style={{ fontSize: "90px" }}>Lanches</h1>
           <div className="lanche1">
             {itensDoCardapioLanches.map((lanche) => (
               <ArticleLanches
@@ -75,7 +75,7 @@ function HomePage({ adicionarAoCarrinho }) {
         </section>
 
         <section className="sobremessa">
-          <h1 className="styleh1" style={{textAlign:"center", fontSize:"90px"}}>Sobremesa</h1>
+          <h1 className="styleh1" style={{ textAlign: "center", fontSize: "90px" }}>Sobremesa</h1>
           <div className="sobremessa1">
             {itensDoCardapioSobremessas.map((doce) => (
               <ArticleSobremessa
