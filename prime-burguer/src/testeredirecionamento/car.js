@@ -12,7 +12,8 @@ export function Car({ carrinho }) {//faz com que o item(lanche) apareça em uma 
             {carrinho
               .filter((item) => item.item) 
               .map((item, index) => (
-                <li key={index}>{item.item}</li>
+                <li key={index}>{item.item},{item.preco},{item.foto}</li>
+                
               ))}
           </ul>
 

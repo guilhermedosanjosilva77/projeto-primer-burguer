@@ -39,7 +39,7 @@
 .lanche1,
 .sobremessa1 {
   display: grid;
-  grid-template-columns:400px 400px 400px;
+  grid-template-columns:350px 350px 350px;
   align-items:center;
   justify-content: center;
   gap: 50px;
@@ -78,7 +78,7 @@ h1 {
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
-  padding: 5%;
+ margin: 5px;
 }
 
 .under-title h2 {
@@ -92,7 +92,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 120px;
+ 
   max-width: 100%;
   flex-grow: 1;
   font-family: 'Roboto', sans-serif;
@@ -108,6 +108,7 @@ h1 {
 }
 
 .lanchebuttom,.docebuttom {
+  
   height: 25%;
   width: 100%;
   border-radius: 5px;
