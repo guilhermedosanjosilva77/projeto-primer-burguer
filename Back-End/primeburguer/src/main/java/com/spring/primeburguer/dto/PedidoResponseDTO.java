@@ -7,7 +7,7 @@ public record PedidoResponseDTO(
         Long id,
         double valorTotal,
         Integer quantidade,
+        Long clienteId,
         Instant data,
-        StatusPedido status,
-        ClienteResponseDTO cliente
+        StatusPedido status
 ) {}
