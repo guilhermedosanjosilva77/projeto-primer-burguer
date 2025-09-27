@@ -1,174 +1,311 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
-  --primary: #D62828;      /* vermelho principal */
-  --secondary: #F77F00;    /* laranja */
-  --tertiary: #FCBF49;     /* amarelo */
-  --neutral-light: #EAE2B7;/* bege claro */
-  --neutral-dark: #2B2D42; /* cinza escuro */
+  --primary: #C62828;
+  /* vermelho principal */
+  --secondary: #FF7F00;
+  /* --secondary: #F77F00; */
+  /* laranja */
+  --tertiary: #FCBF49;
+  /* amarelo */
+  --neutral-light: #F9F9F9;
+  /* Branco/Bege muito claro para o fundo */
+  --neutral-dark: #2B2D42;
+  /* cinza escuro */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.2);
 }
 
-.body {
+/* -------------------- GERAL -------------------- */
+body {
+  /* Corrigido de .body para body (o seletor correto do HTML) */
   height: auto;
   width: auto;
   font-family: 'Roboto', sans-serif;
   background-color:#f7f7f7;
   color: var(--neutral-dark);
+  margin: 0;
+  /* Remove margem padrão do body */
+  padding: 0;
 }
 
-.my-nav,
-.itens-nav {
+h1, h2 {
+  font-family: 'Baloo 2', cursive;
+  color: var(--primary);
+}
+
+/* -------------------- NAVEGAÇÃO (HEADER) -------------------- */
+.my-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: var(--primary);
   height: 10vh;
   max-height: 100%;
-}
-
-.my-nav {
   justify-content: space-between;
-  width: 100%
+  width: 100%;
+  /* Sombra sutil para destacar a navegação */
+  box-shadow: 0 4px 6px var(--shadow-light);
 }
 
 .itens-nav {
-  gap: 15px;
-  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  /* Aumentei o espaçamento */
+  margin-right: 20px;
+  /* Aumentei a margem */
+}
+
+/* Estilo para os botões da navegação */
+.botao0, .botao1, .botao2, .botao3 {
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+  font-size: 1em;
+  transition: color 0.3s ease;
+  /* Transição na cor */
+}
+
+.botao0:hover, .botao1:hover, .botao2:hover, .botao3:hover {
+  color: var(--tertiary);
+  /* Cor de hover mais chamativa */
+}
+
+/* -------------------- BANNER -------------------- */
+.banner {
+  width: 100%;
+  margin-bottom: 30px;
+  /* Adiciona espaço abaixo do banner */
+}
+
+.bannerpicture {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  /* Altura máxima mais controlada */
+  object-fit: cover;
+  /* Garante que a imagem cubra a área sem distorcer */
+}
+
+/* -------------------- LISTA DE PRODUTOS -------------------- */
+.styleh1 {
+  font-size: 4em !important;
+  /* Reduzido de 90px para uma proporção melhor */
+  margin: 40px 0 20px 0;
+  /* Espaçamento mais agradável */
+  color: var(--neutral-dark) !important;
+  /* Cor mais sóbria para o título principal */
 }
 
 .lanche1,
 .sobremessa1 {
   display: grid;
-  grid-template-columns:350px 350px 350px;
-  align-items:center;
-  justify-content: center;
-  gap: 50px;
-  margin: 0 auto;
-   margin-bottom:5%;
+  /* Uso de repeat(auto-fit, minmax) para tornar mais responsivo */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
+  /* Centraliza os itens dentro das células */
+  gap: 40px;
+  /* Reduzido o gap para não ficar muito espaçado */
+  max-width: 1200px;
+  margin: 0 auto 5%;
+  padding: 0 20px;
 }
 
 .item-lanche,
 .items-doce {
-  border: 1px solid var(--neutral-dark);
-  border-radius: 10px;
+  border: none;
+  /* Remove a borda simples */
+  border-radius: 12px;
+  /* Aumenta um pouco o raio da borda */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 450px;
-  max-height: 100%;
+  height: 480px;
+  /* Aumentei um pouco a altura */
+  width: 100%;
+  max-width: 350px;
+  /* Garante que o item não fique muito largo */
   background-color: #fff;
+  overflow: hidden;
+  /* Garante que a imagem não vaze do border-radius */
+
+  /* Sombra que dá o efeito 3D */
+  box-shadow: 0 10px 20px var(--shadow-light);
+
+  /* Transição para o efeito de hover */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-h1 {
-  height: 123px;
-  font-family: 'Baloo 2', cursive;
+/* Efeito de HOVER profissional: levanta e aumenta a sombra */
+.item-lanche:hover,
+.items-doce:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px var(--shadow-medium);
+}
+
+.item-lanche h1,
+.items-doce h1 {
+  height: auto;
+  /* Deixa a altura flexível */
+  min-height: 60px;
+  /* Garante um espaço mínimo */
+  margin: 10px 0 0 0;
+  padding: 0 15px;
+  font-size: 1.8em;
   color: var(--primary);
 }
 
 .imagelanche,
 .items-doce img {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: 0;
+  /* A borda redonda já está na div pai */
   height: 200px;
   width: 100%;
+  object-fit: cover;
+  /* Garante que a imagem preencha o espaço corretamente */
 }
 
 .under-title {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 20px;
- margin: 5px;
+  flex-direction: column;
+  /* Altera para coluna para melhor layout */
+  align-items: stretch;
+  gap: 10px;
+  margin: 5px 15px 15px 15px;
+  /* Mais padding interno */
+  flex-grow: 1;
+  width: calc(100% - 30px);
 }
 
 .under-title h2 {
-  font-family: 'Baloo 2', cursive;
-  font-size: 1.8em;
-  white-space: nowrap;
+  font-size: 2em;
+  /* Aumentei um pouco o preço */
   color: var(--secondary);
+  margin: 0;
+  text-align: left;
+  font-weight: 800;
+  /* Mais destaque para o preço */
 }
 
 .buttondesc {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-end;
+  /* Empurra o botão para baixo */
   max-width: 100%;
   flex-grow: 1;
-  font-family: 'Roboto', sans-serif;
-  margin: 10px;
+  margin: 0;
 }
+
 .buttondesc p {
-  font-size: 15px;  
-  line-height: 12px; /* melhora a leitura */
+  font-size: 0.9em;
+  line-height: 1.4;
+  /* Melhora a leitura do parágrafo */
   color: var(--neutral-dark);
+  flex-grow: 1;
+  margin-bottom: 15px;
 }
 
-.titlelanche {
-  text-align: center;
-}
-
-.lanchebuttom,.docebuttom {
-  
-  height: 25%;
+/* -------------------- BOTÕES -------------------- */
+.lanchebuttom, .docebuttom {
+  height: 45px;
+  /* Altura fixa para o botão */
   width: 100%;
-  border-radius: 5px;
+  border-radius: 8px;
+  /* Borda mais suave */
   background-color: var(--primary);
   color: #fff;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1.1em;
   font-family: 'Baloo 2', cursive;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
+  /* Adiciona transição para o hover */
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 4px 6px var(--shadow-light);
+  /* Sombra no botão */
 }
 
-.lanchebuttom:hover,.docebuttom:hover {
+.lanchebuttom:hover, .docebuttom:hover {
   background-color: var(--secondary);
+  transform: translateY(-2px);
+  /* Efeito de 'pressionar' */
+  box-shadow: 0 6px 8px var(--shadow-medium);
 }
 
-.botao0,
-.botao1,
-.botao2,
-.botao3 {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  outline: none;
-  cursor: pointer;
+.lanchebuttom:active, .docebuttom:active {
+  transform: translateY(0);
 }
 
-/* GUI Estilo do footer */
+/* -------------------- RODAPÉ (FOOTER) -------------------- */
+footer {
+  background-color: var(--tertiary);
+  height: 25vh;
+  /* Altura mais adequada para um rodapé */
+  padding: 20px 50px;
+  box-shadow: 0 -4px 6px var(--shadow-light);
+  /* Sombra para separar do conteúdo */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .foot1 {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  margin: 5px;
+  align-items: center;
+  width: 100%;
 }
 
 .imagemcontato1,
 .imagemcontato2,
 .imagemcontato3 {
   display: flex;
-  flex-direction: row;
-  gap: 1.8vh;
+  gap: 20px;
 }
 
 .direitos {
   text-align: center;
-  margin-bottom: 50vh;
+  color: var(--neutral-dark);
+  font-size: 0.9em;
+  margin-top: 20px;
 }
 
-footer {
-  background-color: var(--tertiary);
-  height: 40vh;
+/* -------------------- MEDIA QUERIES (Responsividade) -------------------- */
+
+@media (max-width: 1024px) {
+  .lanche1, .sobremessa1 {
+    /* Em telas menores, permite até 2 colunas */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
 }
 
-.banner {
-  width: 100%;
+@media (max-width: 768px) {
+  .styleh1 {
+    font-size: 3em !important;
+  }
+
+  .foot1 {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
 }
 
-.bannerpicture {
-  width: 100%;
-  height: 100%;
-  max-height: 500px;
+@media (max-width: 480px) {
+  .lanche1, .sobremessa1 {
+    /* Em telas muito pequenas, uma coluna */
+    grid-template-columns: 1fr;
+  }
+
+  .item-lanche, .items-doce {
+    max-width: 90%;
+    height: auto;
+  }
 }

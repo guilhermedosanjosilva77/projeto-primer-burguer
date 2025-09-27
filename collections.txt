@@ -1,0 +1,40 @@
+http://localhost:8080/pedidos
+{
+  "clienteId": 1,
+  "itens": [
+    {
+      "produtoId": 4,
+      "quantidade": 1
+    },
+    {
+      "produtoId": 3,
+      "quantidade": 2
+    }
+  ]
+}
+
+
+http://localhost:8080/estoque
+{
+  "quantidade": 150.0,
+  "unidadeMedida": "g"
+}
+
+http://localhost:8080/clientes
+{
+  "nome": "João da Silva",
+  "telefone": "(11) 98765-4321",
+  "rua": "Rua das Flores",
+  "bairro": "Jardim América",
+  "numeroCasa": "123A",
+  "cidade": "São Paulo"
+}
+
+http://localhost:8080/produtos
+
+{
+  "nome": "X-Bacon",
+  "preco": 30.00,
+  "descricao": "Hambúrguer de 180g, queijo cheddar, alface, tomate e molho especial.",
+  "estoqueId": 1 
+}

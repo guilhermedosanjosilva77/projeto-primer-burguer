@@ -16,6 +16,7 @@ public class Estoque {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_estoque")
     private Long id;
+    private String descricao;
 
     private Double quantidade;
 
@@ -23,10 +24,11 @@ public class Estoque {
 
     public Estoque() {}
 
-    public Estoque(Long id, Double quantidade, String unidadeMedida) {
+    public Estoque(Long id, Double quantidade, String unidadeMedida,String descricao) {
         this.id = id;
         this.quantidade = quantidade;
         this.unidadeMedida = unidadeMedida;
+        this.descricao = descricao;
     }
 
     public Long getId() {
@@ -51,5 +53,13 @@ public class Estoque {
 
     public void setUnidadeMedida(String unidadeMedida) {
         this.unidadeMedida = unidadeMedida;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

@@ -2,9 +2,9 @@ package com.spring.primeburguer.dto;
 
 import com.spring.primeburguer.entity.enums.StatusPedido;
 
+import java.util.List;
+
 public record PedidoRequestDTO(
-        double valorTotal,
-        Integer quantidade,
         Long clienteId,
-        StatusPedido status
+        List<ItemPedidoRequestDTO> itens
 ) {}

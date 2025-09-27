@@ -48,6 +48,7 @@ public class ItemPedidoService {
     @Transactional
     public ItemPedidoResponseDTO adicionarItem(ItemPedidoRequestDTO dto) {
         // 1. Validação e Busca
+        // ESTA LINHA AGORA FUNCIONA se ItemPedidoRequestDTO incluir 'pedidoId'
         Pedido pedido = pedidoRepository.findById(dto.pedidoId())
                 .orElseThrow(() -> new NoSuchElementException("Pedido não encontrado com ID: " + dto.pedidoId()));
 
@@ -59,12 +60,11 @@ public class ItemPedidoService {
         }
 
         // 2. LÓGICA CRÍTICA: Baixa no Estoque
-        // Assumimos que o Produto tem um método getEstoqueId() ou que o ID do Produto = ID do Estoque
-        // Se a sua entidade Produto não tem este método, esta linha falhará.
-        // **Alternativa:** Usaremos o ID do Produto como ID do Estoque para seguir a regra de negócio.
-        Long estoqueId = produto.getId();
+        // Usamos o ID do Estoque associado ao Produto
+        Long estoqueId = produto.getEstoque().getId();
 
-        estoqueService.darBaixa(estoqueId, dto.quantidade());
+        // O método darBaixa espera um double para a quantidade
+        estoqueService.darBaixa(estoqueId, (double) dto.quantidade());
 
         // 3. Cria o ItemPedido
         ItemPedido item = new ItemPedido();
@@ -74,12 +74,11 @@ public class ItemPedidoService {
         item = itemPedidoRepository.save(item);
 
         // 4. ATUALIZA O PEDIDO MÃE
-        // Usando produto.getPreco() para o cálculo
-        double subtotal = produto.getPreco() * dto.quantidade();
+        double subtotal = produto.getPreco() * item.getQuantidade();
 
         // Atualiza Valor Total e Quantidade Total de Itens no Pedido
         pedido.setValorTotal(pedido.getValorTotal() + subtotal);
-        pedido.setQuantidade(pedido.getQuantidade() + dto.quantidade());
+        pedido.setQuantidade(pedido.getQuantidade() + item.getQuantidade());
         pedidoRepository.save(pedido);
 
         return toResponseDto(item);
@@ -88,6 +87,13 @@ public class ItemPedidoService {
     // GET: Busca itens de um pedido específico
     public List<ItemPedidoResponseDTO> buscarItensPorPedido(Long pedidoId) {
         // Assume-se que existe um método findByPedidoId no ItemPedidoRepository
+        // Se este método não existir, você deve usar:
+        // return itemPedidoRepository.findAll().stream()
+        //        .filter(item -> item.getPedido().getId().equals(pedidoId))
+        //        .map(this::toResponseDto).toList();
+
+        // Mantendo a suposição para evitar erro de compilação aqui
+        // (Você deve garantir que este método exista no seu Repository)
         return itemPedidoRepository.findByPedidoId(pedidoId).stream()
                 .map(this::toResponseDto)
                 .toList();
@@ -103,11 +109,12 @@ public class ItemPedidoService {
         Produto produto = item.getProduto();
 
         // 1. Reverte o Estoque
-        Long estoqueId = produto.getId(); // Usando o ID do Produto como ID do Estoque
-        estoqueService.darBaixa(estoqueId, -item.getQuantidade()); // Chamada negativa para devolver ao estoque
+        Long estoqueId = produto.getEstoque().getId();
+
+        // Chamada negativa para devolver ao estoque
+        estoqueService.darBaixa(estoqueId, -(double) item.getQuantidade());
 
         // 2. ATUALIZA O PEDIDO MÃE (diminui o total)
-        // Usando produto.getPreco() para o cálculo
         double subtotalRemovido = produto.getPreco() * item.getQuantidade();
 
         pedido.setValorTotal(pedido.getValorTotal() - subtotalRemovido);
