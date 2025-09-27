@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //@Data
 //@AllArgsConstructor
 //@NoArgsConstructor
@@ -18,13 +21,23 @@ public class Produto {
     private Double preco;
     private String descricao;
 
+    @ManyToOne
+    @JoinColumn(name = "estoque_id", nullable = false)
+    private Estoque estoque;
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemPedido> itens = new ArrayList<>();
+
+
     public Produto() {}
 
-    public Produto(Long id, String nome, Double preco, String descricao) {
+    public Produto(Long id, String nome, Double preco, String descricao, Estoque estoque, List<ItemPedido> itens) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+        this.estoque = estoque;
+        this.itens = itens;
     }
 
     public Long getId() {
@@ -57,5 +70,21 @@ public class Produto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Estoque getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(Estoque estoque) {
+        this.estoque = estoque;
+    }
+
+    public List<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
     }
 }

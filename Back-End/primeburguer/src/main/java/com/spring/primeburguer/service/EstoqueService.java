@@ -23,7 +23,8 @@ public class EstoqueService {
         return new EstoqueResponseDTO(
                 estoque.getId(),
                 estoque.getQuantidade(),
-                estoque.getUnidadeMedida()
+                estoque.getUnidadeMedida(),
+                estoque.getDescricao() // <--- ATUALIZADO
         );
     }
     // ------------------
@@ -35,19 +36,20 @@ public class EstoqueService {
                 .orElseThrow(() -> new NoSuchElementException("Item de Estoque não encontrado com ID: " + estoqueId));
 
         if (item.getQuantidade() < quantidade) {
-            throw new IllegalArgumentException("Estoque insuficiente para o item ID: " + estoqueId);
+            throw new IllegalArgumentException("Estoque insuficiente para o item: " + item.getDescricao());
         }
 
         item.setQuantidade(item.getQuantidade() - quantidade);
         estoqueRepository.save(item);
     }
 
-    // POST: Cria novo item no Estoque
+    // POST: Cria novo item no Estoque (ATUALIZADO)
     @Transactional
     public EstoqueResponseDTO criarItem(EstoqueRequestDTO dto) {
         Estoque item = new Estoque();
         item.setQuantidade(dto.quantidade());
         item.setUnidadeMedida(dto.unidadeMedida());
+        item.setDescricao(dto.descricao()); // <--- ATUALIZADO
 
         return toResponseDto(estoqueRepository.save(item));
     }
@@ -57,14 +59,20 @@ public class EstoqueService {
         return estoqueRepository.findAll().stream().map(this::toResponseDto).toList();
     }
 
-    // GET: Busca item por ID
+    // GET: Busca item por ID (Retorna DTO)
     public EstoqueResponseDTO buscarPorId(Long id) {
         Estoque item = estoqueRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Item de Estoque não encontrado com ID: " + id));
         return toResponseDto(item);
     }
 
-    // PUT: Atualiza item (ex: reposição de estoque)
+    // MÉTODO: Busca e retorna a ENTIDADE Estoque (necessário pelo ProdutoService)
+    public Estoque buscarEntidadePorId(Long id) {
+        return estoqueRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Estoque não encontrado com ID: " + id));
+    }
+
+    // PUT: Atualiza item (ex: reposição de estoque) (ATUALIZADO)
     @Transactional
     public EstoqueResponseDTO atualizarItem(Long id, EstoqueRequestDTO dto) {
         Estoque item = estoqueRepository.findById(id)
@@ -72,6 +80,7 @@ public class EstoqueService {
 
         item.setQuantidade(dto.quantidade());
         item.setUnidadeMedida(dto.unidadeMedida());
+        item.setDescricao(dto.descricao()); // <--- ATUALIZADO
 
         return toResponseDto(estoqueRepository.save(item));
     }

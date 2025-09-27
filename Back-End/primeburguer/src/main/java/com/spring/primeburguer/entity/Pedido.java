@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
@@ -28,7 +30,7 @@ public class Pedido {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
-    // O Hibernate cria a data automaticamente
+    // Cria a data automaticamente
     @CreationTimestamp
     @Column(updatable = false)
     private Instant data;
@@ -36,17 +38,22 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemPedido> itens = new ArrayList<>();
+
 
     public Pedido() {}
 
-    public Pedido(Long id, double valorTotal, Integer quantidade, Cliente cliente, Instant data, StatusPedido status) {
-        this.id = id;
-        this.valorTotal = valorTotal;
-        this.quantidade = quantidade;
-        this.cliente = cliente;
-        this.data = data;
+    public Pedido(List<ItemPedido> itens, StatusPedido status, Instant data, Cliente cliente, Integer quantidade, double valorTotal, Long id) {
+        this.itens = itens;
         this.status = status;
+        this.data = data;
+        this.cliente = cliente;
+        this.quantidade = quantidade;
+        this.valorTotal = valorTotal;
+        this.id = id;
     }
+
 
     public Long getId() {
         return id;
@@ -94,5 +101,13 @@ public class Pedido {
 
     public void setStatus(StatusPedido status) {
         this.status = status;
+    }
+
+    public List<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
     }
 }

@@ -1,14 +1,16 @@
 package com.spring.primeburguer.service;
 
+import com.spring.primeburguer.dto.ItemPedidoRequestDTO;
 import com.spring.primeburguer.dto.PedidoRequestDTO;
 import com.spring.primeburguer.dto.PedidoResponseDTO;
-import com.spring.primeburguer.entity.Cliente;
-import com.spring.primeburguer.entity.Pedido;
+import com.spring.primeburguer.entity.*;
 import com.spring.primeburguer.entity.enums.StatusPedido;
 import com.spring.primeburguer.repository.ClienteRepository;
 import com.spring.primeburguer.repository.PedidoRepository;
+import com.spring.primeburguer.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -17,20 +19,18 @@ public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
     private final ClienteRepository clienteRepository;
-    private final EstoqueService estoqueService; // Dependência para a regra de negócio
-
-    // ID FIXO DO ESTOQUE: Assumimos que o produto a ser decrementado
-    // tem o ID 1, conforme a regra de que o front-end associará o produto.
-    // Em um sistema real, haveria uma lista de itens e IDs.
-    private static final Long ITEM_ESTOQUE_ID_PADRAO = 1L;
+    private final ProdutoRepository produtoRepository;
+    private final EstoqueService estoqueService;
 
     public PedidoService(
             PedidoRepository pedidoRepository,
             ClienteRepository clienteRepository,
+            ProdutoRepository produtoRepository,
             EstoqueService estoqueService
     ) {
         this.pedidoRepository = pedidoRepository;
         this.clienteRepository = clienteRepository;
+        this.produtoRepository = produtoRepository;
         this.estoqueService = estoqueService;
     }
 
@@ -45,27 +45,44 @@ public class PedidoService {
                 pedido.getStatus()
         );
     }
-    // ------------------
 
     // POST: Cria um novo Pedido (com baixa de estoque)
-    @Transactional // Garante que se o estoque falhar, o pedido não é criado
+    @Transactional
     public PedidoResponseDTO criarPedido(PedidoRequestDTO dto) {
-        // 1. Valida e busca o Cliente
         Cliente cliente = clienteRepository.findById(dto.clienteId())
                 .orElseThrow(() -> new NoSuchElementException("Cliente não encontrado com ID: " + dto.clienteId()));
 
-        // 2. Tenta dar baixa no Estoque
-        // Usamos a quantidade do pedido como a quantidade a ser decrementada
-        estoqueService.darBaixa(ITEM_ESTOQUE_ID_PADRAO, dto.quantidade());
-
-        // 3. Cria a entidade Pedido
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
-        pedido.setQuantidade(dto.quantidade());
-        // Aqui você calcularia o valor total com base no produto, mas vamos usar um valor simulado
-        pedido.setValorTotal(dto.quantidade() * 15.00);
         pedido.setStatus(StatusPedido.PENDENTE);
-        // A data será gerada automaticamente pelo @CreationTimestamp
+
+        double valorTotal = 0.0;
+
+        for (ItemPedidoRequestDTO itemDto : dto.itens()) {
+            Produto produto = produtoRepository.findById(itemDto.produtoId())
+                    .orElseThrow(() -> new NoSuchElementException("Produto não encontrado com ID: " + itemDto.produtoId()));
+
+            ItemPedido itemPedido = new ItemPedido();
+            itemPedido.setPedido(pedido);
+            itemPedido.setProduto(produto);
+            itemPedido.setQuantidade(itemDto.quantidade());
+            pedido.getItens().add(itemPedido);
+
+            valorTotal += produto.getPreco() * itemDto.quantidade();
+
+            Long estoqueId = produto.getEstoque().getId();
+
+            // A quantidade a ser dada baixa é a quantidade do produto no pedido
+            double quantidadeBaixa = (double) itemDto.quantidade();
+
+            // Chama o método darBaixa do EstoqueService (transacional)
+            estoqueService.darBaixa(estoqueId, quantidadeBaixa);
+        }
+
+        pedido.setQuantidade(dto.itens().stream()
+                .mapToInt(item -> item.quantidade() != null ? item.quantidade() : 0)
+                .sum());
+        pedido.setValorTotal(valorTotal);
 
         return toResponseDto(pedidoRepository.save(pedido));
     }
@@ -82,7 +99,7 @@ public class PedidoService {
         return pedidoRepository.findAll().stream().map(this::toResponseDto).toList();
     }
 
-    // PUT: Atualiza o status do Pedido (Não se atualiza quantidade ou valor após a criação)
+    // PUT: Atualiza o status do Pedido
     @Transactional
     public PedidoResponseDTO atualizarStatus(Long id, StatusPedido novoStatus) {
         Pedido pedido = pedidoRepository.findById(id)
@@ -93,14 +110,11 @@ public class PedidoService {
         return toResponseDto(pedidoRepository.save(pedido));
     }
 
-    // DELETE: Deleta Pedido (Em um sistema real, isso exigiria reverter o estoque!)
+    // DELETE: Deleta Pedido (pode futuramente reverter estoque)
     @Transactional
     public void deletarPedido(Long id) {
         Pedido pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Pedido não encontrado com ID: " + id));
-
-        // REGRA DE NEGÓCIO CRÍTICA: Reverter a baixa de estoque
-        // estoqueService.darBaixa(ITEM_ESTOQUE_ID_PADRAO, -pedido.getQuantidade()); // Reverter
 
         pedidoRepository.delete(pedido);
     }
