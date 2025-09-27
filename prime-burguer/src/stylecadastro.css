@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #ffffff;
+}
+
+
+.pag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    max-width: 100%;
+    margin: auto;
+    padding: 50px;
+    margin-top: 50px;
+    height: 300px;
+    max-height: 100%;
+    gap: 30px;
+   background-color:#f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(50, 50, 66, 0.15);
+
+}
+button {
+    width: 150px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-top: 10px; 
+     background-color: var(--primary); 
+    color: #fff;
+}

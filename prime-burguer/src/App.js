@@ -4,6 +4,7 @@ import { Nave } from "./Itens/Nav";
 import ArticleLanches from "./Itens/Article";
 import { ArticleSobremessa } from "./Itens/Article";
 import "./App.css";
+import "./stylecadastro.css";
 import {
   itensDoCardapioLanches,
   itensDoCardapioSobremessas,
