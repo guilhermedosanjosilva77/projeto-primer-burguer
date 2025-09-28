@@ -1,0 +1,1519 @@
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v11.6.0"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 12.429,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/users",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 28 Sep 2025 00:12:12 GMT"
+						}
+					],
+					"content": {
+						"size": 43,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"email\":\"usuario.novo@email.com\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 12.429,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "GET_USERS"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 410.109,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/users",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"email\": \"usuario.novo@email.com\",\n  \"senha\": \"senhaSegura123!\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 28 Sep 2025 00:11:41 GMT"
+						}
+					],
+					"content": {
+						"size": 41,
+						"mimeType": "application/json",
+						"text": "{\"id\":1,\"email\":\"usuario.novo@email.com\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 410.109,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "POST_USERS"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 468.212,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/itensPedido/1",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 28 Sep 2025 00:10:00 GMT"
+						}
+					],
+					"content": {
+						"size": 154,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"pedidoId\":1,\"produtoId\":1,\"quantidade\":1},{\"id\":2,\"pedidoId\":1,\"produtoId\":1,\"quantidade\":2},{\"id\":3,\"pedidoId\":1,\"produtoId\":1,\"quantidade\":2}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 468.212,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "GET_ITENSPEDIDO"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 409.114,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/itensPedido",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"quantidade\": 2,\n  \"pedidoId\": 1,  \n  \"produtoId\": 1   \n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 28 Sep 2025 00:09:12 GMT"
+						}
+					],
+					"content": {
+						"size": 50,
+						"mimeType": "application/json",
+						"text": "{\"id\":3,\"pedidoId\":1,\"produtoId\":1,\"quantidade\":2}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 409.114,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "POST_ITENSPEDIDO"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 102.953,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/caixa",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 28 Sep 2025 00:05:09 GMT"
+						}
+					],
+					"content": {
+						"size": 169,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"saldoAtual\":2250.0,\"movimentacoes\":[{\"id\":1,\"tipo\":\"ENTRADA\",\"valor\":750.0,\"descricao\":\"Recebimento de vendas da noite\",\"data\":[2025,9,27,21,2,0,976796000]}]}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 102.953,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "GET_CAIXA"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 41.003,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/movimentacoes",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 28 Sep 2025 00:04:23 GMT"
+						}
+					],
+					"content": {
+						"size": 122,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"tipo\":\"ENTRADA\",\"valor\":750.0,\"descricao\":\"Recebimento de vendas da noite\",\"data\":[2025,9,27,21,2,0,976796000]}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 41.003,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "GET_MOVIMENTACOES"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 1487.7720000000002,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/movimentacoes",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"tipo\": \"ENTRADA\",        \n  \"valor\": 750.00,\n  \"descricao\": \"Recebimento de vendas da noite\",\n  \"data\": \"2025-09-27T21:00:00\",\n  \"caixaId\": 1               \n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 28 Sep 2025 00:02:02 GMT"
+						}
+					],
+					"content": {
+						"size": 120,
+						"mimeType": "application/json",
+						"text": "{\"id\":1,\"tipo\":\"ENTRADA\",\"valor\":750.0,\"descricao\":\"Recebimento de vendas da noite\",\"data\":[2025,9,27,21,2,0,976796000]}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 1487.7720000000002,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "POST_MOVIMENTACAOCAIXA"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 316.072,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/caixa",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"saldoAtual\": 1500.00\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:57:29 GMT"
+						}
+					],
+					"content": {
+						"size": 47,
+						"mimeType": "application/json",
+						"text": "{\"id\":1,\"saldoAtual\":1500.0,\"movimentacoes\":[]}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 316.072,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "POST_CAIXA"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 17.451,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/pedidos",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:54:44 GMT"
+						}
+					],
+					"content": {
+						"size": 105,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"valorTotal\":90.0,\"quantidade\":3,\"clienteId\":1,\"data\":1759017243.638775000,\"status\":\"PENDENTE\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 17.451,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "GET_PEDIDOS"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 541.512,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/pedidos",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"clienteId\": 1,\n  \"itens\": [\n    {\n      \"produtoId\": 1,\n      \"quantidade\": 1\n    },\n    {\n      \"produtoId\": 1,\n      \"quantidade\": 2\n    }\n  ]\n}\n"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:54:04 GMT"
+						}
+					],
+					"content": {
+						"size": 103,
+						"mimeType": "application/json",
+						"text": "{\"id\":1,\"valorTotal\":90.0,\"quantidade\":3,\"clienteId\":1,\"data\":1759017243.638775000,\"status\":\"PENDENTE\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 541.512,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "POST_PEDIDOS"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 194.722,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/produtos",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:52:15 GMT"
+						}
+					],
+					"content": {
+						"size": 124,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"nome\":\"X-Bacon\",\"preco\":30.0,\"descricao\":\"Hambúrguer de 180g, queijo cheddar, alface, tomate e molho especial.\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 194.722,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "GET_PRODUTOS"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 665.475,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/produtos",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"X-Bacon\",\n  \"preco\": 30.00,\n  \"descricao\": \"Hambúrguer de 180g, queijo cheddar, alface, tomate e molho especial.\",\n  \"estoqueId\": 1 \n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:51:48 GMT"
+						}
+					],
+					"content": {
+						"size": 122,
+						"mimeType": "application/json",
+						"text": "{\"id\":1,\"nome\":\"X-Bacon\",\"preco\":30.0,\"descricao\":\"Hambúrguer de 180g, queijo cheddar, alface, tomate e molho especial.\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 665.475,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "POST_PRODUTOS"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 18.643,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/estoque",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:50:42 GMT"
+						}
+					],
+					"content": {
+						"size": 139,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"quantidade\":150.0,\"unidadeMedida\":\"g\",\"descricao\":null},{\"id\":2,\"quantidade\":150.0,\"unidadeMedida\":\"g\",\"descricao\":\"Hamburguer\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 18.643,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "GET_ESTOQUE"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 118.188,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/estoque",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"quantidade\": 150.0,\n  \"unidadeMedida\": \"g\",\n\t\"descricao\": \"Hamburguer\"\n}\n"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 201,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:50:12 GMT"
+						}
+					],
+					"content": {
+						"size": 72,
+						"mimeType": "application/json",
+						"text": "{\"id\":2,\"quantidade\":150.0,\"unidadeMedida\":\"g\",\"descricao\":\"Hamburguer\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 118.188,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "POST_ESTOQUE"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 559.366,
+				"request": {
+					"method": "DELETE",
+					"url": "http://localhost:8080/clientes/2",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 204,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:47:37 GMT"
+						}
+					],
+					"content": {
+						"size": 0,
+						"mimeType": "",
+						"text": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 559.366,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "DEL_CLIENTES"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 576.5120000000001,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:8080/clientes",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.0"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"João da Silva12\",\n  \"telefone\": \"(11) 98765-4321\",\n  \"rua\": \"Rua das Flores\",\n  \"bairro\": \"Jardim América\",\n  \"numeroCasa\": \"123A\",\n  \"cidade\": \"São Paulo\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:46:14 GMT"
+						}
+					],
+					"content": {
+						"size": 155,
+						"mimeType": "application/json",
+						"text": "{\"id\":2,\"nome\":\"João da Silva12\",\"telefone\":\"(11) 98765-4321\",\"rua\":\"Rua das Flores\",\"bairro\":\"Jardim América\",\"numeroCasa\":\"123A\",\"cidade\":\"São Paulo\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 576.5120000000001,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "POST_CLIENTES"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 14.409999999999998,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:8080/clientes",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.2"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:47:42 GMT"
+						}
+					],
+					"content": {
+						"size": 155,
+						"mimeType": "application/json",
+						"text": "[{\"id\":1,\"nome\":\"João da Silva\",\"telefone\":\"(11) 98765-4321\",\"rua\":\"Rua das Flores\",\"bairro\":\"Jardim América\",\"numeroCasa\":\"123A\",\"cidade\":\"São Paulo\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 14.409999999999998,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "GET_CLIENTES"
+			},
+			{
+				"startedDateTime": "2025-09-28T00:13:07.791Z",
+				"time": 1085.561,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:8080/clientes/2",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [
+						{
+							"name": "JSESSIONID",
+							"value": "0C3FAE561AF944810403F131C2A25F92",
+							"path": "/",
+							"domain": "localhost",
+							"httpOnly": true
+						}
+					],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.0.2"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n  \"nome\": \"João da Silva\",\n  \"telefone\": \"(11) 98765-4321\",\n  \"rua\": \"Rua das Flores\",\n  \"bairro\": \"Jardim América\",\n  \"numeroCasa\": \"123A\",\n  \"cidade\": \"São Paulo\"\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Vary",
+							"value": "Origin"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"name": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 27 Sep 2025 23:46:49 GMT"
+						}
+					],
+					"content": {
+						"size": 153,
+						"mimeType": "application/json",
+						"text": "{\"id\":2,\"nome\":\"João da Silva\",\"telefone\":\"(11) 98765-4321\",\"rua\":\"Rua das Flores\",\"bairro\":\"Jardim América\",\"numeroCasa\":\"123A\",\"cidade\":\"São Paulo\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 1085.561,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "PUT_CLIENTES"
+			}
+		]
+	}
+}
