@@ -4,7 +4,8 @@ export default function Footer(){
         <div className="foot1">
         <div className="SobreNos">
         <h2>Sobre nós</h2>
-        <p>loren ipsum </p>
+        <p>Somos apaixonados por criar o hambúrguer perfeito. Aqui, você encontra lanches feitos com ingredientes frescos e saborosos, preparados com carinho para satisfazer sua fome. Seja um clássico com bacon, um leve com salada, ou o nosso
+             especial "Padrão", garantimos uma experiência deliciosa a cada mordida.</p>
         </div>
 
         <div className="Contato">
