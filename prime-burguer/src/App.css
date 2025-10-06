@@ -16,7 +16,7 @@
   --shadow-medium: rgba(0, 0, 0, 0.2);
 }
 
-/* -------------------- GERAL -------------------- */
+
 body {
   /* Corrigido de .body para body (o seletor correto do HTML) */
   height: auto;
@@ -34,64 +34,127 @@ h1, h2 {
   color: var(--primary);
 }
 
-/* -------------------- NAVEGAÇÃO (HEADER) -------------------- */
+/* ---------- MENU DE NAVEGAÇÃO COM LOGO E ÍCONES ---------- */
 .my-nav {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  background-color: var(--primary);
-  height: 10vh;
-  max-height: 100%;
   justify-content: space-between;
-  width: 100%;
-  /* Sombra sutil para destacar a navegação */
+  background-color: var(--primary);
+  padding: 10px 30px;
   box-shadow: 0 4px 6px var(--shadow-light);
+  height: 80px;
 }
 
+/* Estilo base da logo */
+.logo-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease-in-out; /* animação suave */
+}
+
+.logo-img:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+
+
+
+/* NAVEGAÇÃO DE ÍCONES */
 .itens-nav {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   gap: 20px;
-  /* Aumentei o espaçamento */
-  margin-right: 20px;
-  /* Aumentei a margem */
 }
 
-/* Estilo para os botões da navegação */
-.botao0, .botao1, .botao2, .botao3 {
-  background: transparent;
+/* Botões com ícones */
+.botao0,
+.botao1,
+.botao2,
+.botao3 {
+  background-color: transparent;
   border: none;
-  padding: 8px 12px;
-  outline: none;
   cursor: pointer;
-  color: white;
-  font-weight: 500;
-  font-size: 1em;
-  transition: color 0.3s ease;
-  /* Transição na cor */
+  padding: 6px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
 }
+
+.botao0:hover,
+.botao1:hover,
+.botao2:hover,
+.botao3:hover {
+  background-color: var(--tertiary);
+}
+
+/* Ícones dentro dos botões */
+.botao0 img,
+.botao1 img,
+.botao2 img,
+.botao3 img {
+  width: 28px;
+  height: 28px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .my-nav {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .itens-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 
 .botao0:hover, .botao1:hover, .botao2:hover, .botao3:hover {
   color: var(--tertiary);
   /* Cor de hover mais chamativa */
 }
 
-/* -------------------- BANNER -------------------- */
+/* ---------- BANNER COM TEXTO SOBREPOSTO ---------- */
 .banner {
+  position: relative;
   width: 100%;
+  height: 400px;
+  overflow: hidden;
   margin-bottom: 30px;
-  /* Adiciona espaço abaixo do banner */
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 10px var(--shadow-light);
 }
 
 .bannerpicture {
   width: 100%;
   height: 100%;
-  max-height: 400px;
-  /* Altura máxima mais controlada */
   object-fit: cover;
-  /* Garante que a imagem cubra a área sem distorcer */
+  filter: brightness(70%); /* escurece um pouco para destacar o texto */
 }
+
+.banner-texto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+.banner-texto h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+.banner-texto p {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
 
 /* -------------------- LISTA DE PRODUTOS -------------------- */
 .styleh1 {
@@ -243,37 +306,65 @@ h1, h2 {
 }
 
 /* -------------------- RODAPÉ (FOOTER) -------------------- */
-footer {
-  background-color: var(--tertiary);
-  height: 25vh;
-  /* Altura mais adequada para um rodapé */
-  padding: 20px 50px;
-  box-shadow: 0 -4px 6px var(--shadow-light);
-  /* Sombra para separar do conteúdo */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
-.foot1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.imagemcontato1,
-.imagemcontato2,
-.imagemcontato3 {
-  display: flex;
-  gap: 20px;
-}
-
-.direitos {
-  text-align: center;
+footer.footer {
+  background-color: #fff7f0; /* tom creme bem suave */
+  padding: 40px 30px 20px;
+  font-family: 'Baloo 2', cursive;
   color: var(--neutral-dark);
+  box-shadow: 0 -4px 10px var(--shadow-light);
+  margin-top: 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-section {
+  max-width: 400px;
+  min-width: 250px;
+}
+
+.footer-section h2 {
+  font-size: 1.6em;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--neutral-dark);
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: var(--neutral-dark);
+}
+
+.contact-icon {
+  color: var(--secondary);
+  font-size: 1.2em;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
   font-size: 0.9em;
-  margin-top: 20px;
+  opacity: 0.7;
 }
 
 /* -------------------- MEDIA QUERIES (Responsividade) -------------------- */

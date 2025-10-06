@@ -1,36 +1,43 @@
-export default function Footer(){
-    return(
-    <div>
-        <div className="foot1">
-        <div className="SobreNos">
-        <h2>Sobre nós</h2>
-        <p>Somos apaixonados por criar o hambúrguer perfeito. Aqui, você encontra lanches feitos com ingredientes frescos e saborosos, preparados com carinho para satisfazer sua fome. Seja um clássico com bacon, um leve com salada, ou o nosso
-             especial "Padrão", garantimos uma experiência deliciosa a cada mordida.</p>
+// ./Itens/footer.js
+import React from "react";
+import { FaPhone, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa"; // Biblioteca de ícones
+
+export default function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-content">
+
+        <div className="footer-section">
+          <h2>🍔 Sobre nós</h2>
+          <p>
+            Amamos criar o hambúrguer perfeito! 🍟<br />
+            Nossos lanches são feitos com ingredientes fresquinhos, muito carinho e um toque especial que faz toda a diferença.
+          </p>
         </div>
 
-        <div className="Contato">
-            <h2>Contato</h2>
-            <div className="imagemcontato1">
-            <p>imagem</p>
-            <p>16991965919</p>
-            </div>
-            <div className="imagemcontato2">
-            <p>imagem</p>
-            <p>Av doutor gildeney das neves, 587 - São Carlos</p>
-            </div>
-            <div className="imagemcontato3">
-            <p>imagem</p>
-            <p>primeBurguer@gmail.com</p>
-            </div>
-            
-        </div>
+        <div className="footer-section">
+          <h2>📞 Contato</h2>
+          <ul className="contact-list">
+            <li>
+              <FaPhone className="contact-icon" />
+              <span>(16) 99196-5919</span>
+            </li>
+            <li>
+              <FaMapMarkerAlt className="contact-icon" />
+              <span>Av. Dr. Gildeney das Neves, 587 - São Carlos</span>
+            </li>
+            <li>
+              <FaEnvelope className="contact-icon" />
+              <span>primeburguer@gmail.com</span>
+            </li>
+          </ul>
         </div>
 
-        <div className="direitos">
-            <h3>© 2024 Prime Burguer, odos os direitos reservados </h3>
-        </div>
-        
+      </div>
 
-    </div>
-    )
+      <div className="footer-bottom">
+        <p>© 2025 Prime Burguer. Todos os direitos reservados. 🍔</p>
+      </div>
+    </footer>
+  );
 }

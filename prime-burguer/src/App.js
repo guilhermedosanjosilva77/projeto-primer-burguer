@@ -13,7 +13,7 @@ import Footer from "./Itens/footer";
 import { Car } from "./cards/testeredirecionamento/car";
 import { Register } from "./cards/testeredirecionamento/registro";
 import { Contact } from "./cards/testeredirecionamento/contato";
-import Banner from "./imagens/Banner.jpg";
+import Banner from "./imagens/Banner.png";
 
 //criação da const carrinho junto desse useState JAO
 function App() {
@@ -63,7 +63,12 @@ function HomePage({ adicionarAoCarrinho }) {
           className="bannerpicture"
           alt="Banner da Lanchonete, com a logo e pratos"
         />
+        <div className="banner-texto">
+          <h1>Seja bem-vindo ao Prime Burguer! 🍔</h1>
+          <p>Onde o sabor é sempre a estrela do prato ⭐</p>
+        </div>
       </div>
+
 
       <main>
         <section className="lanche" style={{ textAlign: "center" }}>
