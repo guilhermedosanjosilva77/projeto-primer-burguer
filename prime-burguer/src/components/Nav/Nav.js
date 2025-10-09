@@ -1,10 +1,10 @@
 // ./Itens/Nav.js
 import { useNavigate } from "react-router-dom";
-import carrinhoIcon from "./imagesitens/carrinho.png";
-import registroIcon from "./imagesitens/registro.png";
-import telefoneIcon from "./imagesitens/telefone.png";
-import homeIcon from "./imagesitens/home.png";
-import logo from "../imagens/logo.png"; 
+import carrinhoIcon from "../../assets/img/Ícones/carrinho.png";
+import registroIcon from "../../assets/img/Ícones/registro.png";
+import telefoneIcon from "../../assets/img/Ícones/telefone.png";
+import homeIcon from "../../assets/img/Ícones/home.png";
+import logo from "../../assets/img/Banner e Logo/logo.png"; 
 
 export function Nave() {
   const navigate = useNavigate();

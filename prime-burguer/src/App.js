@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Nave } from "./Itens/Nav";
-import ArticleLanches from "./Itens/Article";
-import { ArticleSobremessa } from "./Itens/Article";
+import { Nave } from "./components/Nav/Nav";
+import ArticleLanches from "./components/Article/Article.js";
+import { ArticleSobremessa } from "./components/Article/Article.js";
 import "./App.css";
-import "./stylecadastro.css";
+import "./components/Registro/stylecadastro.css";
 import {
   itensDoCardapioLanches,
   itensDoCardapioSobremessas,
-} from "./cards/itens-card";
-import Footer from "./Itens/footer";
-import { Car } from "./cards/testeredirecionamento/car";
-import { Register } from "./cards/testeredirecionamento/registro";
-import { Contact } from "./cards/testeredirecionamento/contato";
-import Banner from "./imagens/Banner.png";
+} from "./api/itens-card";
+import Footer from "./components/Footer/footer.js";
+import { Car } from "./components/Carrinho/Carrinho.js";
+import { Register } from "./components/Registro/Registro.js";
+import { Contact } from "./components/Contato/Contato.js";
+import Banner from "./assets/img/Banner e Logo/Banner.png";
 
 //criação da const carrinho junto desse useState JAO
 function App() {
@@ -68,7 +68,6 @@ function HomePage({ adicionarAoCarrinho }) {
           <p>Onde o sabor é sempre a estrela do prato ⭐</p>
         </div>
       </div>
-
 
       <main>
         <section className="lanche" style={{ textAlign: "center" }}>
