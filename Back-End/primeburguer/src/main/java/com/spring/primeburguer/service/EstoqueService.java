@@ -18,7 +18,7 @@ public class EstoqueService {
         this.estoqueRepository = estoqueRepository;
     }
 
-    // --- Mapeador ---
+    // Mapeador
     private EstoqueResponseDTO toResponseDto(Estoque estoque) {
         return new EstoqueResponseDTO(
                 estoque.getId(),
@@ -27,9 +27,8 @@ public class EstoqueService {
                 estoque.getDescricao() // <--- ATUALIZADO
         );
     }
-    // ------------------
 
-    // Método CRÍTICO: Realiza a baixa no estoque ao fazer um Pedido
+    // Realiza a baixa no estoque ao fazer um Pedido
     @Transactional
     public void darBaixa(Long estoqueId, double quantidade) {
         Estoque item = estoqueRepository.findById(estoqueId)
@@ -43,7 +42,7 @@ public class EstoqueService {
         estoqueRepository.save(item);
     }
 
-    // POST: Cria novo item no Estoque (ATUALIZADO)
+    // Cria novo item no Estoque (ATUALIZADO)
     @Transactional
     public EstoqueResponseDTO criarItem(EstoqueRequestDTO dto) {
         Estoque item = new Estoque();
@@ -54,25 +53,25 @@ public class EstoqueService {
         return toResponseDto(estoqueRepository.save(item));
     }
 
-    // GET: Busca todos os itens de Estoque
+    // Busca todos os itens de Estoque
     public List<EstoqueResponseDTO> buscarTodos() {
         return estoqueRepository.findAll().stream().map(this::toResponseDto).toList();
     }
 
-    // GET: Busca item por ID (Retorna DTO)
+    // Busca item por ID (Retorna DTO)
     public EstoqueResponseDTO buscarPorId(Long id) {
         Estoque item = estoqueRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Item de Estoque não encontrado com ID: " + id));
         return toResponseDto(item);
     }
 
-    // MÉTODO: Busca e retorna a ENTIDADE Estoque (necessário pelo ProdutoService)
+    // Busca e retorna a ENTIDADE Estoque (necessário pelo ProdutoService)
     public Estoque buscarEntidadePorId(Long id) {
         return estoqueRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Estoque não encontrado com ID: " + id));
     }
 
-    // PUT: Atualiza item (ex: reposição de estoque) (ATUALIZADO)
+    // Atualiza item (ex: reposição de estoque) (ATUALIZADO)
     @Transactional
     public EstoqueResponseDTO atualizarItem(Long id, EstoqueRequestDTO dto) {
         Estoque item = estoqueRepository.findById(id)
@@ -85,7 +84,7 @@ public class EstoqueService {
         return toResponseDto(estoqueRepository.save(item));
     }
 
-    // DELETE: Deleta item
+    // Deleta item
     @Transactional
     public void deletarItem(Long id) {
         if (!estoqueRepository.existsById(id)) {

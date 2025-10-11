@@ -4,7 +4,6 @@ import { Nave } from "./components/Nav/Nav";
 import ArticleLanches from "./components/Article/Article.js";
 import { ArticleSobremessa } from "./components/Article/Article.js";
 import "./App.css";
-import "./components/Registro/stylecadastro.css";
 import {
   itensDoCardapioLanches,
   itensDoCardapioSobremessas,

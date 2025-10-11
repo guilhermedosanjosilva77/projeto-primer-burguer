@@ -19,7 +19,7 @@ public class ItemPedidoController {
         this.itemPedidoService = itemPedidoService;
     }
 
-    // POST: Adiciona um item ao pedido (dispara baixa de estoque e cálculo)
+    // Adiciona um item ao pedido
     @PostMapping
     public ResponseEntity<ItemPedidoResponseDTO> adicionarItem(@RequestBody ItemPedidoRequestDTO dto) {
         try {
@@ -32,7 +32,7 @@ public class ItemPedidoController {
         }
     }
 
-    // GET: Busca todos os itens de um pedido específico
+    // Busca todos os itens de um pedido específico
     @GetMapping("/{pedidoId}")
     public ResponseEntity<List<ItemPedidoResponseDTO>> buscarItensPorPedido(@PathVariable Long pedidoId) {
         try {
@@ -43,7 +43,7 @@ public class ItemPedidoController {
         }
     }
 
-    // DELETE: Remove um item do pedido
+    // Remove um item do pedido
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerItem(@PathVariable Long id) {
         try {

@@ -1,0 +1,135 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Fundo suave que combina com o header */
+body {
+  background: radial-gradient(circle at top left, #ffffff, #f6f7fa);
+}
+
+/* Container externo do formulário */
+.itens {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px); /* deixa espaço pro header */
+  padding-top: 40px;
+}
+
+/* Card principal */
+.pag {
+  background-color: #fff;
+  padding: 45px 50px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.pag:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Título */
+.pag h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #c62828;
+  margin-bottom: 30px;
+}
+
+/* Labels */
+.pag label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Inputs */
+.pag input {
+  width: 100%; 
+  box-sizing: border-box; 
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #d0d0d0;
+  background-color: #fafafa;
+  outline: none;
+  font-size: 15px;
+  margin-top: 6px;
+  transition: all 0.3s ease;
+}
+
+.pag input:focus {
+  border-color: #c62828;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.15);
+}
+
+/* Botão */
+.pag button {
+  width: 100%;
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 6px 15px rgba(198, 40, 40, 0.3);
+  transition: all 0.3s ease;
+}
+
+.pag button:hover {
+  background: linear-gradient(135deg, #e53935, #b71c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(198, 40, 40, 0.4);
+}
+
+.pag button:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(198, 40, 40, 0.25);
+}
+
+.pag input::placeholder {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Responsividade */
+@media (max-width: 430px) {
+  .pag {
+    width: 90%;
+    padding: 35px 25px;
+  }
+
+  .pag h1 {
+    font-size: 22px;
+  }
+}

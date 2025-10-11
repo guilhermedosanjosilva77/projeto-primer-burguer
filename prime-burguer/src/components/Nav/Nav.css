@@ -1,0 +1,32 @@
+.my-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 12px 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo-nav img {
+  width: 100px;
+  cursor: pointer;
+}
+
+.itens-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.itens-nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #c62828;
+  font-size: 22px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.itens-nav button:hover {
+  color: #e53935;
+  transform: scale(1.15);
+}

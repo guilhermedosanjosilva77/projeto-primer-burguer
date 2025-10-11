@@ -10,6 +10,7 @@ public class OpenApiConfig {
 
     @Bean
     public OpenAPI primeBurguerOpenAPI() {
+        // http://localhost:8080/swagger-ui.html
         return new OpenAPI()
                 .info(new Info()
                         .title("PrimeBurguer API")

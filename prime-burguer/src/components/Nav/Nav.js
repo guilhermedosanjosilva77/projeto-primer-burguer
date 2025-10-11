@@ -1,11 +1,21 @@
 // ./Itens/Nav.js
 import { useNavigate } from "react-router-dom";
-import carrinhoIcon from "../../assets/img/Ícones/carrinho.png";
-import registroIcon from "../../assets/img/Ícones/registro.png";
-import telefoneIcon from "../../assets/img/Ícones/telefone.png";
-import homeIcon from "../../assets/img/Ícones/home.png";
+// import carrinhoIcon from "../../assets/img/Ícones/carrinho.png";
+// import registroIcon from "../../assets/img/Ícones/registro.png";
+// import telefoneIcon from "../../assets/img/Ícones/telefone.png";
+// import homeIcon from "../../assets/img/Ícones/home.png";
 import logo from "../../assets/img/Banner e Logo/logo.png"; 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHouse,
+  faCartShopping,
+  faUserPlus,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons"; 
 
+import "./Nav.css"; 
+
+// Componente que cria O Header
 export function Nave() {
   const navigate = useNavigate();
 
@@ -19,19 +29,23 @@ export function Nave() {
       {/* Ícones de navegação */}
       <div className="itens-nav">
         <button className="botao0" onClick={() => navigate("/home")}>
-          <img src={homeIcon} alt="Home" width={28} height={28} />
+          {/* Ícone de Casa */}
+          <FontAwesomeIcon icon={faHouse} size="lg" style={{color: "#000000",}}/>
         </button>
 
         <button className="botao1" onClick={() => navigate("/carrinho")}>
-          <img src={carrinhoIcon} alt="Carrinho" width={28} height={28} />
+          {/* Ícone de Carrinho */}
+          <FontAwesomeIcon icon={faCartShopping} size="lg" style={{color: "#000000",}}/>
         </button>
 
         <button className="botao2" onClick={() => navigate("/registro")}>
-          <img src={registroIcon} alt="Registro" width={28} height={28} />
+          {/* Ícone de User */}
+          <FontAwesomeIcon icon={faUserPlus} size="lg" style={{color: "#000000",}}/>
         </button>
 
         <button className="botao3" onClick={() => navigate("/contato")}>
-          <img src={telefoneIcon} alt="Contato" width={28} height={28} />
+          {/* Ícone de Telefone */}
+          <FontAwesomeIcon icon={faPhone} size="lg" style={{color: "#000000",}}/>
         </button>
       </div>
     </div>

@@ -33,7 +33,7 @@ public class ItemPedidoService {
         this.estoqueService = estoqueService;
     }
 
-    // --- Mapeador ---
+    // Mapeador
     private ItemPedidoResponseDTO toResponseDto(ItemPedido item) {
         return new ItemPedidoResponseDTO(
                 item.getId(),
@@ -42,9 +42,8 @@ public class ItemPedidoService {
                 item.getQuantidade()
         );
     }
-    // ------------------
 
-    // POST: Adiciona um item ao pedido (Lógica de Estoque e Valor)
+    // Adiciona um item ao pedido (Lógica de Estoque e Valor)
     @Transactional
     public ItemPedidoResponseDTO adicionarItem(ItemPedidoRequestDTO dto) {
         // 1. Validação e Busca

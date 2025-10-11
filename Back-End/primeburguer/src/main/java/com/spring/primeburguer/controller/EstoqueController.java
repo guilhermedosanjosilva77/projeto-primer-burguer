@@ -19,20 +19,20 @@ public class EstoqueController {
         this.estoqueService = estoqueService;
     }
 
-    // POST: Cria um novo item no estoque
+    // Cria um novo item no estoque
     @PostMapping
     public ResponseEntity<EstoqueResponseDTO> criarItem(@RequestBody EstoqueRequestDTO dto) {
         EstoqueResponseDTO novoItem = estoqueService.criarItem(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoItem);
     }
 
-    // GET: Busca todos os itens de estoque
+    // Busca todos os itens de estoque
     @GetMapping
     public ResponseEntity<List<EstoqueResponseDTO>> buscarTodos() {
         return ResponseEntity.ok(estoqueService.buscarTodos());
     }
 
-    // GET: Busca item por ID
+    // Busca item por ID
     @GetMapping("/{id}")
     public ResponseEntity<EstoqueResponseDTO> buscarPorId(@PathVariable Long id) {
         try {
@@ -42,7 +42,7 @@ public class EstoqueController {
         }
     }
 
-    // PUT: Atualiza item (reposição de estoque)
+    // Atualiza item
     @PutMapping("/{id}")
     public ResponseEntity<EstoqueResponseDTO> atualizarItem(@PathVariable Long id, @RequestBody EstoqueRequestDTO dto) {
         try {
@@ -52,7 +52,7 @@ public class EstoqueController {
         }
     }
 
-    // DELETE: Deleta item
+    // Deleta item
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarItem(@PathVariable Long id) {
         try {

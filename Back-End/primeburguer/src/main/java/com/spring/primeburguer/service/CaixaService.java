@@ -29,9 +29,8 @@ public class CaixaService {
 
         return new CaixaResponseDTO(caixa.getId(), caixa.getSaldoAtual(), movimentosDto);
     }
-    // -------------------------------------------
 
-    // POST: Cria um novo Caixa
+    // Cria um novo Caixa
     @Transactional
     public CaixaResponseDTO criarCaixa(CaixaRequestDTO dto) {
         Caixa caixa = new Caixa();
@@ -41,7 +40,7 @@ public class CaixaService {
         return toResponseDto(caixaRepository.save(caixa));
     }
 
-    // GET: Busca um Caixa por ID
+    // Busca um Caixa por ID
     public CaixaResponseDTO buscarCaixaPorId(Long id) {
         Caixa caixa = caixaRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Caixa não encontrado com ID: " + id));
@@ -49,13 +48,14 @@ public class CaixaService {
         return toResponseDto(caixa);
     }
 
-    // GET: Busca todos os Caixas
+    // Busca todos os Caixas
     public List<CaixaResponseDTO> buscarTodosCaixas() {
         return caixaRepository.findAll().stream()
                 .map(this::toResponseDto)
                 .toList();
     }
 
+    // Atualiza o Caixa
     @Transactional
     public CaixaResponseDTO atualizarCaixa(Long id, CaixaRequestDTO dto) {
         Caixa caixa = caixaRepository.findById(id)
@@ -65,7 +65,7 @@ public class CaixaService {
         return toResponseDto(caixa);
     }
 
-    // DELETE: Deleta um Caixa
+    // Deleta um Caixa
     @Transactional
     public void deletarCaixa(Long id) {
         if (!caixaRepository.existsById(id)) {

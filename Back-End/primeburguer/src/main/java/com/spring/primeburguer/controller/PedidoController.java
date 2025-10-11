@@ -20,7 +20,7 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
-    // POST: Cria um novo Pedido (gatilha a baixa de estoque)
+    // Cria um novo Pedido (gatilha a baixa de estoque)
     @PostMapping
     public ResponseEntity<PedidoResponseDTO> criarPedido(@RequestBody PedidoRequestDTO dto) {
         try {
@@ -35,13 +35,13 @@ public class PedidoController {
         }
     }
 
-    // GET: Busca todos os pedidos
+    // Busca todos os pedidos
     @GetMapping
     public ResponseEntity<List<PedidoResponseDTO>> buscarTodos() {
         return ResponseEntity.ok(pedidoService.buscarTodos());
     }
 
-    // GET: Busca pedido por ID
+    // Busca pedido por ID
     @GetMapping("/{id}")
     public ResponseEntity<PedidoResponseDTO> buscarPorId(@PathVariable Long id) {
         try {
@@ -51,7 +51,7 @@ public class PedidoController {
         }
     }
 
-    // PUT: Atualiza apenas o status do pedido
+    // Atualiza apenas o status do pedido
     @PutMapping("/{id}/status")
     public ResponseEntity<PedidoResponseDTO> atualizarStatus(@PathVariable Long id, @RequestParam StatusPedido status) {
         try {
@@ -61,7 +61,7 @@ public class PedidoController {
         }
     }
 
-    // DELETE: Deleta pedido (com a regra de negócio de reverter o estoque)
+    // Deleta pedido (com a regra de negócio de reverter o estoque)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarPedido(@PathVariable Long id) {
         try {

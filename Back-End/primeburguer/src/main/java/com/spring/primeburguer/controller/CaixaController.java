@@ -20,14 +20,14 @@ public class CaixaController {
         this.caixaService = caixaService;
     }
 
-    // POST: Cria um novo Caixa
+    //  Cria um novo Caixa
     @PostMapping
     public ResponseEntity<CaixaResponseDTO> criarCaixa(@RequestBody CaixaRequestDTO dto) {
         CaixaResponseDTO novoCaixa = caixaService.criarCaixa(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoCaixa);
     }
 
-    // GET: Busca um Caixa por ID
+    // Busca um Caixa por ID
     @GetMapping("/{id}")
     public ResponseEntity<CaixaResponseDTO> buscarCaixa(@PathVariable Long id) {
         try {
@@ -37,13 +37,13 @@ public class CaixaController {
         }
     }
 
-    // GET: Busca todos os Caixas
+    // Busca todos os Caixas
     @GetMapping
     public ResponseEntity<List<CaixaResponseDTO>> buscarTodosCaixas() {
         return ResponseEntity.ok(caixaService.buscarTodosCaixas());
     }
 
-    // PUT: Atualiza um Caixa (apenas para metadados, saldo via movimentação)
+    // Atualiza um Caixa
     @PutMapping("/{id}")
     public ResponseEntity<CaixaResponseDTO> atualizarCaixa(@PathVariable Long id, @RequestBody CaixaRequestDTO dto) {
         try {
@@ -53,7 +53,7 @@ public class CaixaController {
         }
     }
 
-    // DELETE: Deleta um Caixa
+    // Deleta um Caixa
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarCaixa(@PathVariable Long id) {
         try {
