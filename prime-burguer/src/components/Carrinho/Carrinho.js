@@ -16,6 +16,7 @@ export function Car({ carrinho }) {
   return (
     <div>
       <h2>Carrinho</h2>
+     
 
       {itensParaRenderizar.length === 0 ? (
         <p>O carrinho está vazio.</p>

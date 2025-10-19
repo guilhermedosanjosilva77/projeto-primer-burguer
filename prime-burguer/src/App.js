@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast"; // 1. IMPORTAÇÃO DO TOASTER
 import { Nave } from "./components/Nav/Nav";
 import ArticleLanches from "./components/Article/Article.js";
 import { ArticleSobremessa } from "./components/Article/Article.js";
@@ -21,33 +22,42 @@ function App() {
   const adicionarAoCarrinho = (item) => {
     setCarrinho((prevCarrinho) => [...prevCarrinho, item]);
   };
+  
   //criação das rotas (router) JAO
   return (
-    <BrowserRouter>
-      <header>
-        <nav>
-          <Nave />
-        </nav>
-      </header>
+    <>
+      <Toaster /> 
+      <BrowserRouter>
+        <header>
+          <nav>
+            <Nave />
+          </nav>
+        </header>
 
-      <Routes>
-        <Route
-          path="/"
-          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
-        />
-        <Route path="/carrinho" element={<Car carrinho={carrinho} />} />
-        <Route path="/registro" element={<Register />} />
-        <Route path="/contato" element={<Contact />} />
-        <Route
-          path="/home"
-          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
-        />
-        <Route
-          path="/car"
-          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
-        />
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+          />
+          <Route path="/carrinho" element={<Car carrinho={carrinho} />} />
+          <Route path="/registro" element={<Register />} />
+          <Route path="/contato" element={<Contact />} />
+          <Route
+            path="/home"
+            element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+          />
+          <Route
+            path="/car"
+            element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+          />
+        </Routes>
+        
+        {/* Movi o Footer para fora do BrowserRouter, dentro do componente principal App. */}
+        <footer>
+          <Footer />
+        </footer>
+      </BrowserRouter>
+    </>
   );
 }
 
@@ -102,9 +112,7 @@ function HomePage({ adicionarAoCarrinho }) {
           </div>
         </section>
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      
     </div>
   );
 }
