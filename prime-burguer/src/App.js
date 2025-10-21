@@ -23,6 +23,23 @@ function App() {
     setCarrinho((prevCarrinho) => [...prevCarrinho, item]);
   };
   
+  // FUNÇÃO IMPLEMENTADA PARA EXCLUIR UM ITEM POR VEZ DO CARRINHO (REMOÇÃO UNITÁRIA)
+  const handleRemoveItem = (itemKey) => {
+    // Encontra o índice do PRIMEIRO item que corresponde à chave (nome)
+    const indexToRemove = carrinho.findIndex(item => (item.item || item.items) === itemKey);
+
+    if (indexToRemove !== -1) {
+      // Cria uma CÓPIA do array do carrinho para garantir a imutabilidade
+      const novoCarrinho = [...carrinho]; 
+      
+      // Remove apenas UMA instância do item no índice encontrado
+      novoCarrinho.splice(indexToRemove, 1); 
+      
+      // Atualiza o estado do carrinho
+      setCarrinho(novoCarrinho);
+    }
+  };
+  
   //criação das rotas (router) JAO
   return (
     <>
@@ -39,7 +56,11 @@ function App() {
             path="/"
             element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
           />
-          <Route path="/carrinho" element={<Car carrinho={carrinho} />} />
+          {/* A ROTA /carrinho FOI ATUALIZADA PARA PASSAR A FUNÇÃO handleRemoveItem */}
+          <Route 
+            path="/carrinho" 
+            element={<Car carrinho={carrinho} onRemoveItem={handleRemoveItem} />} 
+          />
           <Route path="/registro" element={<Register />} />
           <Route path="/contato" element={<Contact />} />
           <Route
@@ -89,6 +110,7 @@ function HomePage({ adicionarAoCarrinho }) {
                 key={lanche.id}
                 lanche={lanche}
                 adicionarAoCarrinho={adicionarAoCarrinho}
+                
               />
             ))}
           </div>
@@ -114,6 +136,8 @@ function HomePage({ adicionarAoCarrinho }) {
       </main>
       
     </div>
+
+    
   );
 }
 
