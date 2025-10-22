@@ -14,49 +14,66 @@ import { Car } from "./components/Carrinho/Carrinho.js";
 import { Register } from "./components/Registro/Registro.js";
 import { Contact } from "./components/Contato/Contato.js";
 import Banner from "./assets/img/Banner e Logo/Banner.png";
+import HomeAdmin from "./Pages/HomeAdmin.js";
+import { useLocation } from "react-router-dom";
 
 //criação da const carrinho junto desse useState JAO
 function App() {
   const [carrinho, setCarrinho] = useState([]);
-
   const adicionarAoCarrinho = (item) => {
     setCarrinho((prevCarrinho) => [...prevCarrinho, item]);
   };
-  
+
   //criação das rotas (router) JAO
   return (
     <>
-      <Toaster /> 
+      <Toaster />
       <BrowserRouter>
+        <Layout
+          carrinho={carrinho}
+          adicionarAoCarrinho={adicionarAoCarrinho}
+        />
+      </BrowserRouter>
+    </>
+  );
+}
+
+//Criação de uma função para gerar apenas o layout
+function Layout({ carrinho, adicionarAoCarrinho }) {
+  const location = useLocation();
+
+  // Verifica se está na rota /homeAdmin
+  const isAdminPage = location.pathname === "/homeAdmin";
+
+  return (
+    <>
+      {/* Exibe o Nav apenas se não for a página de admin */}
+      {!isAdminPage && (
         <header>
           <nav>
             <Nave />
           </nav>
         </header>
+      )}
 
-        <Routes>
-          <Route
-            path="/"
-            element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
-          />
-          <Route path="/carrinho" element={<Car carrinho={carrinho} />} />
-          <Route path="/registro" element={<Register />} />
-          <Route path="/contato" element={<Contact />} />
-          <Route
-            path="/home"
-            element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
-          />
-          <Route
-            path="/car"
-            element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
-          />
-        </Routes>
-        
-        {/* Movi o Footer para fora do BrowserRouter, dentro do componente principal App. */}
+      <Routes>
+        <Route
+          path="/"
+          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+        />
+        <Route path="/home" element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />} />
+        <Route path="/carrinho" element={<Car carrinho={carrinho} />} />
+        <Route path="/registro" element={<Register />} />
+        <Route path="/contato" element={<Contact />} />
+        <Route path="/homeAdmin" element={<HomeAdmin />} />
+      </Routes>
+
+      {/* Exibe o Footer apenas se não for a página de admin */}
+      {!isAdminPage && (
         <footer>
           <Footer />
         </footer>
-      </BrowserRouter>
+      )}
     </>
   );
 }
@@ -112,7 +129,7 @@ function HomePage({ adicionarAoCarrinho }) {
           </div>
         </section>
       </main>
-      
+
     </div>
   );
 }
