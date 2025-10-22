@@ -1,0 +1,144 @@
+/* Variáveis baseadas na paleta da sua hamburgueria (vermelho/preto) */
+:root {
+    --vermelho-prime: #e62e2e; 
+    --preto-texto: #333;
+    --borda-clara: #eee;
+    --cinza-detalhe: #666;
+}
+
+/* ---------------------------------------------------- */
+/* ESTILO DO CONTAINER PRINCIPAL (corrigido com a classe)*/
+/* ---------------------------------------------------- */
+.carrinho-principal { 
+    width: 400px; /* Largura fixa, não-responsiva */
+    margin: 20px auto; /* Centraliza na tela */
+    padding: 20px;
+    border: 1px solid var(--borda-clara);
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    display: block; 
+}
+
+/* -------------------------------------- */
+/* TÍTULO (<h3>Seu Carrinho</h3>) */
+/* -------------------------------------- */
+.carrinho-principal > h3 {
+    text-align: center;
+    color: var(--vermelho-prime);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--borda-clara);
+    padding-bottom: 10px;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+/* -------------------------------------- */
+/* LISTA DE ITENS (<ul>) */
+/* -------------------------------------- */
+.carrinho-principal > ul {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+}
+
+/* Item da Lista (<li>) */
+.carrinho-principal > ul > li {
+    display: flex; /* Alinha imagem e o bloco de texto/botão */
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--borda-clara);
+}
+
+.carrinho-principal > ul > li:last-child {
+    border-bottom: none;
+}
+
+/* Imagem (<img>) */
+.carrinho-principal > ul > li > img {
+    width: 80px; 
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 15px;
+    border: 1px solid var(--borda-clara);
+}
+
+/* -------------------------------------- */
+/* CONTAINER DE TEXTO E BOTÃO (NOVO) */
+/* -------------------------------------- */
+.carrinho-principal > ul > li > .carrinho-info-texto {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Parágrafo de Detalhes (<p>) com Nome, Preço e Quantidade */
+.carrinho-principal > ul > li > .carrinho-info-texto > p {
+    flex-grow: 1; 
+    color: var(--preto-texto);
+    margin: 0; /* Essencial para o alinhamento */
+    line-height: 1.4;
+    font-weight: 500;
+    padding-right: 10px;
+}
+
+/* -------------------------------------- */
+/* BOTÃO DE REMOVER [X] (NOVO) */
+/* -------------------------------------- */
+.carrinho-remover-btn {
+    background: transparent;
+    color: var(--vermelho-prime);
+    border: 1px solid var(--vermelho-prime);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 30px; 
+    min-width: 30px;
+    margin-left: auto;
+}
+
+.carrinho-remover-btn:hover {
+    background-color: var(--vermelho-prime);
+    color: white;
+}
+
+
+/* -------------------------------------- */
+/* BOTÃO (Finalizar pedido) */
+/* -------------------------------------- */
+.carrinho-principal > button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--vermelho-prime);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.carrinho-principal > button:hover {
+    background-color: #c42727;
+}
+
+/* -------------------------------------- */
+/* MENSAGEM DE CARRINHO VAZIO */
+/* -------------------------------------- */
+.carrinho-principal > p:last-child { 
+    text-align: center;
+    color: var(--cinza-detalhe);
+    padding: 30px 0;
+    border: 1px dashed var(--borda-clara);
+    border-radius: 4px;
+    margin-top: 20px;
+}

@@ -23,7 +23,7 @@ function App() {
   const adicionarAoCarrinho = (item) => {
     setCarrinho((prevCarrinho) => [...prevCarrinho, item]);
   };
-
+  
   //criação das rotas (router) JAO
   return (
     <>
@@ -56,20 +56,25 @@ function Layout({ carrinho, adicionarAoCarrinho }) {
         </header>
       )}
 
-      <Routes>
-        <Route
-          path="/"
-          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
-        />
-        <Route path="/home" element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />} />
-        <Route path="/carrinho" element={<Car carrinho={carrinho} />} />
-        <Route path="/registro" element={<Register />} />
-        <Route path="/contato" element={<Contact />} />
-        <Route path="/homeAdmin" element={<HomeAdmin />} />
-      </Routes>
-
-      {/* Exibe o Footer apenas se não for a página de admin */}
-      {!isAdminPage && (
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+          />
+          <Route path="/carrinho" element={<Car carrinho={carrinho} />} />
+          <Route path="/registro" element={<Register />} />
+          <Route path="/contato" element={<Contact />} />
+          <Route
+            path="/home"
+            element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+          />
+          <Route
+            path="/car"
+            element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+          />
+        </Routes>
+        
+        {/* Movi o Footer para fora do BrowserRouter, dentro do componente principal App. */}
         <footer>
           <Footer />
         </footer>
@@ -106,6 +111,7 @@ function HomePage({ adicionarAoCarrinho }) {
                 key={lanche.id}
                 lanche={lanche}
                 adicionarAoCarrinho={adicionarAoCarrinho}
+                
               />
             ))}
           </div>
@@ -131,6 +137,8 @@ function HomePage({ adicionarAoCarrinho }) {
       </main>
 
     </div>
+
+    
   );
 }
 
