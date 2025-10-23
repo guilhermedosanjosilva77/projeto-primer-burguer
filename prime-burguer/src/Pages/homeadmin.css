@@ -1,0 +1,75 @@
+/* Estilo geral */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+  }
+  
+  /* Layout principal */
+  .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+  }
+  
+  .nave {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nave h1 {
+    font-size: 1.5rem;
+    color: #c62828; /* vermelho suave */
+    margin: 0;
+  }
+  
+  .nave h2 {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+  }
+  
+  /* Conteúdo */
+
+  
+  /* Lista */
+  .lista {
+    list-style: none;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .lista li {
+    margin-bottom: 1rem;
+  }
+  
+  
+  .lista button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+    width: 40%;
+    padding: 0.5rem 0;
+    transition: all 0.2s ease;
+  }
+  
+  /* Efeito hover: parece um botão */
+  .lista button:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    padding-left: 0.75rem;
+  }
+  
