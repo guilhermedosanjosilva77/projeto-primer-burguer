@@ -1,5 +1,6 @@
 package com.spring.primeburguer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Data
+//@Data // Se estiver usando Lombok, descomente esta e as próximas duas
 //@AllArgsConstructor
 //@NoArgsConstructor
 @Entity
@@ -21,24 +22,26 @@ public class Produto {
     private Double preco;
     private String descricao;
 
-    @ManyToOne
-    @JoinColumn(name = "estoque_id", nullable = false)
-    private Estoque estoque;
+    @JsonIgnore
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProdutoIngrediente> composicao = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itens = new ArrayList<>();
 
 
     public Produto() {}
 
-    public Produto(Long id, String nome, Double preco, String descricao, Estoque estoque, List<ItemPedido> itens) {
+    // Construtor atualizado sem a entidade Estoque
+    public Produto(Long id, String nome, Double preco, String descricao) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
-        this.estoque = estoque;
-        this.itens = itens;
     }
+
+    // --- Getters e Setters ---
 
     public Long getId() {
         return id;
@@ -72,14 +75,16 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public Estoque getEstoque() {
-        return estoque;
+    // Getter e Setter da Lista de Receita (Composição)
+    public List<ProdutoIngrediente> getComposicao() {
+        return composicao;
     }
 
-    public void setEstoque(Estoque estoque) {
-        this.estoque = estoque;
+    public void setComposicao(List<ProdutoIngrediente> composicao) {
+        this.composicao = composicao;
     }
 
+    // Getter e Setter de Itens
     public List<ItemPedido> getItens() {
         return itens;
     }
@@ -87,4 +92,6 @@ public class Produto {
     public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }
+
+    // O Getter e Setter de Estoque foram removidos
 }

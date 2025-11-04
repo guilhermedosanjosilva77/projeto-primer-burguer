@@ -2,7 +2,6 @@ package com.spring.primeburguer.service;
 
 import com.spring.primeburguer.dto.ProdutoRequestDTO;
 import com.spring.primeburguer.dto.ProdutoResponseDTO;
-import com.spring.primeburguer.entity.Estoque;
 import com.spring.primeburguer.entity.Produto;
 import com.spring.primeburguer.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
@@ -17,17 +16,16 @@ import java.util.stream.Collectors;
 public class ProdutoService {
 
     private final ProdutoRepository produtoRepository;
-    private final EstoqueService estoqueService; // Injeção adicionada
+    // EstoqueService foi removido daqui
 
-    // Construtor atualizado para incluir EstoqueService
-    public ProdutoService(ProdutoRepository produtoRepository, EstoqueService estoqueService) {
+    // Construtor atualizado (apenas ProdutoRepository)
+    public ProdutoService(ProdutoRepository produtoRepository) {
         this.produtoRepository = produtoRepository;
-        this.estoqueService = estoqueService;
     }
 
     // --- Mapeador ---
     private ProdutoResponseDTO toResponseDto(Produto produto) {
-        // Assume-se que ProdutoResponseDTO não precisa do Estoque
+        // Assume-se que ProdutoResponseDTO tem os campos essenciais do Produto
         return new ProdutoResponseDTO(
                 produto.getId(),
                 produto.getNome(),
@@ -37,24 +35,17 @@ public class ProdutoService {
     }
     // ------------------
 
-    // POST: Criar produto (CORRIGIDO: Busca e associa Estoque)
+    // POST: Criar produto (Limpo de lógica de Estoque)
     @Transactional
     public ProdutoResponseDTO createProduto(ProdutoRequestDTO requestDTO) {
-        // 1. Validar e buscar Estoque
-        if (requestDTO.estoqueId() == null) {
-            throw new IllegalArgumentException("O ID do Estoque é obrigatório.");
-        }
-        // É necessário que EstoqueService tenha um método para buscar a entidade Estoque
-        Estoque estoque = estoqueService.buscarEntidadePorId(requestDTO.estoqueId());
-
-        // 2. Criar Produto
+        // 1. Criar Produto
         Produto produto = new Produto();
         produto.setNome(requestDTO.nome());
         produto.setPreco(requestDTO.preco());
         produto.setDescricao(requestDTO.descricao());
 
-        // 3. Associar Estoque
-        produto.setEstoque(estoque);
+        // A associação com o Estoque/Ingredientes será feita separadamente
+        // através do serviço ProdutoIngredienteService (gestão de receita).
 
         Produto savedProduto = produtoRepository.save(produto);
         return toResponseDto(savedProduto);
@@ -68,42 +59,36 @@ public class ProdutoService {
     }
 
     // GET: Buscar por id
-    public Optional<ProdutoResponseDTO> getProdutoById(Long id) {
-        return produtoRepository.findById(id).map(this::toResponseDto);
+    public ProdutoResponseDTO getProdutoById(Long id) {
+        return produtoRepository.findById(id)
+                .map(this::toResponseDto)
+                .orElseThrow(() -> new NoSuchElementException("Produto não encontrado com ID: " + id));
     }
 
-    // PUT: Atualizar (CORRIGIDO: Permite atualizar o Estoque, se fornecido)
+    // PUT: Atualizar (Limpo de lógica de Estoque)
     @Transactional
-    public Optional<ProdutoResponseDTO> updateProduto(Long id, ProdutoRequestDTO requestDTO) {
-        return produtoRepository.findById(id).map(produto -> {
+    public ProdutoResponseDTO updateProduto(Long id, ProdutoRequestDTO requestDTO) {
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Produto não encontrado com ID: " + id));
 
-            produto.setNome(requestDTO.nome());
-            produto.setPreco(requestDTO.preco());
-            produto.setDescricao(requestDTO.descricao());
+        produto.setNome(requestDTO.nome());
+        produto.setPreco(requestDTO.preco());
+        produto.setDescricao(requestDTO.descricao());
 
-            // Lógica para atualizar o Estoque apenas se um novo estoqueId for fornecido
-            if (requestDTO.estoqueId() != null) {
-                // Evita buscar o estoque se for o mesmo
-                if (!requestDTO.estoqueId().equals(produto.getEstoque().getId())) {
-                    Estoque novoEstoque = estoqueService.buscarEntidadePorId(requestDTO.estoqueId());
-                    produto.setEstoque(novoEstoque);
-                }
-            }
+        // Lógica de atualização do Estoque FOI REMOVIDA
 
-            Produto updatedProduto = produtoRepository.save(produto);
-            return toResponseDto(updatedProduto);
-        });
+        Produto updatedProduto = produtoRepository.save(produto);
+        return toResponseDto(updatedProduto);
     }
 
     // DELETE: Deletar
     @Transactional
-    public boolean deleteProduto(Long id) {
-        // Usamos existsById para uma verificação mais simples antes de deletar,
-        // mas findById e delete é mais comum em serviços pequenos.
+    public void deleteProduto(Long id) {
+        // Melhoria: Antes de deletar, idealmente verificar se há pedidos ativos
+        // ou se deve deletar as receitas associadas (ProdutoIngrediente).
         if (!produtoRepository.existsById(id)) {
-            return false;
+            throw new NoSuchElementException("Produto não encontrado com ID: " + id);
         }
         produtoRepository.deleteById(id);
-        return true;
     }
 }

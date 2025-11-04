@@ -2,63 +2,57 @@ package com.spring.primeburguer.controller;
 
 import com.spring.primeburguer.dto.ProdutoRequestDTO;
 import com.spring.primeburguer.dto.ProdutoResponseDTO;
-import com.spring.primeburguer.dto.UserRequestDTO;
-import com.spring.primeburguer.dto.UserResponseDTO;
 import com.spring.primeburguer.service.ProdutoService;
-import com.spring.primeburguer.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/produtos")
+@CrossOrigin(origins = "*")
 public class ProdutoController {
 
     private final ProdutoService produtoService;
 
     public ProdutoController(ProdutoService produtoService) {
-
         this.produtoService = produtoService;
     }
 
-    // Criar
+    // POST: Criar produto
     @PostMapping
-    public ResponseEntity<ProdutoResponseDTO> createProduct(@RequestBody ProdutoRequestDTO requestDTO) {
-        ProdutoResponseDTO response = produtoService.createProduto(requestDTO);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<ProdutoResponseDTO> criar(@RequestBody ProdutoRequestDTO dto) {
+        return ResponseEntity.ok(produtoService.createProduto(dto));
     }
 
-    // Listar todos
+    // GET: Listar todos
     @GetMapping
-    public ResponseEntity<List<ProdutoResponseDTO>> getAllProdutos() {
+    public ResponseEntity<List<ProdutoResponseDTO>> listarTodos() {
         return ResponseEntity.ok(produtoService.getAllProdutos());
     }
 
-    // Buscar por id
+    // GET: Buscar por ID
     @GetMapping("/{id}")
-    public ResponseEntity<ProdutoResponseDTO> getProdutoById(@PathVariable Long id) {
-        return produtoService.getProdutoById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ProdutoResponseDTO> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(produtoService.getProdutoById(id));
     }
 
-    // Atualizar
+    // PUT: Atualizar
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoResponseDTO> updateProduto(@PathVariable Long id,
-                                                            @RequestBody ProdutoRequestDTO requestDTO) {
-        return produtoService.updateProduto(id, requestDTO)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ProdutoResponseDTO> atualizar(
+            @PathVariable Long id,
+            @RequestBody ProdutoRequestDTO dto) {
+        return ResponseEntity.ok(produtoService.updateProduto(id, dto));
     }
 
-    // Deletar
+    // DELETE: Deletar
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
-        boolean deleted = produtoService.deleteProduto(id);
-        if (deleted) {
-            return ResponseEntity.noContent().build(); // 204 No Content
-        }
-        return ResponseEntity.notFound().build(); // 404 Not Found
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        produtoService.deleteProduto(id);
+        return ResponseEntity.noContent().build();
     }
 }

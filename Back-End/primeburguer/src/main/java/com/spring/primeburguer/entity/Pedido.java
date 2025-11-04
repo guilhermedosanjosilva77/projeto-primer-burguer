@@ -1,5 +1,6 @@
 package com.spring.primeburguer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.primeburguer.entity.enums.StatusPedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
@@ -38,6 +39,7 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itens = new ArrayList<>();
 

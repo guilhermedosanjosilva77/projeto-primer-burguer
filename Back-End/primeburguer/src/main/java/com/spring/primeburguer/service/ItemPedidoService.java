@@ -19,18 +19,17 @@ public class ItemPedidoService {
     private final ItemPedidoRepository itemPedidoRepository;
     private final PedidoRepository pedidoRepository;
     private final ProdutoRepository produtoRepository;
-    private final EstoqueService estoqueService;
+    // EstoqueService FOI REMOVIDO daqui.
 
     public ItemPedidoService(
             ItemPedidoRepository itemPedidoRepository,
             PedidoRepository pedidoRepository,
-            ProdutoRepository produtoRepository,
-            EstoqueService estoqueService
+            ProdutoRepository produtoRepository
+            // EstoqueService removido do construtor
     ) {
         this.itemPedidoRepository = itemPedidoRepository;
         this.pedidoRepository = pedidoRepository;
         this.produtoRepository = produtoRepository;
-        this.estoqueService = estoqueService;
     }
 
     // Mapeador
@@ -43,11 +42,10 @@ public class ItemPedidoService {
         );
     }
 
-    // Adiciona um item ao pedido (Lógica de Estoque e Valor)
+    // Adiciona um item ao pedido (SEM LÓGICA DE ESTOQUE)
     @Transactional
     public ItemPedidoResponseDTO adicionarItem(ItemPedidoRequestDTO dto) {
         // 1. Validação e Busca
-        // ESTA LINHA AGORA FUNCIONA se ItemPedidoRequestDTO incluir 'pedidoId'
         Pedido pedido = pedidoRepository.findById(dto.pedidoId())
                 .orElseThrow(() -> new NoSuchElementException("Pedido não encontrado com ID: " + dto.pedidoId()));
 
@@ -58,21 +56,18 @@ public class ItemPedidoService {
             throw new IllegalArgumentException("A quantidade deve ser positiva.");
         }
 
-        // 2. LÓGICA CRÍTICA: Baixa no Estoque
-        // Usamos o ID do Estoque associado ao Produto
-        Long estoqueId = produto.getEstoque().getId();
+        // LÓGICA CRÍTICA DE ESTOQUE REMOVIDA:
+        // A baixa de estoque DEVE ocorrer apenas quando o Pedido for criado/finalizado
+        // e é responsabilidade do PedidoService garantir a integridade.
 
-        // O método darBaixa espera um double para a quantidade
-        estoqueService.darBaixa(estoqueId, (double) dto.quantidade());
-
-        // 3. Cria o ItemPedido
+        // 2. Cria o ItemPedido
         ItemPedido item = new ItemPedido();
         item.setPedido(pedido);
         item.setProduto(produto);
         item.setQuantidade(dto.quantidade());
         item = itemPedidoRepository.save(item);
 
-        // 4. ATUALIZA O PEDIDO MÃE
+        // 3. ATUALIZA O PEDIDO MÃE
         double subtotal = produto.getPreco() * item.getQuantidade();
 
         // Atualiza Valor Total e Quantidade Total de Itens no Pedido
@@ -86,19 +81,12 @@ public class ItemPedidoService {
     // GET: Busca itens de um pedido específico
     public List<ItemPedidoResponseDTO> buscarItensPorPedido(Long pedidoId) {
         // Assume-se que existe um método findByPedidoId no ItemPedidoRepository
-        // Se este método não existir, você deve usar:
-        // return itemPedidoRepository.findAll().stream()
-        //        .filter(item -> item.getPedido().getId().equals(pedidoId))
-        //        .map(this::toResponseDto).toList();
-
-        // Mantendo a suposição para evitar erro de compilação aqui
-        // (Você deve garantir que este método exista no seu Repository)
         return itemPedidoRepository.findByPedidoId(pedidoId).stream()
                 .map(this::toResponseDto)
                 .toList();
     }
 
-    // DELETE: Remove ItemPedido (Reverte Estoque e Valor)
+    // DELETE: Remove ItemPedido (Reverte Valor, SEM REVERTER ESTOQUE)
     @Transactional
     public void removerItem(Long id) {
         ItemPedido item = itemPedidoRepository.findById(id)
@@ -107,20 +95,18 @@ public class ItemPedidoService {
         Pedido pedido = item.getPedido();
         Produto produto = item.getProduto();
 
-        // 1. Reverte o Estoque
-        Long estoqueId = produto.getEstoque().getId();
+        // REVERSÃO DE ESTOQUE FOI REMOVIDA DAQUI.
+        // Se um item for removido/pedido for cancelado, a lógica de reverter
+        // o estoque deve ser explicitamente chamada no PedidoService (ou em outro serviço de Movimentação).
 
-        // Chamada negativa para devolver ao estoque
-        estoqueService.darBaixa(estoqueId, -(double) item.getQuantidade());
-
-        // 2. ATUALIZA O PEDIDO MÃE (diminui o total)
+        // 1. ATUALIZA O PEDIDO MÃE (diminui o total)
         double subtotalRemovido = produto.getPreco() * item.getQuantidade();
 
         pedido.setValorTotal(pedido.getValorTotal() - subtotalRemovido);
         pedido.setQuantidade(pedido.getQuantidade() - item.getQuantidade());
         pedidoRepository.save(pedido);
 
-        // 3. Deleta o item
+        // 2. Deleta o item
         itemPedidoRepository.delete(item);
     }
 
