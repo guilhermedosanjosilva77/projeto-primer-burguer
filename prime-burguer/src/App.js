@@ -16,6 +16,7 @@ import { Contact } from "./components/Contato/Contato.js";
 import Banner from "./assets/img/Banner e Logo/Banner.png";
 import HomeAdmin from "./Pages/HomeAdmin.js";
 import { useLocation } from "react-router-dom";
+import Estoque from "./Pages/PaginaEstoque/Estoque.js";
 
 //criação da const carrinho junto desse useState JAO
 function App() {
@@ -66,6 +67,7 @@ function Layout({ carrinho, adicionarAoCarrinho }) {
         <Route path="/registro" element={<Register />} />
         <Route path="/contato" element={<Contact />} />
         <Route path="/homeAdmin" element={<HomeAdmin />} />
+        <Route path="/estoque" element={<Estoque />} />
       </Routes>
 
       {/* Exibe o Footer apenas se não for a página de admin */}
