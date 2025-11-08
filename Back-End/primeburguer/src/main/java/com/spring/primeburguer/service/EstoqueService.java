@@ -1,9 +1,5 @@
 package com.spring.primeburguer.service;
 
-import com.spring.primeburguer.dto.EstoqueRequestDTO;
-import com.spring.primeburguer.dto.EstoqueResponseDTO;
-import com.spring.primeburguer.entity.Estoque;
-import com.spring.primeburguer.repository.EstoqueRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
