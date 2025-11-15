@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Toaster } from "react-hot-toast"; // 1. IMPORTAÇÃO DO TOASTER
+import { Toaster } from "react-hot-toast";
 import { Nave } from "./components/Nav/Nav";
 import ArticleLanches from "./components/Article/Article.js";
 import { ArticleSobremessa } from "./components/Article/Article.js";
@@ -18,15 +18,17 @@ import HomeAdmin from "./Pages/HomeAdmin.js";
 import { useLocation } from "react-router-dom";
 import Estoque from "./Pages/PaginaEstoque/Estoque.js";
 import Cadastrar from "./Pages/EditarItensDoCardapio/Cadastrar.js";
+import Lista from "./Pages/EditarItensDoCardapio/Listar.js";
 
-//criação da const carrinho junto desse useState JAO
 function App() {
+  //Criando objeto item como array -GUI
+  const [item, setItem] = useState([]);   
   const [carrinho, setCarrinho] = useState([]);
+
   const adicionarAoCarrinho = (item) => {
     setCarrinho((prevCarrinho) => [...prevCarrinho, item]);
   };
 
-  //criação das rotas (router) JAO
   return (
     <>
       <Toaster />
@@ -34,22 +36,20 @@ function App() {
         <Layout
           carrinho={carrinho}
           adicionarAoCarrinho={adicionarAoCarrinho}
+          item={item}          
+          setItem={setItem}
         />
       </BrowserRouter>
     </>
   );
 }
 
-//Criação de uma função para gerar apenas o layout
-function Layout({ carrinho, adicionarAoCarrinho }) {
+function Layout({ carrinho, adicionarAoCarrinho, item, setItem }) {
   const location = useLocation();
-
-  // Verifica se está na rota /homeAdmin
   const isAdminPage = location.pathname === "/homeAdmin";
 
   return (
     <>
-      {/* Exibe o Nav apenas se não for a página de admin */}
       {!isAdminPage && (
         <header>
           <nav>
@@ -63,16 +63,23 @@ function Layout({ carrinho, adicionarAoCarrinho }) {
           path="/"
           element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
         />
-        <Route path="/home" element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />} />
+        <Route
+          path="/home"
+          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+        />
         <Route path="/carrinho" element={<Car carrinho={carrinho} />} />
         <Route path="/registro" element={<Register />} />
         <Route path="/contato" element={<Contact />} />
         <Route path="/homeAdmin" element={<HomeAdmin />} />
         <Route path="/estoque" element={<Estoque />} />
-        <Route path="/ItensCardapiocadastrar" element={<Cadastrar/>}/>
+        <Route
+          path="/cadastrar"
+          element={<Cadastrar item={item} setItem={setItem} />}
+        />
+
+        <Route path="/Lista" element={<Lista item={item} setItem={setItem} />} />
       </Routes>
 
-      {/* Exibe o Footer apenas se não for a página de admin */}
       {!isAdminPage && (
         <footer>
           <Footer />
@@ -82,10 +89,8 @@ function Layout({ carrinho, adicionarAoCarrinho }) {
   );
 }
 
-//criação da function homepage com o obj de add ao carrinho JAO
 function HomePage({ adicionarAoCarrinho }) {
   return (
-    //Banner fixo na home
     <div className="body">
       <div className="banner">
         <img
@@ -133,7 +138,6 @@ function HomePage({ adicionarAoCarrinho }) {
           </div>
         </section>
       </main>
-
     </div>
   );
 }
