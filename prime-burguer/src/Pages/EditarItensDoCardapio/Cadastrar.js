@@ -13,7 +13,25 @@ export default function Cadastrar({item,setItem}){
     }
     return(
         <div className="cadastro-item">
-            <h2></h2>
+            <h2>Cadastrar novo item no cardapio</h2>
+            <form onSubmit={handleSubmit}>
+            <input
+            type="text"
+            placeholder="Produto"
+            value={produto}
+            onChange={(e) => setProduto(e.target.value)}
+             />
+             <input
+             type="text"
+             placeholder="Descrição"
+             value={descricao}
+             onChange={(e)=> setDescricao(e.target.value)}
+      
+             
+             
+             />
+             <button type="submit">Criar</button>
+            </form>
         </div>
     )
 
