@@ -2,11 +2,6 @@ package com.spring.primeburguer.service;
 
 import com.spring.primeburguer.dto.IngredienteRequestDTO;
 import com.spring.primeburguer.dto.IngredienteResponseDTO;
-// Os imports abaixo não são usados, mas foram mantidos para contexto:
-import com.spring.primeburguer.dto.UserRequestDTO;
-import com.spring.primeburguer.dto.UserResponseDTO;
-import com.spring.primeburguer.entity.User;
-// Fim dos imports não usados.
 
 import com.spring.primeburguer.entity.Ingrediente;
 import com.spring.primeburguer.repository.IngredienteRepository;
@@ -33,7 +28,8 @@ public class IngredienteService {
         ingrediente.setEstoqueAtual(requestDTO.estoqueAtual());
 
         Ingrediente salvarIngrediente = ingredienteRepository.save(ingrediente);
-        return new IngredienteResponseDTO(salvarIngrediente.getId(), salvarIngrediente.getNome(), ingrediente.getUnidadeMedida(), ingrediente.getEstoqueAtual());
+        return new IngredienteResponseDTO(salvarIngrediente.getId(), salvarIngrediente.getNome(),
+                ingrediente.getUnidadeMedida(), ingrediente.getEstoqueAtual());
     }
 
     // LISTAR TODOS (CORRIGIDO)
@@ -43,11 +39,10 @@ public class IngredienteService {
                         ingrediente.getId(),
                         ingrediente.getNome(),
                         ingrediente.getUnidadeMedida(),
-                        ingrediente.getEstoqueAtual())
-                ) // <-- O parêntese do map() e do stream() foi fechado corretamente aqui
+                        ingrediente.getEstoqueAtual())) // <-- O parêntese do map() e do stream() foi fechado
+                                                        // corretamente aqui
                 .collect(Collectors.toList());
     }
-
 
     public Ingrediente buscarEntidadePorId(Long id) {
         return ingredienteRepository.findById(id)
@@ -62,7 +57,8 @@ public class IngredienteService {
         double novoEstoque = ingrediente.getEstoqueAtual() + quantidadeVariacao;
 
         if (novoEstoque < 0) {
-            // Se for tentar dar baixa e não tiver estoque, lança erro para desfazer a transação.
+            // Se for tentar dar baixa e não tiver estoque, lança erro para desfazer a
+            // transação.
             throw new IllegalArgumentException("Estoque insuficiente de " + ingrediente.getNome() +
                     ". Necessário: " + (-quantidadeVariacao) + ". Disponível: " + ingrediente.getEstoqueAtual());
         }

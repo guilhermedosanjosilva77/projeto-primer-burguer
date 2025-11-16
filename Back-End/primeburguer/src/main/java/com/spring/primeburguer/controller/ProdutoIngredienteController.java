@@ -1,17 +1,13 @@
 package com.spring.primeburguer.controller;
 
 import com.spring.primeburguer.dto.ProdutoIngredienteRequestDTO;
-import com.spring.primeburguer.dto.ProdutoIngredienteResponseDTO;
 import com.spring.primeburguer.entity.Ingrediente;
 import com.spring.primeburguer.entity.Produto;
 import com.spring.primeburguer.entity.ProdutoIngrediente;
 import com.spring.primeburguer.repository.IngredienteRepository;
 import com.spring.primeburguer.repository.ProdutoIngredienteRepository;
 import com.spring.primeburguer.repository.ProdutoRepository;
-import com.spring.primeburguer.service.ProdutoIngredienteService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +25,7 @@ public class ProdutoIngredienteController {
     public ProdutoIngredienteController(
             ProdutoIngredienteRepository repository,
             ProdutoRepository produtoRepository,
-            IngredienteRepository ingredienteRepository
-    ) {
+            IngredienteRepository ingredienteRepository) {
         this.repository = repository;
         this.produtoRepository = produtoRepository;
         this.ingredienteRepository = ingredienteRepository;
@@ -69,4 +64,3 @@ public class ProdutoIngredienteController {
         return ResponseEntity.noContent().build();
     }
 }
-

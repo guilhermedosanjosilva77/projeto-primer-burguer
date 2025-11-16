@@ -16,11 +16,14 @@ import java.util.List;
 @Table(name = "produtos")
 public class Produto {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private Double preco;
     private String descricao;
+    private String categoria;
+    @Column(columnDefinition = "TEXT")
+    private String img;
 
     @JsonIgnore
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -30,18 +33,20 @@ public class Produto {
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itens = new ArrayList<>();
 
+    public Produto() {
+    }
 
-    public Produto() {}
-
-    // Construtor atualizado sem a entidade Estoque
-    public Produto(Long id, String nome, Double preco, String descricao) {
+    public Produto(Long id, String nome, Double preco, String descricao, String categoria, String img,
+            List<ProdutoIngrediente> composicao, List<ItemPedido> itens) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+        this.categoria = categoria;
+        this.img = img;
+        this.composicao = composicao;
+        this.itens = itens;
     }
-
-    // --- Getters e Setters ---
 
     public Long getId() {
         return id;
@@ -75,7 +80,22 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    // Getter e Setter da Lista de Receita (Composição)
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public List<ProdutoIngrediente> getComposicao() {
         return composicao;
     }
@@ -84,7 +104,6 @@ public class Produto {
         this.composicao = composicao;
     }
 
-    // Getter e Setter de Itens
     public List<ItemPedido> getItens() {
         return itens;
     }
@@ -93,5 +112,4 @@ public class Produto {
         this.itens = itens;
     }
 
-    // O Getter e Setter de Estoque foram removidos
 }

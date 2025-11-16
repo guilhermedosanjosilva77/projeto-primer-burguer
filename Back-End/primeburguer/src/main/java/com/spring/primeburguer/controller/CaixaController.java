@@ -3,7 +3,6 @@ package com.spring.primeburguer.controller;
 import com.spring.primeburguer.dto.CaixaRequestDTO;
 import com.spring.primeburguer.dto.CaixaResponseDTO;
 import com.spring.primeburguer.service.CaixaService;
-import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ public class CaixaController {
         this.caixaService = caixaService;
     }
 
-    //  Cria um novo Caixa
+    // Cria um novo Caixa
     @PostMapping
     public ResponseEntity<CaixaResponseDTO> criarCaixa(@RequestBody CaixaRequestDTO dto) {
         CaixaResponseDTO novoCaixa = caixaService.criarCaixa(dto);

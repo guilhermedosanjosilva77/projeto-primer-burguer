@@ -2,10 +2,7 @@ package com.spring.primeburguer.controller;
 
 import com.spring.primeburguer.dto.ClienteRequestDTO;
 import com.spring.primeburguer.dto.ClienteResponseDTO;
-import com.spring.primeburguer.dto.ProdutoRequestDTO;
-import com.spring.primeburguer.dto.ProdutoResponseDTO;
 import com.spring.primeburguer.service.ClienteService;
-import com.spring.primeburguer.service.ProdutoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +43,7 @@ public class ClienteController {
     // Atualizar
     @PutMapping("/{id}")
     public ResponseEntity<ClienteResponseDTO> updateCliente(@PathVariable Long id,
-                                                            @RequestBody ClienteRequestDTO requestDTO) {
+            @RequestBody ClienteRequestDTO requestDTO) {
         return clienteService.updateCliente(id, requestDTO)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

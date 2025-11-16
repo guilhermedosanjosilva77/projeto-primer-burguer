@@ -4,8 +4,6 @@ import com.spring.primeburguer.dto.PedidoRequestDTO;
 import com.spring.primeburguer.dto.PedidoResponseDTO;
 import com.spring.primeburguer.entity.enums.StatusPedido;
 import com.spring.primeburguer.service.PedidoService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,9 +51,9 @@ public class PedidoController {
 
     // Você pode adicionar mais itens ao pedido aqui, se necessário:
     /*
-    {
-      "produtoId": 2,
-      "quantidade": 1
-    }
-    */
+     * {
+     * "produtoId": 2,
+     * "quantidade": 1
+     * }
+     */
 }

@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +29,9 @@ public class ProdutoService {
                 produto.getId(),
                 produto.getNome(),
                 produto.getPreco(),
-                produto.getDescricao()
+                produto.getDescricao(),
+                produto.getCategoria(),
+                produto.getImg()
         );
     }
     // ------------------
@@ -43,9 +44,8 @@ public class ProdutoService {
         produto.setNome(requestDTO.nome());
         produto.setPreco(requestDTO.preco());
         produto.setDescricao(requestDTO.descricao());
-
-        // A associação com o Estoque/Ingredientes será feita separadamente
-        // através do serviço ProdutoIngredienteService (gestão de receita).
+        produto.setCategoria(requestDTO.categoria());
+        produto.setImg(requestDTO.img());
 
         Produto savedProduto = produtoRepository.save(produto);
         return toResponseDto(savedProduto);
@@ -74,6 +74,8 @@ public class ProdutoService {
         produto.setNome(requestDTO.nome());
         produto.setPreco(requestDTO.preco());
         produto.setDescricao(requestDTO.descricao());
+        produto.setCategoria(requestDTO.categoria());
+        produto.setImg(requestDTO.img());
 
         // Lógica de atualização do Estoque FOI REMOVIDA
 

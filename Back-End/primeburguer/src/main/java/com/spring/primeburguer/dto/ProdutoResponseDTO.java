@@ -1,9 +1,10 @@
 package com.spring.primeburguer.dto;
 
 public record ProdutoResponseDTO(
-        Long id,
-        String nome,
-        Double preco,
-        String descricao
-) {
+                Long id,
+                String nome,
+                Double preco,
+                String descricao,
+                String categoria,
+                String img) {
 }
