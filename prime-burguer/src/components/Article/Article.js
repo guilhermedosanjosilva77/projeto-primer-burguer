@@ -1,17 +1,38 @@
-export default function ArticleLanches({ lanche, adicionarAoCarrinho }) {
+import React from 'react';
+import Swal from 'sweetalert2';
+
+// Função auxiliar para mostrar o Toast de Sucesso.
+// Ela precisa receber o 'item' como argumento ao ser chamada.
+const toastSucesso = (item) => {
+  Swal.fire({
+    toast: true,
+    position: "top-end",
+    icon: "success",
+    title: `${item.nome} adicionado ao Carrinho!`,
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+  });
+};
+
+export default function ArticleLanches({ item, adicionarAoCarrinho }) {
   return (
     <div className="item-lanche">
-      <img src={lanche.img} alt={lanche.nome} className="imagelanche" />
-      <h1 style={{ textAlign: "center" }}>{lanche.nome}</h1>
+      <img src={item.img} alt={item.nome} className="imagelanche" />
+      <h1 style={{ textAlign: "center" }}>{item.nome}</h1>
 
       <div className="under-title">
-        <h2>R$ {lanche.preco.toFixed(2)}</h2>
+        <h2>R$ {item.preco.toFixed(2)}</h2>
 
         <div className="buttondesc">
-          <p>{lanche.descricao}</p>
+          <p>{item.descricao}</p>
 
           <button
-            onClick={() => adicionarAoCarrinho(lanche)}
+            onClick={() => {
+              // Chamada corrigida: Passando o item para a função toastSucesso
+              toastSucesso(item); 
+              adicionarAoCarrinho(item);
+            }}
             className="lanchebuttom"
           >
             Adicionar ao carrinho
@@ -22,21 +43,28 @@ export default function ArticleLanches({ lanche, adicionarAoCarrinho }) {
   );
 }
 
-export function ArticleSobremessa({ doces, adicionarAoCarrinho }) {
+export function ArticleSobremessa({ item, adicionarAoCarrinho }) {
   return (
     <div className="items-doce">
-     <img src={doces.img} alt={doces.nome} className="imagelanche" />
-      <h1 style={{ textAlign: "center" }}>{doces.nome}</h1>
+      <img src={item.img} alt={item.nome} className="imagelanche" />
+      <h1 style={{ textAlign: "center" }}>{item.nome}</h1>
 
       <div className="under-title">
-        <h2>R$ {doces.preco.toFixed(2)}</h2>
+        {/* Acesso corrigido: item.preco */}
+        <h2>R$ {item.preco.toFixed(2)}</h2>
 
         <div className="buttondesc">
-          <p>{doces.descricao}</p>
+          {/* Acesso corrigido: item.descricao */}
+          <p>{item.descricao}</p>
 
           <button
             className="docebuttom"
-            onClick={() => adicionarAoCarrinho(doces)}
+            // Passa o item correto para o carrinho
+            onClick={() => {
+              // Chamada corrigida: Passando o item para a função toastSucesso
+              toastSucesso(item);
+              adicionarAoCarrinho(item);
+            }}
           >
             Adicionar ao carrinho
           </button>

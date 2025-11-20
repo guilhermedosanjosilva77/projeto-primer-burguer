@@ -1,0 +1,205 @@
+/* Importação das suas fontes para garantir a consistência */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Variáveis de cores importadas da sua folha principal */
+:root {
+    --primary: #C62828;      /* Vermelho principal */
+    --secondary: #FF7F00;    /* Laranja */
+    --tertiary: #FCBF49;     /* Amarelo */
+    --neutral-light: #F9F9F9;/* Fundo claro */
+    --neutral-dark: #2B2D42; /* Cinza escuro */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --success-color: #4CAF50; /* Verde para salvar/sucesso */
+    --danger-color: #D32F2F;  /* Vermelho escuro para deletar */
+    --edit-color: #1976D2;    /* Azul para edição */
+}
+
+/* --- Container Principal --- */
+.cardapio-admin-container {
+    padding: 30px;
+    max-width: 1300px;
+    margin: 50px auto; 
+    font-family: 'Roboto', sans-serif;
+    color: var(--neutral-dark);
+    background-color: #ffffff; 
+    border-radius: 12px;
+    box-shadow: 0 10px 20px var(--shadow-light); 
+}
+
+/* --- Cabeçalho e Títulos --- */
+.cardapio-header h1 {
+    font-family: 'Baloo 2', cursive;
+    color: var(--primary);
+    font-size: 3em;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 2px solid var(--tertiary); 
+}
+
+.cardapio-header p {
+    font-size: 1.1em;
+    color: var(--neutral-dark);
+    margin-bottom: 30px;
+}
+
+.lista-produtos h2 {
+    font-family: 'Baloo 2', cursive;
+    color: var(--neutral-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+
+/* --- Tabela de Produtos --- */
+.tabela-cardapio {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px var(--shadow-light);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tabela-cardapio thead {
+    background-color: var(--neutral-dark);
+    color: white;
+}
+
+.tabela-cardapio th {
+    padding: 18px 15px;
+    text-align: left;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+}
+
+.tabela-cardapio td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0; 
+    vertical-align: middle;
+}
+
+.tabela-cardapio tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-cardapio tbody tr:nth-child(even) {
+    background-color: var(--neutral-light); 
+}
+
+.tabela-cardapio tbody tr:hover {
+    background-color: #ffe0b2; /* Amarelo/Laranja bem claro no hover */
+}
+
+/* Estilos para inputs/textareas dentro da tabela (modo edição) */
+.tabela-cardapio td input,
+.tabela-cardapio td textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95em;
+    width: 95%;
+    min-height: 40px; 
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.acao-btns {
+    width: 100px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.acao-btns button {
+    padding: 10px;
+    border: none;
+    border-radius: 50%; /* Botões redondos */
+    cursor: pointer;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 2px 4px var(--shadow-light);
+    transition: background-color 0.3s, transform 0.2s, opacity 0.3s;
+}
+
+.acao-btns button:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+.btn-editar {
+    background-color: var(--edit-color); /* Azul */
+}
+
+.btn-deletar {
+    background-color: var(--danger-color); /* Vermelho */
+}
+
+.btn-salvar {
+    background-color: var(--success-color); 
+}
+
+.btn-cancelar {
+    background-color: #95a5a6; 
+}
+
+.loading-state, .error-state, .no-data {
+    text-align: center;
+    padding: 40px;
+    border-radius: 8px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.5em;
+    margin-top: 30px;
+}
+
+.loading-state {
+    background-color: #fcf8e3; 
+    color: #8a6d3b;
+    border: 1px solid #faebcc;
+}
+
+.error-state {
+    background-color: #f2dede; 
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+.no-data {
+    border: 2px dashed var(--tertiary);
+    color: var(--neutral-dark);
+}
+
+@media (max-width: 1024px) {
+    .cardapio-admin-container {
+        padding: 15px;
+    }
+    
+    .tabela-cardapio {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap; 
+    }
+    
+    .tabela-cardapio thead, .tabela-cardapio tbody, .tabela-cardapio tr {
+        display: block;
+    }
+
+    .tabela-cardapio th, .tabela-cardapio td {
+        width: 150px; 
+        box-sizing: border-box;
+    }
+
+    .tabela-cardapio th:first-child, .tabela-cardapio td:first-child {
+        width: 60px; 
+    }
+    .tabela-cardapio th:last-child, .tabela-cardapio td:last-child {
+        width: 100px; 
+    }
+}

@@ -1,144 +1,115 @@
-/* Variáveis baseadas na paleta da sua hamburgueria (vermelho/preto) */
-:root {
-    --vermelho-prime: #e62e2e; 
-    --preto-texto: #333;
-    --borda-clara: #eee;
-    --cinza-detalhe: #666;
-}
+/* src/components/Car/Carrinho.css */
 
-/* ---------------------------------------------------- */
-/* ESTILO DO CONTAINER PRINCIPAL (corrigido com a classe)*/
-/* ---------------------------------------------------- */
-.carrinho-principal { 
-    width: 400px; /* Largura fixa, não-responsiva */
-    margin: 20px auto; /* Centraliza na tela */
+.carrinho-principal {
+    background-color: #ffffff;
     padding: 20px;
-    border: 1px solid var(--borda-clara);
     border-radius: 8px;
-    background-color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    display: block; 
+    width: 100%;
+    max-width: 400px; /* Limita a largura para visualização lateral */
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
 }
 
-/* -------------------------------------- */
-/* TÍTULO (<h3>Seu Carrinho</h3>) */
-/* -------------------------------------- */
-.carrinho-principal > h3 {
-    text-align: center;
-    color: var(--vermelho-prime);
-    margin-bottom: 25px;
-    border-bottom: 2px solid var(--borda-clara);
+.carrinho-principal h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ff7f00; /* Cor principal do Prime Burger */
+    border-bottom: 2px solid #ff7f00;
     padding-bottom: 10px;
-    font-size: 1.8em;
-    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-/* -------------------------------------- */
-/* LISTA DE ITENS (<ul>) */
-/* -------------------------------------- */
-.carrinho-principal > ul {
-    list-style: none; 
+.carrinho-lista-itens {
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* Item da Lista (<li>) */
-.carrinho-principal > ul > li {
-    display: flex; /* Alinha imagem e o bloco de texto/botão */
+.carrinho-lista-itens li {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 15px;
-    padding: 10px 0;
-    border-bottom: 1px dashed var(--borda-clara);
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
 }
 
-.carrinho-principal > ul > li:last-child {
-    border-bottom: none;
-}
-
-/* Imagem (<img>) */
-.carrinho-principal > ul > li > img {
-    width: 80px; 
-    height: 80px;
+.item-foto {
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     border-radius: 4px;
     margin-right: 15px;
-    border: 1px solid var(--borda-clara);
 }
 
-/* -------------------------------------- */
-/* CONTAINER DE TEXTO E BOTÃO (NOVO) */
-/* -------------------------------------- */
-.carrinho-principal > ul > li > .carrinho-info-texto {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
+.carrinho-info-texto {
     flex-grow: 1;
+    margin-right: 10px;
 }
 
-/* Parágrafo de Detalhes (<p>) com Nome, Preço e Quantidade */
-.carrinho-principal > ul > li > .carrinho-info-texto > p {
-    flex-grow: 1; 
-    color: var(--preto-texto);
-    margin: 0; /* Essencial para o alinhamento */
-    line-height: 1.4;
-    font-weight: 500;
-    padding-right: 10px;
-}
-
-/* -------------------------------------- */
-/* BOTÃO DE REMOVER [X] (NOVO) */
-/* -------------------------------------- */
-.carrinho-remover-btn {
-    background: transparent;
-    color: var(--vermelho-prime);
-    border: 1px solid var(--vermelho-prime);
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-size: 0.8em;
+.item-nome {
     font-weight: bold;
+    color: #333;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.item-detalhes {
+    font-size: 0.9em;
+    color: #777;
+    margin: 4px 0 0 0;
+}
+
+.carrinho-remover-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
     cursor: pointer;
-    transition: all 0.2s ease;
-    height: 30px; 
-    min-width: 30px;
-    margin-left: auto;
+    font-size: 1.2em;
+    padding: 5px;
+    transition: color 0.2s;
 }
 
 .carrinho-remover-btn:hover {
-    background-color: var(--vermelho-prime);
-    color: white;
+    color: #c0392b;
 }
 
+.carrinho-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    padding: 15px 0;
+    border-top: 2px solid #ddd;
+    margin-top: 10px;
+}
 
-/* -------------------------------------- */
-/* BOTÃO (Finalizar pedido) */
-/* -------------------------------------- */
-.carrinho-principal > button {
+.carrinho-finalizar-btn {
     width: 100%;
     padding: 12px;
-    background-color: var(--vermelho-prime);
+    background-color: #ff7f00; /* Cor primária */
     color: white;
     border: none;
     border-radius: 6px;
     font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    transition: background-color 0.2s;
 }
 
-.carrinho-principal > button:hover {
-    background-color: #c42727;
+.carrinho-finalizar-btn:hover {
+    background-color: #e56b00;
 }
 
-/* -------------------------------------- */
-/* MENSAGEM DE CARRINHO VAZIO */
-/* -------------------------------------- */
-.carrinho-principal > p:last-child { 
+.carrinho-finalizar-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.carrinho-vazio-msg {
     text-align: center;
-    color: var(--cinza-detalhe);
+    color: #999;
     padding: 30px 0;
-    border: 1px dashed var(--borda-clara);
-    border-radius: 4px;
-    margin-top: 20px;
 }

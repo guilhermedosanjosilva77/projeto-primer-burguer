@@ -1,0 +1,163 @@
+/* Estilos para FinalizarPedido.jsx */
+.checkout-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', sans-serif;
+}
+
+.checkout-container h2 {
+    display: flex;
+    align-items: center;
+    color: #ff7f00;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #f0f0f0;
+}
+
+.checkout-container h2 svg {
+    margin-right: 10px;
+}
+
+.checkout-container.vazio {
+    text-align: center;
+}
+
+.checkout-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Dados do Cliente Confirmados */
+.dados-cliente-confirmados {
+    width: 100%;
+    padding: 15px;
+    background-color: #fff8e1;
+    border: 1px dashed #ffcc80;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.info-box-confirmacao {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.info-box-confirmacao .icon-info {
+    color: #ff7f00;
+    margin-right: 10px;
+}
+
+.btn-mudar-endereco {
+    background: none;
+    border: none;
+    color: #27ae60;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 5px 0;
+    text-decoration: underline;
+}
+
+/* Resumo do Pedido */
+.resumo-pedido {
+    flex: 1;
+    min-width: 300px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.resumo-pedido h3 {
+    color: #ff7f00;
+    margin-bottom: 15px;
+}
+
+.resumo-pedido ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.resumo-pedido li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dotted #ccc;
+    font-size: 0.95em;
+}
+
+.resumo-pedido .total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    font-size: 1.2em;
+    border-top: 2px solid #ff7f00;
+}
+
+/* Formulário de Checkout (Pagamento e Ação Final) */
+.formulario-checkout {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.formulario-checkout h3 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.formulario-checkout .form-group {
+    margin-bottom: 20px;
+}
+
+.formulario-checkout label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.formulario-checkout .input-pagamento,
+.formulario-checkout textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.btn-finalizar-compra {
+    width: 100%;
+    padding: 15px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-finalizar-compra:hover:not(:disabled) {
+    background-color: #2ecc71;
+    transform: translateY(-1px);
+}
+
+.btn-finalizar-compra:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

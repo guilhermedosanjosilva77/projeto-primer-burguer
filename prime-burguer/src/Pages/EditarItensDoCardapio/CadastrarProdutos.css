@@ -1,0 +1,186 @@
+/* Importação das suas fontes */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+.cadastro-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex; /* Para alinhar card e preview lado a lado */
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.cadastro-item-card {
+    flex-grow: 1;
+    min-width: 60%;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px var(--shadow-light);
+}
+
+.cadastro-item-card h2 {
+    font-family: 'Baloo 2', cursive;
+    color: var(--primary);
+    font-size: 2.5em;
+    border-bottom: 3px solid var(--tertiary);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- Formulário Grid --- */
+.cadastro-form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas para flexibilidade */
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.span-2 {
+    grid-column: span 2;
+}
+
+.form-group.span-3 {
+    grid-column: span 3;
+}
+
+.form-group.span-full {
+    grid-column: span 4;
+}
+
+.form-group label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--neutral-dark);
+}
+
+.cadastro-form input,
+.cadastro-form textarea,
+.cadastro-form select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: var(--neutral-light);
+}
+
+.cadastro-form input:focus,
+.cadastro-form textarea:focus,
+.cadastro-form select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(255, 127, 0, 0.2);
+    outline: none;
+    background-color: #fff;
+}
+
+.cadastro-form textarea {
+    resize: vertical;
+}
+
+/* --- Botão Principal --- */
+.btn-criar {
+    height: 55px;
+    background-color: var(--primary); /* Vermelho principal */
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2em;
+    font-family: 'Baloo 2', cursive;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px var(--shadow-light);
+    margin-top: 10px;
+}
+
+.btn-criar:hover:not(:disabled) {
+    background-color: var(--secondary); /* Laranja no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px var(--shadow-medium);
+}
+
+.btn-criar:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* --- Pré-visualização da Imagem --- */
+.image-preview-container {
+    width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px var(--shadow-light);
+    position: sticky;
+    top: 40px; /* Mantém na tela enquanto o usuário rola */
+    text-align: center;
+}
+
+.image-preview-container h3 {
+    font-family: 'Baloo 2', cursive;
+    color: var(--neutral-dark);
+    margin-top: 0;
+    font-size: 1.4em;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+
+.image-preview {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--tertiary);
+    margin-top: 10px;
+}
+
+.image-error-message {
+    color: var(--primary);
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 1200px) {
+    .cadastro-container {
+        flex-direction: column; /* Pilha verticalmente */
+        align-items: center;
+    }
+    .cadastro-item-card, .image-preview-container {
+        width: 100%;
+        min-width: unset;
+        max-width: 800px;
+    }
+    .image-preview-container {
+        position: static; /* Remove o sticky em telas pequenas */
+    }
+}
+
+@media (max-width: 768px) {
+    .cadastro-form {
+        grid-template-columns: 1fr; /* 1 coluna */
+        gap: 15px;
+    }
+    /* Todos os campos passam a ocupar 1 coluna (span-1) */
+    .form-group.span-2, 
+    .form-group.span-3, 
+    .form-group.span-full {
+        grid-column: span 1;
+    }
+}

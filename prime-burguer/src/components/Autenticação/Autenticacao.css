@@ -1,0 +1,77 @@
+/* src/Pages/Autenticacao/Autenticacao.css */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-container h2 {
+    color: #ff7f00;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.auth-form {
+    text-align: left;
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+}
+
+.auth-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.btn-auth-acao {
+    width: 100%;
+    padding: 12px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.btn-auth-acao:hover:not(:disabled) {
+    background-color: #2ecc71;
+}
+
+.btn-auth-acao:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-mudar-tela {
+    background: none;
+    border: none;
+    color: #ff7f00;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.btn-mudar-tela:hover {
+    text-decoration: underline;
+}

@@ -1,32 +1,69 @@
 import { useEffect, useState } from "react";
-import Banner from "../../assets/img/Banner e Logo/Banner.png";
-import ArticleLanches, { ArticleSobremessa } from "../../components/Article/Article.js";
+import Banner from "../../assets/img/Banner e Logo/Banner.png"; 
+import ArticleLanches, { ArticleSobremessa } from "../../components/Article/Article.js"; 
+import { getTodosProdutos } from "../../api/CriarProduto.js"; 
 
 function HomePage({ adicionarAoCarrinho }) {
-  const [lanches, setLanches] = useState([]);
-  const [sobremesas, setSobremesas] = useState([]);
+  const [produtos, setProdutos] = useState({
+    Lanche: [],
+    Acompanhamento: [],
+    Bebida: [],
+    Sobremesa: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function carregarProdutos() {
+      setLoading(true);
+      setError(null);
+      
       try {
-        // Você pode alternar por categoria se sua API permitir
-        const response = await fetch("http://localhost:8080/produtos");
-        const data = await response.json();
+        const data = await getTodosProdutos(); 
 
-        // Caso você queira separar lanches e sobremesas:
-        const l = data.filter(p => p.categoria === "LANCHE");
-        const s = data.filter(p => p.categoria === "SOBREMESA");
+        // 1. Inicializa o objeto de categorias
+        const categoriasMap = {
+          Lanche: [],
+          Acompanhamento: [],
+          Bebida: [],
+          Sobremesa: [],
+        };
 
-        setLanches(l);
-        setSobremesas(s);
+        data.forEach(p => {
+          const categoria = p.categoria;
+          if (categoriasMap.hasOwnProperty(categoria)) {
+            categoriasMap[categoria].push(p);
+          }
+        });
 
+        setProdutos(categoriasMap);
+        
       } catch (err) {
         console.error("Erro ao buscar produtos:", err);
+        setError("Não foi possível carregar o cardápio. Verifique a conexão com o servidor.");
+      } finally {
+        setLoading(false);
       }
     }
 
     carregarProdutos();
   }, []);
+
+  const secoes = [
+    { key: 'Lanche', title: 'Lanches 🍔', component: ArticleLanches },
+    { key: 'Acompanhamento', title: 'Acompanhamentos 🍟', component: ArticleLanches },
+    { key: 'Bebida', title: 'Bebidas 🥤', component: ArticleLanches },
+    { key: 'Sobremesa', title: 'Sobremesas 🍩', component: ArticleSobremessa }, 
+  ];
+  
+  if (loading) {
+    return <div className="body" style={{ textAlign: 'center', padding: '50px' }}><h1>Carregando Cardápio...</h1></div>;
+  }
+
+  if (error) {
+    return <div className="body" style={{ textAlign: 'center', padding: '50px', color: 'red' }}><h1>{error}</h1></div>;
+  }
+
 
   return (
     <div className="body">
@@ -43,35 +80,34 @@ function HomePage({ adicionarAoCarrinho }) {
       </div>
 
       <main>
-        <section className="lanche" style={{ textAlign: "center" }}>
-          <h1 className="styleh1" style={{ fontSize: "90px" }}>Lanches</h1>
+        {secoes.map(({ key, title, component: ProductArticle }) => {
+          const itens = produtos[key];
+          
+          if (itens && itens.length > 0) {
+            return (
+              <section key={key} className={key.toLowerCase()} style={{ textAlign: "center" }}>
+                <h1 className="styleh1" style={{ fontSize: "4em" }}>{title}</h1> 
+                <div className={`${key.toLowerCase()}1`}>
+                  {itens.map((item) => (
+                    <ProductArticle
+                      key={item.id}
+                      item={item} 
+                      adicionarAoCarrinho={adicionarAoCarrinho}
+                    />
+                  ))}
+                </div>
+              </section>
+            );
+          }
+          return null; 
+        })}
 
-          <div className="lanche1">
-            {lanches.map((lanche) => (
-              <ArticleLanches
-                key={lanche.id}
-                lanche={lanche}
-                adicionarAoCarrinho={adicionarAoCarrinho}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section className="sobremessa">
-          <h1 className="styleh1" style={{ textAlign: "center", fontSize: "90px" }}>
-            Sobremesa
-          </h1>
-
-          <div className="sobremessa1">
-            {sobremesas.map((doce) => (
-              <ArticleSobremessa
-                key={doce.id}
-                doces={doce}
-                adicionarAoCarrinho={adicionarAoCarrinho}
-              />
-            ))}
-          </div>
-        </section>
+        {Object.values(produtos).every(arr => arr.length === 0) && (
+            <div style={{ textAlign: 'center', padding: '50px' }}>
+                <h2 className="styleh1">Cardápio Vazio! 😥</h2>
+                <p>Nenhum item cadastrado no momento.</p>
+            </div>
+        )}
       </main>
     </div>
   );

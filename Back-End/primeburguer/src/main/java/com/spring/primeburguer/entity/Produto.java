@@ -2,16 +2,10 @@ package com.spring.primeburguer.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//@Data // Se estiver usando Lombok, descomente esta e as próximas duas
-//@AllArgsConstructor
-//@NoArgsConstructor
 @Entity
 @Table(name = "produtos")
 public class Produto {

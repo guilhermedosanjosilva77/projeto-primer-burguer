@@ -1,0 +1,99 @@
+
+.confirmacao-container {
+    max-width: 500px;
+    margin: 80px auto;
+    padding: 40px;
+    background-color: #e8f5e9; /* Fundo verde claro */
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.2);
+}
+
+.confirmacao-container.erro {
+    background-color: #ffebee;
+    box-shadow: 0 8px 25px rgba(198, 40, 40, 0.2);
+}
+
+.check-icon {
+    color: #27ae60;
+    margin-bottom: 20px;
+}
+
+.confirmacao-container.erro h2 {
+    color: #c62828;
+}
+
+.confirmacao-container h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.detalhes-pedido {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: left;
+    border: 1px solid #dcdcdc;
+}
+
+.detalhes-pedido p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.detalhes-pedido .info-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1em;
+}
+
+.detalhes-pedido .info-box:last-child {
+    border-bottom: none;
+}
+
+.info-box span {
+    font-weight: 500;
+    color: #000;
+}
+
+.info-box.info-endereco {
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.info-box.info-endereco svg {
+    color: #ff7f00;
+    margin-right: 5px;
+}
+
+.status-info span {
+    font-weight: bold;
+    color: #ff7f00; /* Cor de status PENDENTE */
+}
+
+.acoes-finais {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-voltar-home {
+    padding: 12px 25px;
+    background-color: #ff7f00;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-voltar-home:hover {
+    background-color: #e56b00;
+}
