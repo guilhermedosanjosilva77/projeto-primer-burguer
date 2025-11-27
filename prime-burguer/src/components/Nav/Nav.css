@@ -1,32 +1,154 @@
+/* @import para fontes já existente no App.css: 
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+*/
+
+:root {
+ --primary: #C62828; /* Vermelho principal (mantido do App.css) */
+ --secondary: #FF7F00; /* Laranja de destaque */
+ --tertiary: #FCBF49; /* Amarelo de destaque */
+ --neutral-light: #F9F9F9;
+ --text-color-nav: #FFFFFF; /* Texto da nav branco */
+ --nav-height: 100px; /* Altura da barra de navegação para acomodar a logo */
+}
+
+/* --- Container Principal (Header) --- */
 .my-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 12px 40px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ background-color: var(--primary);
+ padding: 0 4%; /* Padding lateral */
+ box-shadow: 0 4px 6px var(--shadow-light);
+ height: var(--nav-height); /* Altura fixa */
+ position: relative; /* Para posicionar a logo */
+ box-sizing: border-box; /* Garante que o padding não afete a largura total */
 }
 
-.logo-nav img {
-  width: 100px;
-  cursor: pointer;
+/* --- Logo (Ajustes CRUCIAIS) --- */
+.logo-nav {
+ /*    Ajuste o posicionamento para que a logo fique sobreposta na borda superior.
+   Isso é o que resolve a questão visual da imagem. 
+ */
+ position: absolute;
+ left: 30px; /* Distância da esquerda */
+ top: 50%; /* Começa no meio da altura da nav */
+ transform: translateY(-50%); /* Move 50% para cima, centralizando verticalmente */
+ z-index: 10; /* Garante que fique acima de tudo */
+ cursor: pointer;
+ transition: transform 0.3s ease-in-out;
+ /* Remove margem/padding que possa estar causando a borda branca */
+ line-height: 0;
 }
 
+.logo-nav:hover {
+ transform: translateY(-50%) scale(1.05); /* Efeito de zoom no hover */
+}
+
+.logo-img {
+ /* Tamanho da logo maior, como na imagem fornecida */
+ height: 180px; /* Ajuste este valor até a logo ficar na proporção correta */
+ width: auto;
+ object-fit: contain;
+ /*    Se a imagem PNG tiver uma borda branca invisível, a única forma é 
+   usar um clip-path ou cortar a imagem original, mas vamos forçar o 
+   container a abraçar a imagem. 
+ */
+ display: block;
+}
+
+/* --- NAVEGAÇÃO DE ÍCONES --- */
 .itens-nav {
-  display: flex;
+ display: flex;
+ gap: 30px; /* Aumenta o espaçamento */
+ margin-left: auto; /* Empurra os itens para a direita */
+}
+
+/* Novo Estilo para os Botões (Substituindo .botao0, .botao1, etc.) */
+.nav-item {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ background: none;
+ border: none;
+ cursor: pointer;
+ padding: 8px 12px;
+ border-radius: 8px;
+ transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+ position: relative;
+ color: var(--text-color-nav); /* Cor branca */
+ text-transform: uppercase;
+}
+
+.nav-item .fa-solid {
+ font-size: 26px; /* Ícones grandes */
+ margin-bottom: 3px;
+}
+
+.nav-text {
+ font-family: 'Roboto', sans-serif; /* Fonte do texto */
+ font-weight: 500;
+ font-size: 0.85em;
+ color: var(--text-color-nav);
+ transition: color 0.3s;
+}
+
+/* Efeito HOVER: Subida e Cor de Destaque */
+.nav-item:hover {
+ color: var(--tertiary); /* Amarelo no hover */
+ transform: translateY(-2px);
+}
+
+.nav-item:hover .nav-text {
+ color: var(--tertiary);
+}
+
+/* Efeito ACTIVE/CLICK */
+.nav-item:active {
+ transform: translateY(0);
+ opacity: 0.9;
+}
+
+
+/* -- Responsivo -- */
+@media (max-width: 1024px) {
+ .logo-nav {
+  left: 15px;
+  height: 150px;
+ }
+ .logo-img {
+  height: 150px;
+ }
+ .itens-nav {
   gap: 20px;
+ }
 }
 
-.itens-nav button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #c62828;
-  font-size: 22px;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.itens-nav button:hover {
-  color: #e53935;
-  transform: scale(1.15);
+@media (max-width: 768px) {
+ .my-nav {
+  /* Oculta a navegação secundária em telas pequenas para priorizar o menu hamburguer (se houver) */
+  display: none; /* Ou use um menu responsivo flutuante */
+ }
+ /* Se quiser manter a navegação empilhada: */
+ /*
+ .my-nav {
+  flex-direction: column;
+  height: auto;
+  padding: 15px;
+  gap: 15px;
+ }
+ .logo-nav {
+  position: static;
+  transform: none;
+  margin-bottom: 10px;
+ }
+ .logo-img {
+  height: 100px;
+ }
+ .itens-nav {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+ }
+ */
 }

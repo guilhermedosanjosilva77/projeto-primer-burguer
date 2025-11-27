@@ -64,11 +64,7 @@ function Layout({ carrinho, adicionarAoCarrinho, item, setItem, setCarrinho, usu
     <>
       {/* Esconde a Navegação em rotas de Admin, Cadastro e Registro de Cliente */}
       {!hideNavAndFooter && (
-        <header>
-          <nav>
             <Nave />
-          </nav>
-        </header>
       )}
 
       <Routes>
@@ -110,7 +106,6 @@ function Layout({ carrinho, adicionarAoCarrinho, item, setItem, setCarrinho, usu
         <Route path="/pedidoFeito" element={<PedidoFeito />} />
       </Routes>
 
-      {/* Esconde o Rodapé em rotas de Admin, Cadastro e Registro de Cliente */}
       {!hideNavAndFooter && (
         <footer>
           <Footer />

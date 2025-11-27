@@ -1,61 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
-  --primary: #C62828;
-  /* vermelho principal */
-  --secondary: #FF7F00;
-  /* --secondary: #F77F00; */
-  /* laranja */
-  --tertiary: #FCBF49;
-  /* amarelo */
-  --neutral-light: #F9F9F9;
-  /* Branco/Bege muito claro para o fundo */
-  --neutral-dark: #2B2D42;
-  /* cinza escuro */
-  --shadow-light: rgba(0, 0, 0, 0.1);
-  --shadow-medium: rgba(0, 0, 0, 0.2);
+  --primary: #D32F2F; 
+  --primary-dark: #B71C1C; 
+  --secondary: #FFB300; 
+  --tertiary: #FFCA28; 
+  --neutral-text: #212121; 
+  --neutral-subtle: #424242; 
+  --background-light: #FAFAFA; 
+  --background-subtle: #FBEFEF; 
+  --shadow-light: rgba(0, 0, 0, 0.12); 
+  --shadow-medium: rgba(0, 0, 0, 0.25); 
 }
 
 
 body {
-  /* Corrigido de .body para body (o seletor correto do HTML) */
   height: auto;
   width: auto;
   font-family: 'Roboto', sans-serif;
-  background-color:#f7f7f7;
-  color: var(--neutral-dark);
+  background-color: var(--background-light); /* Aplicando o novo fundo claro */
+  color: var(--neutral-text); /* Aplicando o novo texto escuro */
   margin: 0;
-  /* Remove margem padrão do body */
   padding: 0;
 }
 
-h1, h2 {
-  font-family: 'Baloo 2', cursive;
-  color: var(--primary);
+header, nav {
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 0; 
+  display: block;
+  width: 100%;
 }
 
-/* ---------- MENU DE NAVEGAÇÃO COM LOGO E ÍCONES ---------- */
+
+h1, h2 {
+  font-family: 'Baloo 2', cursive;
+  color: var(--primary); 
+}
+
+
 .my-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--primary);
+  background-color: var(--primary); 
   padding: 10px 30px;
   box-shadow: 0 4px 6px var(--shadow-light);
   height: 80px;
+  width: 100%; 
+  margin: 0;
 }
 
-/* Estilo base da logo */
+
 .logo-img {
   height: 60px;
   width: auto;
   object-fit: contain;
-  transition: transform 0.3s ease-in-out; /* animação suave */
+  transition: transform 0.3s ease-in-out;
 }
 
 .logo-img:hover {
   transform: scale(1.2);
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 4px 6px var(--shadow-medium)); 
 }
 
 
@@ -66,7 +73,6 @@ h1, h2 {
   gap: 20px;
 }
 
-/* Botões com ícones */
 .botao0,
 .botao1,
 .botao2,
@@ -86,7 +92,7 @@ h1, h2 {
   background-color: var(--tertiary);
 }
 
-/* Ícones dentro dos botões */
+
 .botao0 img,
 .botao1 img,
 .botao2 img,
@@ -113,10 +119,8 @@ h1, h2 {
 
 .botao0:hover, .botao1:hover, .botao2:hover, .botao3:hover {
   color: var(--tertiary);
-  /* Cor de hover mais chamativa */
 }
 
-/* ---------- BANNER COM TEXTO SOBREPOSTO ---------- */
 .banner {
   position: relative;
   width: 100%;
@@ -131,7 +135,7 @@ h1, h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(70%); /* escurece um pouco para destacar o texto */
+  filter: brightness(60%); 
 }
 
 .banner-texto {
@@ -142,12 +146,13 @@ h1, h2 {
   color: white;
   text-align: center;
   font-family: 'Baloo 2', cursive;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8); 
 }
 
 .banner-texto h1 {
   font-size: 3em;
   margin: 0;
+  color: white; 
 }
 
 .banner-texto p {
@@ -156,25 +161,18 @@ h1, h2 {
 }
 
 
-/* -------------------- LISTA DE PRODUTOS -------------------- */
 .styleh1 {
   font-size: 4em !important;
-  /* Reduzido de 90px para uma proporção melhor */
   margin: 40px 0 20px 0;
-  /* Espaçamento mais agradável */
-  color: var(--neutral-dark) !important;
-  /* Cor mais sóbria para o título principal */
+  color: var(--neutral-text) !important; 
 }
 
 .lanche1,
 .sobremessa1 {
   display: grid;
-  /* Uso de repeat(auto-fit, minmax) para tornar mais responsivo */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-items: center;
-  /* Centraliza os itens dentro das células */
   gap: 40px;
-  /* Reduzido o gap para não ficar muito espaçado */
   max-width: 1200px;
   margin: 0 auto 5%;
   padding: 0 20px;
@@ -183,28 +181,20 @@ h1, h2 {
 .item-lanche,
 .items-doce {
   border: none;
-  /* Remove a borda simples */
   border-radius: 12px;
-  /* Aumenta um pouco o raio da borda */
   display: flex;
   flex-direction: column;
   height: 480px;
-  /* Aumentei um pouco a altura */
   width: 100%;
   max-width: 350px;
-  /* Garante que o item não fique muito largo */
-  background-color: #fff;
+  background-color: #fff; 
   overflow: hidden;
-  /* Garante que a imagem não vaze do border-radius */
 
-  /* Sombra que dá o efeito 3D */
   box-shadow: 0 10px 20px var(--shadow-light);
 
-  /* Transição para o efeito de hover */
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Efeito de HOVER profissional: levanta e aumenta a sombra */
 .item-lanche:hover,
 .items-doce:hover {
   transform: translateY(-5px);
@@ -214,9 +204,7 @@ h1, h2 {
 .item-lanche h1,
 .items-doce h1 {
   height: auto;
-  /* Deixa a altura flexível */
   min-height: 60px;
-  /* Garante um espaço mínimo */
   margin: 10px 0 0 0;
   padding: 0 15px;
   font-size: 1.8em;
@@ -226,40 +214,33 @@ h1, h2 {
 .imagelanche,
 .items-doce img {
   border-radius: 0;
-  /* A borda redonda já está na div pai */
   height: 200px;
   width: 100%;
   object-fit: cover;
-  /* Garante que a imagem preencha o espaço corretamente */
 }
 
 .under-title {
   display: flex;
   flex-direction: column;
-  /* Altera para coluna para melhor layout */
   align-items: stretch;
   gap: 10px;
   margin: 5px 15px 15px 15px;
-  /* Mais padding interno */
   flex-grow: 1;
   width: calc(100% - 30px);
 }
 
 .under-title h2 {
   font-size: 2em;
-  /* Aumentei um pouco o preço */
-  color: var(--secondary);
+  color: var(--secondary); 
   margin: 0;
   text-align: left;
   font-weight: 800;
-  /* Mais destaque para o preço */
 }
 
 .buttondesc {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  /* Empurra o botão para baixo */
   max-width: 100%;
   flex-grow: 1;
   margin: 0;
@@ -268,19 +249,16 @@ h1, h2 {
 .buttondesc p {
   font-size: 0.9em;
   line-height: 1.4;
-  /* Melhora a leitura do parágrafo */
-  color: var(--neutral-dark);
+  color: var(--neutral-subtle); 
   flex-grow: 1;
   margin-bottom: 15px;
 }
 
-/* -------------------- BOTÕES -------------------- */
+
 .lanchebuttom, .docebuttom {
   height: 45px;
-  /* Altura fixa para o botão */
   width: 100%;
   border-radius: 8px;
-  /* Borda mais suave */
   background-color: var(--primary);
   color: #fff;
   font-weight: 700;
@@ -288,16 +266,13 @@ h1, h2 {
   font-family: 'Baloo 2', cursive;
   border: none;
   cursor: pointer;
-  /* Adiciona transição para o hover */
   transition: background-color 0.3s ease, transform 0.1s ease;
   box-shadow: 0 4px 6px var(--shadow-light);
-  /* Sombra no botão */
 }
 
 .lanchebuttom:hover, .docebuttom:hover {
-  background-color: var(--secondary);
+  background-color: var(--primary-dark); 
   transform: translateY(-2px);
-  /* Efeito de 'pressionar' */
   box-shadow: 0 6px 8px var(--shadow-medium);
 }
 
@@ -305,13 +280,12 @@ h1, h2 {
   transform: translateY(0);
 }
 
-/* -------------------- RODAPÉ (FOOTER) -------------------- */
 
 footer.footer {
-  background-color: #fff7f0; /* tom creme bem suave */
+  background-color: var(--background-subtle); 
   padding: 40px 30px 20px;
   font-family: 'Baloo 2', cursive;
-  color: var(--neutral-dark);
+  color: var(--neutral-subtle);
   box-shadow: 0 -4px 10px var(--shadow-light);
   margin-top: 50px;
 }
@@ -337,7 +311,7 @@ footer.footer {
 .footer-section p {
   font-size: 1em;
   line-height: 1.6;
-  color: var(--neutral-dark);
+  color: var(--neutral-subtle);
 }
 
 .contact-list {
@@ -352,11 +326,11 @@ footer.footer {
   gap: 10px;
   margin-bottom: 10px;
   font-size: 1em;
-  color: var(--neutral-dark);
+  color: var(--neutral-subtle);
 }
 
 .contact-icon {
-  color: var(--secondary);
+  color: var(--secondary); 
   font-size: 1.2em;
 }
 
@@ -367,11 +341,9 @@ footer.footer {
   opacity: 0.7;
 }
 
-/* -------------------- MEDIA QUERIES (Responsividade) -------------------- */
 
 @media (max-width: 1024px) {
   .lanche1, .sobremessa1 {
-    /* Em telas menores, permite até 2 colunas */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
   }
@@ -382,7 +354,7 @@ footer.footer {
     font-size: 3em !important;
   }
 
-  .foot1 {
+  .foot1 { 
     flex-direction: column;
     text-align: center;
     gap: 15px;
@@ -391,7 +363,6 @@ footer.footer {
 
 @media (max-width: 480px) {
   .lanche1, .sobremessa1 {
-    /* Em telas muito pequenas, uma coluna */
     grid-template-columns: 1fr;
   }
 
