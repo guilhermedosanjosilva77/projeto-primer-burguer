@@ -1,96 +1,147 @@
-// src/components/Car/Car.jsx (ou onde estiver)
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useMemo } from 'react'; // Adicionado para otimização
-import { MdDeleteForever, MdShoppingCart } from 'react-icons/md';
+import { useMemo } from 'react';
+import { MdDeleteForever, MdShoppingCart, MdAdd, MdRemove } from 'react-icons/md'; // Novos ícones para controle
+import toast from 'react-hot-toast';
 import "./Carrinho.css";
 
-/**
- * Agrupa os itens do carrinho e calcula o valor total.
- * @param {Array} carrinho - Lista não agrupada de itens do carrinho.
- * @returns {{itensParaRenderizar: Array, valorTotal: number}}
- */
 const agruparItensECalcularTotal = (carrinho) => {
     let valorTotal = 0;
 
     const itensAgrupados = carrinho.reduce((acumulador, itemAtual) => {
-        // Usa o ID como chave, se disponível (melhor prática), ou o nome.
         const key = itemAtual.id || itemAtual.item || itemAtual.items;
-        const nome = itemAtual.item || itemAtual.items;
+        const nome = itemAtual.nome || itemAtual.item || itemAtual.items;
         
-        // Garante que a chave existe e inicializa
         acumulador[key] = acumulador[key] || { 
-            id_produto: itemAtual.id, // Adiciona o ID para o DTO de pedido
+            id_produto: itemAtual.id, 
             nome: nome,
-            preco: parseFloat(itemAtual.preco),
-            foto: itemAtual.foto,
+            preco: parseFloat(itemAtual.preco) || 0,
+            img: itemAtual.img,
             quantidade: 0,
-            // A chave que será usada para remover uma unidade (sempre o nome/id para o pai)
             id_chave: key 
         };
         
         acumulador[key].quantidade++;
-        valorTotal += parseFloat(itemAtual.preco);
+        valorTotal += parseFloat(itemAtual.preco) || 0;
         
         return acumulador;
     }, {}); 
 
-    // Converte o objeto de volta para um array para renderização
     const itensParaRenderizar = Object.values(itensAgrupados);
     
     return { itensParaRenderizar, valorTotal };
 };
 
-// Componente principal do Carrinho
-export function Car({ carrinho, onRemoveItem }) { 
-    const navigate = useNavigate(); // Hook deve estar no corpo da função do componente
 
-    // Usa useMemo para recalcular apenas quando o carrinho mudar
+export function Car({ carrinho, setCarrinho }) { 
+    const navigate = useNavigate();
+
     const { itensParaRenderizar, valorTotal } = useMemo(() => 
         agruparItensECalcularTotal(carrinho), 
         [carrinho]
     );
-    
-    // Função que chama o callback de remoção (assumindo que o pai atualizará o estado)
-    const handleRemove = (itemKey) => {
-        if (onRemoveItem) {
-            onRemoveItem(itemKey);
+
+    const handleAddUnit = (groupedItem) => {
+        const itemTemplate = carrinho.find(item => (item.id || item.item || item.items) === groupedItem.id_chave);
+        
+        if (itemTemplate) {
+            setCarrinho(prevCarrinho => [...prevCarrinho, itemTemplate]);
+            toast.success(`Mais um ${groupedItem.nome} adicionado!`, { duration: 1000 });
         }
     };
     
-    // Função de navegação para o checkout
+    const handleRemoveUnit = (itemKey) => {
+        const indexToRemove = carrinho.findIndex(item => (item.id || item.item || item.items) === itemKey);
+        
+        if (indexToRemove > -1) {
+            setCarrinho(prevCarrinho => {
+                const newCarrinho = [...prevCarrinho];
+                newCarrinho.splice(indexToRemove, 1);
+                return newCarrinho;
+            });
+        
+        }
+    };
+
+   
+    const handleRemoveAll = (itemKey, nome) => {
+        setCarrinho(prevCarrinho => 
+            prevCarrinho.filter(item => (item.id || item.item || item.items) !== itemKey)
+        );
+        toast.error(`${nome} removido completamente.`, { duration: 1500 });
+    };
+    
+    
     const handleCheckout = () => {
-        navigate('/finalizarPedido');
+        if (valorTotal > 0) {
+            navigate('/finalizarPedido');
+        } else {
+            toast.error("Adicione itens ao carrinho antes de finalizar!");
+        }
     };
 
     return (
         <div className="carrinho-principal"> 
-            <h3><MdShoppingCart /> Seu Carrinho</h3>
+            <h3>
+                <MdShoppingCart className="carrinho-icon-header" /> 
+                Seu Carrinho
+            </h3>
             
             {itensParaRenderizar.length > 0 ? (
                 <>
-                    {/* 1. Mapeia a lista agrupada para renderizar os itens */}
+                    
                     <ul className="carrinho-lista-itens">
-                        {itensParaRenderizar.map((item, index) => (
+                        {itensParaRenderizar.map((item) => (
                             <li key={item.id_chave}>
                                 {/* Imagem */}
-                                <img src={item.foto} alt={item.nome} className="item-foto" />
+                                <img 
+                                    src={item.img || 'https://placehold.co/60x60/D32F2F/FFFFFF?text=Item'} 
+                                    alt={item.nome} 
+                                    className="item-foto" 
+                                />
                                 
                                 <div className="carrinho-info-texto">
                                     <p className="item-nome">
                                         {item.nome}
                                     </p>
-                                    <p className="item-detalhes">
-                                        R$ {item.preco.toFixed(2)} ({item.quantidade}x) = R$ {(item.preco * item.quantidade).toFixed(2)}
+                                    <p className="item-preco-unidade">
+                                        R$ {item.preco.toFixed(2)} / un
+                                    </p>
+                                    <p className="item-subtotal">
+                                        Subtotal: R$ {(item.preco * item.quantidade).toFixed(2)}
                                     </p>
                                 </div>
                                 
-                                {/* BOTÃO DE EXCLUSÃO */}
+                              
+                                <div className="carrinho-quantidade-controle">
+                                    
+                                    <button 
+                                        className="btn-qtd-minus"
+                                        onClick={() => handleRemoveUnit(item.id_chave)}
+                                        disabled={item.quantidade === 1} // Não permite ir abaixo de 1
+                                        title="Remover uma unidade"
+                                    >
+                                        <MdRemove />
+                                    </button>
+                                    
+                                    {/* Exibição da Quantidade */}
+                                    <span className="qtd-display">{item.quantidade}</span>
+                                    
+                                    {/* Botão de Adicionar Unidade */}
+                                    <button 
+                                        className="btn-qtd-plus"
+                                        onClick={() => handleAddUnit(item)}
+                                        title="Adicionar uma unidade"
+                                    >
+                                        <MdAdd />
+                                    </button>
+                                </div>
+                                
+                                {/* BOTÃO DE EXCLUSÃO TOTAL */}
                                 <button 
-                                    className="carrinho-remover-btn"
-                                    onClick={() => handleRemove(item.id_chave)}
-                                    title="Remover uma unidade"
+                                    className="carrinho-remover-all-btn"
+                                    onClick={() => handleRemoveAll(item.id_chave, item.nome)}
+                                    title="Remover todas as unidades deste item"
                                 >
                                     <MdDeleteForever />
                                 </button>
@@ -100,20 +151,24 @@ export function Car({ carrinho, onRemoveItem }) {
                     
                     {/* Linha de Total */}
                     <div className="carrinho-total">
-                        <strong>Total do Pedido:</strong>
-                        <span>R$ {valorTotal.toFixed(2)}</span>
+                        <strong className="total-label">Total do Pedido:</strong>
+                        <span className="total-value">R$ {valorTotal.toFixed(2)}</span>
                     </div>
 
                     {/* 2. Botão de finalizar pedido */}
                     <button 
                         className="carrinho-finalizar-btn"
                         onClick={handleCheckout}
+                        disabled={valorTotal === 0}
                     >
                         Finalizar Pedido
                     </button>
                 </>
             ) : (
-                <p className="carrinho-vazio-msg">Seu carrinho está vazio.</p>
+                <div className="carrinho-vazio-msg">
+                    <MdShoppingCart size={60} color="#ccc" />
+                    <p>Seu carrinho está vazio. Que tal um hambúrguer delicioso?</p>
+                </div>
             )}
         </div>
     );

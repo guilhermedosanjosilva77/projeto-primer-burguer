@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"; 
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom"; 
 import { Toaster } from "react-hot-toast";
 import { Nave } from "./components/Nav/Nav.js"; 
 import "./App.css";
 import Footer from "./components/Footer/footer.js";
-import { Car } from "./components/Carrinho/Carrinho.js";
+import { Car } from "./components/Carrinho/Carrinho.js"; 
 import { Register } from "./components/Registro/Registro.js";
 import { Contact } from "./components/Contato/Contato.js";
 import HomeAdmin from "./Pages/HomeAdmin.js";
@@ -15,95 +15,250 @@ import HomePage from "./Pages/HomePage/HomePage.js";
 import FinalizarPedido from "./Pages/Pedido/FinalizarPedido/FinalizarPedido.js";
 import PedidoFeito from "./Pages/Pedido/PedidoFeito/PedidoFeito.js";
 import CadastroCliente from "./components/Autenticação/CadastroCliente.js";
+import MeusPedidos from "./Pages/Pedido/MeusPedidos/MeusPedidos.js";
+import Autenticacao from "./components/Autenticação/Autenticação.js";
 
 function App() {
-  // Criando objeto item como array -GUI
   const [item, setItem] = useState([]);
   const [carrinho, setCarrinho] = useState([]);
+  
+  // Estado de autenticação
+  const [usuarioLogado, setUsuarioLogado] = useState(null);
 
-  // **SIMULAÇÃO DE ESTADO DO USUÁRIO LOGADO**
-  // Em uma aplicação real, este estado viria do contexto de autenticação após o login.
-  // Criando um usuário fictício para que o componente CadastroCliente tenha um 'id' para funcionar.
-  const [usuarioLogado, setUsuarioLogado] = useState({ id: 'user-123456789', email: 'cliente.teste@exemplo.com' });
+  // Carregar dados do localStorage quando o app iniciar
+  useEffect(() => {
+    const usuarioSalvo = localStorage.getItem('usuarioLogado');
+    const carrinhoSalvo = localStorage.getItem('carrinho');
+
+    if (usuarioSalvo) {
+      setUsuarioLogado(JSON.parse(usuarioSalvo));
+    }
+    if (carrinhoSalvo) {
+      setCarrinho(JSON.parse(carrinhoSalvo));
+    }
+  }, []);
+
+  // Salvar carrinho no localStorage quando ele mudar
+  useEffect(() => {
+    if (carrinho.length > 0) {
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    } else {
+      localStorage.removeItem('carrinho');
+    }
+  }, [carrinho]);
+
+  // Salvar usuário logado no localStorage
+  useEffect(() => {
+    if (usuarioLogado) {
+      localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+    } else {
+      localStorage.removeItem('usuarioLogado');
+    }
+  }, [usuarioLogado]);
 
   const adicionarAoCarrinho = (item) => {
     setCarrinho((prevCarrinho) => [...prevCarrinho, item]);
   };
 
+  // Função para fazer login/definir usuário
+  const fazerLogin = (usuario) => {
+    setUsuarioLogado(usuario);
+  };
+
+  // Função para fazer logout
+  const fazerLogout = () => {
+    setUsuarioLogado(null);
+    localStorage.removeItem('usuarioLogado');
+    localStorage.removeItem('clienteData');
+  };
+
+  // Função para limpar carrinho (após finalizar pedido)
+  const limparCarrinho = () => {
+    setCarrinho([]);
+    localStorage.removeItem('carrinho');
+  };
+
   return (
     <>
-      <Toaster />
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: '#4ade80',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            duration: 4000,
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
       <BrowserRouter>
         <Layout
           carrinho={carrinho} 
+          setCarrinho={setCarrinho} 
           adicionarAoCarrinho={adicionarAoCarrinho}
+          limparCarrinho={limparCarrinho}
           item={item}
           setItem={setItem}
-          usuarioLogado={usuarioLogado} // Passando o usuário logado
+          usuarioLogado={usuarioLogado}
+          setUsuarioLogado={setUsuarioLogado}
+          fazerLogin={fazerLogin}
+          fazerLogout={fazerLogout}
         />
       </BrowserRouter>
     </>
   );
 }
 
-function Layout({ carrinho, adicionarAoCarrinho, item, setItem, setCarrinho, usuarioLogado }) {
+function Layout({ 
+  carrinho, 
+  setCarrinho, 
+  adicionarAoCarrinho,
+  limparCarrinho,
+  item, 
+  setItem, 
+  usuarioLogado,
+  setUsuarioLogado,
+  fazerLogin,
+  fazerLogout
+}) {
   const location = useLocation();
+  
+  // Páginas de admin
   const isAdminPage = location.pathname.startsWith("/homeAdmin") || 
-                      location.pathname.startsWith("/estoque") ||
-                      location.pathname.startsWith("/cadastrar") ||
-                      location.pathname.startsWith("/lista");
+       location.pathname.startsWith("/estoque") ||
+       location.pathname.startsWith("/cadastrar") ||
+       location.pathname.startsWith("/lista");
 
+  // Páginas especiais sem Nav/Footer
   const isCadastroPage = location.pathname === "/registro";
-  // Nova condição para a rota de Cadastro de Cliente
-  const isClientRegistrationPage = location.pathname === "/cadastroCliente"; 
+  const isClientRegistrationPage = location.pathname === "/cadastroCliente" || 
+                                     location.pathname === "/autenticacao";
+  const isMeusPedidosPage = location.pathname === "/meusPedidos";
 
-  // Verifica se deve exibir Navegação e Rodapé
-  const hideNavAndFooter = isAdminPage || isCadastroPage || isClientRegistrationPage;
+  // Ocultar Nav e Footer em páginas específicas
+  const hideNavAndFooter = isAdminPage || isCadastroPage || isClientRegistrationPage || isMeusPedidosPage;
 
   return (
     <>
-      {/* Esconde a Navegação em rotas de Admin, Cadastro e Registro de Cliente */}
       {!hideNavAndFooter && (
-            <Nave />
+        <Nave 
+          usuarioLogado={usuarioLogado}
+          fazerLogout={fazerLogout}
+          totalItensCarrinho={carrinho.length}
+        />
       )}
 
       <Routes>
-        <Route
-          path="/"
-          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+        {/* Rotas Públicas */}
+        <Route 
+          path="/" 
+          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />} 
         />
-        <Route
-          path="/home"
-          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />}
+        <Route 
+          path="/home" 
+          element={<HomePage adicionarAoCarrinho={adicionarAoCarrinho} />} 
         />
-        <Route path="/carrinho" element={<Car carrinho={carrinho} setCarrinho={setCarrinho} />} />
-        
-        <Route path="/registro" element={<Register />} /> 
-        
+        <Route 
+          path="/carrinho" 
+          element={
+            <Car 
+              carrinho={carrinho} 
+              setCarrinho={setCarrinho} 
+            />
+          } 
+        />
         <Route path="/contato" element={<Contact />} />
+
+        {/* Rotas de Autenticação */}
+        <Route 
+          path="/registro" 
+          element={<Register setUsuarioLogado={setUsuarioLogado} />} 
+        /> 
         
-        {/* Rotas de Admin */}
-        <Route path="/homeAdmin" element={<HomeAdmin />} />
-        <Route path="/estoque" element={<Estoque />} />
-        <Route
-          path="/cadastrar"
-          element={<Cadastrar item={item} setItem={setItem} />}
+        {/* Autenticacao - Para login/cadastro de usuário */}
+        <Route 
+          path="/autenticacao" 
+          element={
+            <Autenticacao 
+              usuarioLogado={usuarioLogado}
+              setUsuarioLogado={setUsuarioLogado}
+            />
+          } 
         />
+        
+        {/* CadastroCliente - Para dados pessoais e endereço */}
+        <Route 
+          path="/cadastroCliente" 
+          element={
+            <CadastroCliente 
+              usuarioLogado={usuarioLogado}
+            />
+          } 
+        />
+
+        {/* Rotas de Pedidos - Protegidas */}
+        <Route 
+          path="/meusPedidos" 
+          element={
+            usuarioLogado ? (
+              <MeusPedidos 
+                usuarioLogado={usuarioLogado}
+                fazerLogout={fazerLogout}
+              />
+            ) : (
+              <Navigate to="/autenticacao" replace />
+            )
+          } 
+        />
+        
+        {/* FinalizarPedido - Recebe dados via location.state do CadastroCliente */}
         <Route
-          path="/lista"
-          element={<Lista item={item} setItem={setItem} />}
+          path="/finalizarPedido"
+          element={
+            carrinho.length > 0 ? (
+              <FinalizarPedido 
+                carrinho={carrinho}
+                usuarioLogado={usuarioLogado}
+                limparCarrinho={limparCarrinho}
+              />
+            ) : (
+              <Navigate to="/home" replace />
+            )
+          }
         />
         
         <Route 
-            path="/cadastroCliente" 
-            element={<CadastroCliente usuarioLogado={usuarioLogado} />} 
+          path="/pedidoFeito" 
+          element={<PedidoFeito />} 
         />
 
-        <Route
-          path="/finalizarPedido"
-          element={<FinalizarPedido carrinho={carrinho} />}
+        {/* Rotas de Admin */}
+        <Route path="/homeAdmin" element={<HomeAdmin />} />
+        <Route path="/estoque" element={<Estoque />} />
+        <Route 
+          path="/cadastrar" 
+          element={<Cadastrar item={item} setItem={setItem} />} 
         />
-        <Route path="/pedidoFeito" element={<PedidoFeito />} />
+        <Route 
+          path="/lista" 
+          element={<Lista item={item} setItem={setItem} />} 
+        />
+
+        {/* Rota 404 - Redireciona para home */}
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
 
       {!hideNavAndFooter && (

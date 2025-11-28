@@ -1,5 +1,6 @@
 package com.spring.primeburguer.controller;
 
+import java.util.Optional; 
 import com.spring.primeburguer.dto.UserRequestDTO;
 import com.spring.primeburguer.dto.UserResponseDTO;
 import com.spring.primeburguer.service.UserService;
@@ -16,6 +17,16 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+     // Endpoint para login
+    @PostMapping("/login")
+    public ResponseEntity<UserResponseDTO> loginUser(@RequestBody UserRequestDTO requestDTO) {
+        Optional<UserResponseDTO> userOpt = userService.authenticateUser(requestDTO.email(), requestDTO.senha());
+        if (userOpt.isPresent()) {
+            return ResponseEntity.ok(userOpt.get());
+        }
+        return ResponseEntity.status(401).build(); // 401 Unauthorized se credenciais inválidas
     }
 
     // Criar
@@ -42,7 +53,7 @@ public class UserController {
     // Atualizar
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(@PathVariable Long id,
-                                                      @RequestBody UserRequestDTO requestDTO) {
+            @RequestBody UserRequestDTO requestDTO) {
         return userService.updateUser(id, requestDTO)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

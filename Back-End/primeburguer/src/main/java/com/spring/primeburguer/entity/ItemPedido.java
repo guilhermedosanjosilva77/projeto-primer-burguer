@@ -1,5 +1,7 @@
 package com.spring.primeburguer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +20,7 @@ public class ItemPedido {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
+    @JsonIgnore
     private Pedido pedido;
 
     @ManyToOne
@@ -49,6 +52,7 @@ public class ItemPedido {
         this.quantidade = quantidade;
     }
 
+    @JsonIgnore
     public Pedido getPedido() {
         return pedido;
     }

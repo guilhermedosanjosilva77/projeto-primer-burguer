@@ -150,4 +150,16 @@ public class PedidoService {
             }
         }
     }
+
+    public List<PedidoResponseDTO> buscarPedidosPorClienteId(Long clienteId) {
+        // Validação opcional: verifica se o cliente existe antes de buscar pedidos
+        if (!clienteRepository.existsById(clienteId)) {
+            throw new NoSuchElementException("Cliente não encontrado com ID: " + clienteId);
+        }
+        
+        // Busca os pedidos e mapeia para DTO
+        return pedidoRepository.findByClienteId(clienteId).stream()
+                .map(this::toResponseDto)
+                .toList();
+    }
 }

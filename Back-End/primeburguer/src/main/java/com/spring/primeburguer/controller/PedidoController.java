@@ -49,11 +49,20 @@ public class PedidoController {
         }
     }
 
-    // Você pode adicionar mais itens ao pedido aqui, se necessário:
-    /*
-     * {
-     * "produtoId": 2,
-     * "quantidade": 1
-     * }
-     */
+    @GetMapping("/cliente/{clienteId}")
+    public ResponseEntity<List<PedidoResponseDTO>> getPedidosByClienteId(@PathVariable Long clienteId) {
+        try {
+            List<PedidoResponseDTO> pedidos = pedidoService.buscarPedidosPorClienteId(clienteId);
+            
+            if (pedidos.isEmpty()) {
+                // Retorna 204 No Content se o cliente existir, mas não tiver pedidos
+                return ResponseEntity.noContent().build(); 
+            }
+            return ResponseEntity.ok(pedidos); // Retorna 200 OK com a lista de pedidos
+            
+        } catch (NoSuchElementException e) {
+            // Retorna 404 Not Found se o clienteId não for válido
+            return ResponseEntity.notFound().build(); 
+        }
+    }
 }

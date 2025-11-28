@@ -26,6 +26,17 @@
     text-align: center;
 }
 
+.checkout-container.vazio h2 {
+    border-bottom: none;
+    justify-content: center;
+}
+
+.checkout-container.vazio p {
+    color: #666;
+    margin: 20px 0;
+    font-size: 1.1em;
+}
+
 .checkout-content {
     display: flex;
     flex-wrap: wrap;
@@ -63,6 +74,28 @@
     margin-top: 10px;
     padding: 5px 0;
     text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.btn-mudar-endereco:hover {
+    color: #2ecc71;
+}
+
+.btn-voltar {
+    background-color: #95a5a6;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-voltar:hover {
+    background-color: #7f8c8d;
+    transform: translateY(-1px);
 }
 
 /* Resumo do Pedido */
@@ -136,6 +169,19 @@
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 1em;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.formulario-checkout .input-pagamento:focus,
+.formulario-checkout textarea:focus {
+    outline: none;
+    border-color: #ff7f00;
+}
+
+.formulario-checkout textarea {
+    resize: vertical;
+    min-height: 80px;
 }
 
 .btn-finalizar-compra {
@@ -155,9 +201,33 @@
 .btn-finalizar-compra:hover:not(:disabled) {
     background-color: #2ecc71;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
 }
 
 .btn-finalizar-compra:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+    transform: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .checkout-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .checkout-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .resumo-pedido,
+    .formulario-checkout {
+        min-width: 100%;
+    }
+
+    .checkout-container h2 {
+        font-size: 1.5em;
+    }
 }

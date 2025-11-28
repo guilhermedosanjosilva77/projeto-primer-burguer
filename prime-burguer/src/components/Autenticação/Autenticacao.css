@@ -1,77 +1,120 @@
-/* src/Pages/Autenticacao/Autenticacao.css */
+/* Variáveis e Fontes */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+    --primary-red: #FF3B3F;
+    --secondary-orange: #FF8F00;
+    --text-dark: #333333;
+    --background-light: #F9F9F9;
+    --card-bg: #FFFFFF;
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo da página/container principal */
+body {
+    background-color: var(--background-light);
+}
+
 .auth-container {
     max-width: 400px;
-    margin: 50px auto;
+    margin: 60px auto;
     padding: 30px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px var(--shadow-medium);
     text-align: center;
+    border-top: 5px solid var(--secondary-orange);
 }
 
 .auth-container h2 {
-    color: #ff7f00;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.8em;
+    color: var(--primary-red);
     margin-bottom: 25px;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 10px;
 }
 
 .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
     text-align: left;
 }
 
-.auth-form .form-group {
-    margin-bottom: 20px;
-}
-
-.auth-form label {
+.form-group label {
     display: block;
-    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
     margin-bottom: 5px;
-    color: #555;
+    color: var(--text-dark);
 }
 
-.auth-form input {
+.form-group input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     font-size: 1em;
+    transition: border-color 0.3s;
 }
 
-.btn-auth-acao {
-    width: 100%;
+.form-group input:focus {
+    border-color: var(--secondary-orange);
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 143, 0, 0.3);
+}
+
+.btn-auth {
     padding: 12px;
-    background-color: #27ae60;
+    background-color: var(--primary-red);
     color: white;
-    border: none;
-    border-radius: 6px;
+    font-family: 'Baloo 2', cursive;
     font-size: 1.1em;
-    font-weight: bold;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
     margin-top: 10px;
-    transition: background-color 0.2s;
 }
 
-.btn-auth-acao:hover:not(:disabled) {
-    background-color: #2ecc71;
+.btn-auth:hover:not(:disabled) {
+    background-color: #D32F2F;
+    transform: translateY(-2px);
 }
 
-.btn-auth-acao:disabled {
-    background-color: #ccc;
+.btn-auth:disabled {
+    background-color: #E0E0E0;
     cursor: not-allowed;
 }
 
-.btn-mudar-tela {
-    background: none;
-    border: none;
-    color: #ff7f00;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 0.9em;
+.toggle-mode {
+    margin-top: 25px;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-dark);
 }
 
-.btn-mudar-tela:hover {
+.btn-toggle-mode {
+    background: none;
+    border: none;
+    color: var(--secondary-orange);
+    font-weight: 700;
+    cursor: pointer;
     text-decoration: underline;
+    margin-left: 5px;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.btn-toggle-mode:hover {
+    color: var(--primary-red);
+}
+
+@media (max-width: 500px) {
+    .auth-container {
+        margin: 30px 10px;
+        padding: 20px;
+    }
 }

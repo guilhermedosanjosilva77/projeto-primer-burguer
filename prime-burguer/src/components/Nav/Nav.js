@@ -34,7 +34,7 @@ export function Nave() {
           <span className="nav-text">INÍCIO</span>   {" "}
         </button>
             {/* PEDIDOS (NOVO) */}   {" "}
-        <button className="nav-item" onClick={() => handleNavigate("/pedidos")}>
+        <button className="nav-item" onClick={() => handleNavigate("/meusPedidos")}>
                <FontAwesomeIcon icon={faClipboardList} size="xl" />   
            <span className="nav-text">PEDIDOS</span>   {" "}
         </button>

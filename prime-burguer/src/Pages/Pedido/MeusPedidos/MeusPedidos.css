@@ -1,0 +1,488 @@
+.meus-pedidos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.meus-pedidos-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.meus-pedidos-header h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.usuario-email {
+    color: #7f8c8d;
+    font-size: 1rem;
+}
+
+.btn-logout-header {
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-logout-header:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Loading */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Erro */
+.erro-container {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.erro-icon {
+    font-size: 4rem;
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.erro-container h2 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.erro-container p {
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+.btn-recarregar,
+.btn-voltar {
+    padding: 0.8rem 2rem;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    /* Adicionado para consistência */
+    max-width: 300px;
+    /* Limite de largura para botões de erro */
+}
+
+.btn-recarregar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-recarregar {
+    background: #3498db;
+    color: white;
+}
+
+.btn-recarregar:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn-voltar {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-voltar:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+/* Pedidos Vazio */
+.pedidos-vazio {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.icone-vazio {
+    color: #bdc3c7;
+    margin-bottom: 1rem;
+    /* Lucide icons are sized via React props, keeping original size for consistency */
+}
+
+.pedidos-vazio h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.pedidos-vazio p {
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-fazer-pedido {
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-fazer-pedido:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Lista de Pedidos */
+.pedidos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pedido-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.pedido-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pedido-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #ecf0f1;
+    margin-bottom: 1.5rem;
+}
+
+.pedido-numero strong {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.pedido-data {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.pedido-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.status-icon {
+    /* Sizing is handled by Lucide in JSX, but this ensures color consistency */
+}
+
+.status-pendente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-preparacao {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.status-concluido {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-cancelado {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Itens do Pedido */
+.pedido-itens {
+    margin-bottom: 1.5rem;
+}
+
+.pedido-info-resumo {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #e3f2fd;
+    border-radius: 8px;
+}
+
+.pedido-info-resumo p {
+    color: #1976d2;
+    margin: 0;
+}
+
+.pedido-itens h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.pedido-itens-list {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    /* Limite de altura para itens */
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.pedido-itens li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid #3498db;
+}
+
+.item-nome {
+    flex: 1;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.item-quantidade {
+    color: #7f8c8d;
+    margin: 0 1rem;
+}
+
+.item-preco {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Endereço */
+.pedido-endereco {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.pedido-endereco h4 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.pedido-endereco p {
+    color: #7f8c8d;
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+}
+
+/* Pagamento */
+.pedido-pagamento {
+    margin-bottom: 1.5rem;
+}
+
+.metodo-pagamento {
+    display: block;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.observacoes {
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+/* Footer do Pedido */
+.pedido-footer {
+    display: flex;
+    justify-content: space-between;
+    /* Ajustado para melhor layout */
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 2px solid #ecf0f1;
+}
+
+.pedido-observacoes {
+    flex-basis: 60%;
+}
+
+.pedido-total {
+    font-size: 1.5rem;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Ações */
+.acoes-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 2rem;
+}
+
+.btn-voltar-home,
+.btn-novo-pedido {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-voltar-home {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-voltar-home:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+.btn-novo-pedido {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-novo-pedido:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .meus-pedidos-container {
+        padding: 1rem;
+    }
+
+    .meus-pedidos-header {
+        padding: 1rem;
+    }
+
+    .meus-pedidos-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .pedido-card {
+        padding: 1.5rem;
+    }
+
+    .pedido-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .pedido-itens li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.6rem;
+    }
+
+    .item-quantidade {
+        margin: 0;
+    }
+
+    .pedido-footer {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+    }
+
+    .pedido-observacoes {
+        text-align: right;
+        flex-basis: 100%;
+    }
+
+    .acoes-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .btn-voltar-home,
+    .btn-novo-pedido {
+        width: 100%;
+    }
+
+    .erro-container {
+        max-width: 100%;
+    }
+}

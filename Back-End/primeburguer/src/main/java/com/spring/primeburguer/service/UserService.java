@@ -58,4 +58,16 @@ public class UserService {
             return true;
         }).orElse(false);
     }
+
+    // Método para autenticar usuário (verifica email e senha)
+    public Optional<UserResponseDTO> authenticateUser(String email, String senha) {
+        Optional<User> userOpt = userRepository.findByEmail(email); // Assumindo que você tenha um método findByEmail no
+                                                                    // UserRepository
+        if (userOpt.isPresent() && userOpt.get().getSenha().equals(senha)) { // Verificação simples (considere usar
+                                                                             // BCrypt para hash de senha em produção)
+            User user = userOpt.get();
+            return Optional.of(new UserResponseDTO(user.getId(), user.getEmail()));
+        }
+        return Optional.empty();
+    }
 }
