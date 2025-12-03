@@ -17,6 +17,7 @@ import PedidoFeito from "./Pages/Pedido/PedidoFeito/PedidoFeito.js";
 import CadastroCliente from "./components/Autenticação/CadastroCliente.js";
 import MeusPedidos from "./Pages/Pedido/MeusPedidos/MeusPedidos.js";
 import Autenticacao from "./components/Autenticação/Autenticação.js";
+import Caixa from "./Pages/Caixa/Caixa.js";
 
 function App() {
   const [item, setItem] = useState([]);
@@ -140,16 +141,18 @@ function Layout({
   const isAdminPage = location.pathname.startsWith("/homeAdmin") || 
        location.pathname.startsWith("/estoque") ||
        location.pathname.startsWith("/cadastrar") ||
-       location.pathname.startsWith("/lista");
+       location.pathname.startsWith("/lista") ||
+       location.pathname.startsWith("/Caixa");
 
   // Páginas especiais sem Nav/Footer
   const isCadastroPage = location.pathname === "/registro";
   const isClientRegistrationPage = location.pathname === "/cadastroCliente" || 
                                      location.pathname === "/autenticacao";
   const isMeusPedidosPage = location.pathname === "/meusPedidos";
+  const isCaixaPage = location.pathname === "/Caixa";
 
   // Ocultar Nav e Footer em páginas específicas
-  const hideNavAndFooter = isAdminPage || isCadastroPage || isClientRegistrationPage || isMeusPedidosPage;
+  const hideNavAndFooter = isAdminPage || isCadastroPage || isClientRegistrationPage || isMeusPedidosPage || isCaixaPage;
 
   return (
     <>
@@ -246,15 +249,29 @@ function Layout({
         />
 
         {/* Rotas de Admin */}
+
+        {/*home Admin*/}
         <Route path="/homeAdmin" element={<HomeAdmin />} />
+
+        {/*gerenciamento de estoque*/}
         <Route path="/estoque" element={<Estoque />} />
+
+        {/*Criação de itens*/}
         <Route 
           path="/cadastrar" 
           element={<Cadastrar item={item} setItem={setItem} />} 
         />
+        
         <Route 
           path="/lista" 
           element={<Lista item={item} setItem={setItem} />} 
+        />
+
+        {/*Caixa*/}
+        <Route
+        path="/Caixa"
+        element={<Caixa/>}
+
         />
 
         {/* Rota 404 - Redireciona para home */}

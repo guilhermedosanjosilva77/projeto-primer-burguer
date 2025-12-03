@@ -50,10 +50,10 @@ function HomePage({ adicionarAoCarrinho }) {
   }, []);
 
   const secoes = [
-    { key: 'Lanche', title: 'Lanches 🍔', component: ArticleLanches },
-    { key: 'Acompanhamento', title: 'Acompanhamentos 🍟', component: ArticleLanches },
-    { key: 'Bebida', title: 'Bebidas 🥤', component: ArticleLanches },
-    { key: 'Sobremesa', title: 'Sobremesas 🍩', component: ArticleSobremessa }, 
+    { key: 'Lanche', title: 'Lanches ', component: ArticleLanches },
+    { key: 'Acompanhamento', title: 'Acompanhamentos ', component: ArticleLanches },
+    { key: 'Bebida', title: 'Bebidas ', component: ArticleLanches },
+    { key: 'Sobremesa', title: 'Sobremesas ', component: ArticleSobremessa }, 
   ];
   
   if (loading) {
@@ -74,8 +74,8 @@ function HomePage({ adicionarAoCarrinho }) {
           alt="Banner da Lanchonete, com a logo e pratos"
         />
         <div className="banner-texto">
-          <h1>Seja bem-vindo ao Prime Burguer! 🍔</h1>
-          <p>Onde o sabor é sempre a estrela do prato ⭐</p>
+          <h1>Seja bem-vindo ao Prime Burguer! </h1>
+          <p>Onde o sabor é sempre a estrela do prato </p>
         </div>
       </div>
 
@@ -104,7 +104,7 @@ function HomePage({ adicionarAoCarrinho }) {
 
         {Object.values(produtos).every(arr => arr.length === 0) && (
             <div style={{ textAlign: 'center', padding: '50px' }}>
-                <h2 className="styleh1">Cardápio Vazio! 😥</h2>
+                <h2 className="styleh1">Cardápio Vazio! </h2>
                 <p>Nenhum item cadastrado no momento.</p>
             </div>
         )}

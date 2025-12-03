@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import { MdDeleteForever, MdShoppingCart, MdAdd, MdRemove } from 'react-icons/md'; // Novos ícones para controle
 import toast from 'react-hot-toast';
@@ -41,6 +41,7 @@ export function Car({ carrinho, setCarrinho }) {
         [carrinho]
     );
 
+    //Adicionar unidade
     const handleAddUnit = (groupedItem) => {
         const itemTemplate = carrinho.find(item => (item.id || item.item || item.items) === groupedItem.id_chave);
         
@@ -50,9 +51,11 @@ export function Car({ carrinho, setCarrinho }) {
         }
     };
     
+    //remover unidade
     const handleRemoveUnit = (itemKey) => {
         const indexToRemove = carrinho.findIndex(item => (item.id || item.item || item.items) === itemKey);
         
+        //Remover tudo
         if (indexToRemove > -1) {
             setCarrinho(prevCarrinho => {
                 const newCarrinho = [...prevCarrinho];
@@ -72,8 +75,21 @@ export function Car({ carrinho, setCarrinho }) {
     };
     
     
+    //Finalizar Pedido
     const handleCheckout = () => {
         if (valorTotal > 0) {
+            //Pega valores já salvos no caixa
+            const caixa = JSON.parse(localStorage.getItem("caixa")) || []
+
+            caixa.push({
+                valor:valorTotal,
+                data: new Date().toISOString(),
+                itens:itensParaRenderizar
+            });
+             //Salvar de volta
+
+             localStorage.setItem("Caixa",JSON.stringify(caixa))
+
             navigate('/finalizarPedido');
         } else {
             toast.error("Adicione itens ao carrinho antes de finalizar!");
