@@ -23,7 +23,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedido")
     private Long id;
-     private double valorTotal;
+    private double valorTotal;
     private Integer quantidade;
 
     // muitos pedidos podem ser feitos por um cliente

@@ -122,6 +122,25 @@ body {
   font-size: 14px;
 }
 
+.link-login {
+  margin-top: 25px;
+  font-size: 15px;
+  color: #555;
+  text-align: center;
+}
+
+.link-login a {
+  color: #c62828; /* Cor do seu tema principal */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.link-login a:hover {
+  color: #b71c1c; /* Uma cor um pouco mais escura no hover */
+  text-decoration: underline;
+}
+
 /* Responsividade */
 @media (max-width: 430px) {
   .pag {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { CheckCircle, AlertTriangle, X } from "lucide-react"; 
 import "./Autenticacao.css";
 
@@ -143,7 +143,9 @@ const registerUser = async (email, senha) => {
 
 export default function Autenticacao({ setUsuarioLogado }) {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
+    const location = useLocation();
+    const initialEmail = location.state?.registeredEmail || '';
+    const [email, setEmail] = useState(initialEmail);
     const [senha, setSenha] = useState("");
     const [isLoginMode, setIsLoginMode] = useState(true); // true = Login, false = Cadastro
     const [loading, setLoading] = useState(false);
