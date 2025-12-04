@@ -8,9 +8,8 @@ function HomeAdmin() {
   const navigate = useNavigate();
 
   //Função das rotas
-  function Componente() {
-  navigate("/Estoque");
-  navigate("/cadastrar");
+  function Componente(rota) {
+    navigate(rota)
 }
   return (
     <div className="layout">
@@ -25,11 +24,11 @@ function HomeAdmin() {
           <ul className="lista">
             {/* feito */}
             <l1>
-              <button onClick={(e)=>Componente("/Estoque")}>Gerenciamento de estoque</button>
+              <button onClick={()=>Componente("/Estoque")}>Gerenciamento de estoque</button>
             </l1>
             {/* feito */}
             <li>
-              <button>Editar Itens do cardápio</button>
+              <button onClick={()=>Componente("/lista")}>Gerenciamento do cardápio</button>
             </li>
             <li>
               <button>
@@ -38,7 +37,7 @@ function HomeAdmin() {
             </li>
             {/* feito */}
             <li>
-              <button onClick={(e)=>Componente("/cadastrar")}>Criação de Itens</button>
+              <button onClick={()=>Componente("/cadastrar")}>Criação de Itens</button>
             </li>
             <li>
               <button>Caixa</button>

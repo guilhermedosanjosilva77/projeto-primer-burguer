@@ -47,9 +47,15 @@ export function Register() {
    setEmail('');
    setSenha('');
    setConfirmarSenha('');
-   
-   // Redirecionamento após o cadastro
-   navigate("/autenticacao", { state: { registeredEmail: email } }); 
+
+   const emailAdmin = "adminprimerburguer@gmail.com";
+
+   if (userData.email.toLowerCase() === emailAdmin) {
+      navigate("/homeAdmin");
+    } else {
+      navigate("/autenticacao", { state: { registeredEmail: userData.email } });
+    }
+
    
   } catch (error) {
    let mensagemErro = "Falha no cadastro. Tente novamente.";
@@ -83,7 +89,7 @@ export function Register() {
  return (
   // Wrap tudo em um Fragment ou div
   <>
-    {/* 🎯 2. Renderização do componente Nave no topo */}
+    {/* 2. Renderização do componente Nave no topo */}
     <Nave />
       
    <div className="itens">

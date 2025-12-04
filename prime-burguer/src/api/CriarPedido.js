@@ -36,8 +36,9 @@ export async function criarPedido(pedidoData) {
 
     throw error;
   }
+}
 
-  async function buscarPedidosDoCliente(clienteId) {
+export async function buscarPedidosDoCliente(clienteId) {
     const url = `${API_BASE_URL}/pedidos/cliente/${clienteId}`;
 
     try {
@@ -72,4 +73,4 @@ export async function criarPedido(pedidoData) {
       throw error;
     }
   }
-}
+
