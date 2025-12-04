@@ -124,7 +124,7 @@ h1, h2 {
 .banner {
   position: relative;
   width: 100%;
-  height: 700px;
+  height: 800px;
   overflow: hidden;
   margin-bottom: 30px;
   box-shadow: 0 4px 10px var(--shadow-light);
@@ -134,7 +134,7 @@ h1, h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(50%); 
+  filter: brightness(60%); 
 }
 
 .banner-texto {
@@ -152,11 +152,13 @@ h1, h2 {
   font-size: 3em;
   margin: 0;
   color: white; 
+  font-family: 'Baloo 2', cursive;
 }
 
 .banner-texto p {
   font-size: 1.2em;
   margin-top: 10px;
+  font-family: 'Baloo 2', cursive;
 }
 
 
@@ -167,9 +169,11 @@ h1, h2 {
 }
 
 .lanche1,
-.sobremessa1{
+.sobremesa,
+.bebida{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-columns: minmax(300px,);
+  
   justify-items: center;
   gap: 40px;
   max-width: 1200px;
@@ -198,6 +202,7 @@ h1, h2 {
 .items-doce:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px var(--shadow-medium);
+  
 }
 
 .item-lanche h1,
@@ -297,29 +302,36 @@ footer.footer {
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 30px;
+  font-family: 'Baloo 2', cursive;
+  
 }
 
-.footer-section {
+.footer-sectionn {
   max-width: 400px;
   min-width: 250px;
+  font-family: 'Baloo 2', cursive;
+  
 }
 
 .footer-section h2 {
   font-size: 1.6em;
   color: #5B191B;
   margin-bottom: 10px;
+  font-family: 'Baloo 2', cursive;
 }
 
 .footer-section p {
   font-size: 1em;
   line-height: 1.6;
   color: var(--neutral-subtle);
+  font-family: 'Baloo 2', cursive;
 }
 
 .contact-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  font-family: 'Baloo 2', cursive;
 }
 
 .contact-list li {
@@ -329,11 +341,13 @@ footer.footer {
   margin-bottom: 10px;
   font-size: 1em;
   color: var(--neutral-subtle);
+  
 }
 
 .contact-icon {
   color: var(--secondary); 
   font-size: 1.2em;
+  font-family:'Baloo 2', cursive ;
 }
 
 .footer-bottom {

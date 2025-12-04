@@ -8,14 +8,14 @@ export default function Footer() {
       <div className="footer-content">
 
         <div className="footer-section">
-          <h2>🍔 Sobre nós</h2>
+          <h2> Sobre nós</h2>
           <p>
-            Amamos criar o hambúrguer perfeito! 🍟<br />
+            Amamos criar o hambúrguer perfeito! <br />
             Nossos lanches são feitos com ingredientes fresquinhos, muito carinho e um toque especial que faz toda a diferença.
           </p>
         </div>
 
-        <div className="footer-section">
+        <div className="footer-sectionn">
           <h2>📞 Contato</h2>
           <ul className="contact-list">
             <li>

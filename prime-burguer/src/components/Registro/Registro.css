@@ -54,7 +54,7 @@ body {
 .pag h1 {
   font-size: 26px;
   font-weight: 700;
-  color: #c62828;
+  color: #5B191B;
   margin-bottom: 30px;
 }
 
@@ -85,7 +85,7 @@ body {
 }
 
 .pag input:focus {
-  border-color: #c62828;
+  border-color: #5B191B;
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.15);
 }
@@ -93,7 +93,7 @@ body {
 /* Botão */
 .pag button {
   width: 100%;
-  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  background: linear-gradient(135deg, #5B191B, #491517);
   color: #fff;
   border: none;
   padding: 14px;
@@ -130,7 +130,7 @@ body {
 }
 
 .link-login a {
-  color: #c62828; /* Cor do seu tema principal */
+  color: #5B191B; /* Cor do seu tema principal */
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s;

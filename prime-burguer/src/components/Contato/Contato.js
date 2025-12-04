@@ -7,7 +7,7 @@ className="Contato"
 style={{
 padding: "60px 20px",
 textAlign: "center",
-backgroundColor: "#fff7f0",
+backgroundColor: "#fdfdfd",
 borderRadius: "20px",
 boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
 margin: "40px auto",
@@ -18,12 +18,12 @@ transition: "transform 0.3s ease-in-out",
 <h2
 style={{
 fontFamily: "'Baloo 2', cursive",
-color: "var(--primary)",
+color: "#5B191B",
 fontSize: "3em",
 marginBottom: "40px",
 }}
 >
-Fale Conosco 🍔 </h2>
+Fale Conosco  </h2>
 
 ```
   <p
@@ -34,6 +34,7 @@ Fale Conosco 🍔 </h2>
       maxWidth: "600px",
       margin: "0 auto 50px",
       lineHeight: "1.6",
+      fontFamily: "'Baloo 2', cursive"
     }}
   >
     Tem alguma dúvida, sugestão ou quer fazer um pedido especial? Entre em
@@ -71,7 +72,7 @@ Fale Conosco 🍔 </h2>
     >
       <h2
         style={{
-          color: "var(--primary)",
+          color: "#5B191B",
           fontFamily: "'Baloo 2', cursive",
           fontSize: "2em",
           marginBottom: "20px",

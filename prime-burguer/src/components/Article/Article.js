@@ -19,6 +19,7 @@ export default function ArticleLanches({ item, adicionarAoCarrinho }) {
   return (
     <div className="item-lanche">
       <img src={item.img} alt={item.nome} className="imagelanche" />
+      
       <h1 style={{ textAlign: "center" }}>{item.nome}</h1>
 
       <div className="under-title">

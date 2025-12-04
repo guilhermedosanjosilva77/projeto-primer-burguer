@@ -1,5 +1,5 @@
 :root {
---primary: #D32F2F; 
+--primary: #5B191B; 
 --secondary: #FF9800; 
 --tertiary: #FFC107; 
 --neutral-light: #FAFAFA; 
@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--primary); 
+  color: #5B191B; 
   border-bottom: 2px solid var(--tertiary); 
   padding-bottom: 15px;
   margin-bottom: 25px;
@@ -80,6 +80,7 @@
   color: var(--neutral-dark);
   margin: 0 0 5px 0;
   font-size: 1.1em;
+  font-family: 'Baloo 2', cursive;
 }
 
 .item-preco-unidade,
@@ -107,7 +108,7 @@
 .btn-qtd-minus, 
 .btn-qtd-plus {
   background-color: var(--neutral-light);
-  color: var(--primary);
+  color: #5B191B;
   border: none;
   padding: 8px 10px;
   cursor: pointer;
@@ -118,7 +119,7 @@
 .btn-qtd-minus:hover, 
 .btn-qtd-plus:hover:not(:disabled) {
   background-color: var(--tertiary);
-  color: var(--neutral-dark);
+  color: #5B191B;
 }
 
 .btn-qtd-minus:disabled {
@@ -140,7 +141,7 @@
 .carrinho-remover-all-btn {
   background: none;
   border: none;
-  color: var(--primary); 
+  color: #5B191B; 
   cursor: pointer;
   font-size: 1.5em; 
   padding: 5px;
@@ -149,7 +150,7 @@
 }
 
 .carrinho-remover-all-btn:hover {
-  color: #a91f1f; 
+  color: #5B191B; 
   transform: scale(1.1);
 }
 
@@ -170,14 +171,14 @@
 }
 
 .total-value {
-  color: var(--secondary);
+  color: #000000;
   font-weight: 800;
 }
 
 .carrinho-finalizar-btn {
   width: 100%;
   padding: 15px;
-  background-color: var(--secondary); 
+  background-color: #5B191B; 
   color: var(--neutral-light);
   border: none;
   border-radius: 8px;
@@ -190,7 +191,7 @@
 }
 
 .carrinho-finalizar-btn:hover:not(:disabled) {
-  background-color: #f57c00; 
+  background-color: #7a3033; 
   transform: translateY(-2px);
 }
 
