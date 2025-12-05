@@ -1,0 +1,133 @@
+/* Container que cobre toda a tela e desfoca o fundo */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo preto semi-transparente */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+    padding: 20px;
+}
+
+/* O conteúdo principal do modal (a caixa branca) */
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 450px; /* Largura máxima controlada */
+    transform: scale(1); /* Para animação simples (opcional) */
+    transition: transform 0.3s ease-out;
+}
+
+.modal-content h2 {
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.modal-content h2 svg {
+    margin-right: 10px;
+    color: #ff7f00; /* Cor primária */
+}
+
+/* Estilos de Formulário */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555555;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.modal-content input:focus {
+    border-color: #ff7f00; /* Foco com a cor primária */
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 127, 0, 0.3);
+}
+
+/* Botões de Ação */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #27ae60; /* Cor para sucesso/ação primária (verde) */
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #1e8449;
+}
+
+.btn-secondary {
+    background-color: #cccccc; /* Cor para cancelar/ação secundária (cinza) */
+    color: #333333;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: #b3b3b3;
+}
+
+/* Estilo para botão desabilitado (loading) */
+.modal-actions button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Estilo para o botão "Criar Novo Caixa" na página principal (opcional) */
+.btn-action.criar-caixa {
+    background-color: #ff7f00; /* Cor primária da marca */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn-action.criar-caixa:hover {
+    background-color: #cc6600;
+}

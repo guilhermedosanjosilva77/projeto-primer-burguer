@@ -17,15 +17,17 @@ public class Ingrediente {
     private String nome;
     private String unidadeMedida;
     private Double estoqueAtual;
+    private Double precoCusto;
 
-    public Ingrediente(Long id, String nome, String unidadeMedida, Double estoqueAtual) {
+    public Ingrediente() {}
+
+    public Ingrediente(Long id, String nome, String unidadeMedida, Double estoqueAtual, Double precoCusto) {
         this.id = id;
         this.nome = nome;
         this.unidadeMedida = unidadeMedida;
         this.estoqueAtual = estoqueAtual;
+        this.precoCusto = precoCusto;
     }
-
-    public Ingrediente() {}
 
     public Long getId() {
         return id;
@@ -57,5 +59,13 @@ public class Ingrediente {
 
     public void setEstoqueAtual(Double estoqueAtual) {
         this.estoqueAtual = estoqueAtual;
+    }
+
+    public Double getPrecoCusto() {
+        return precoCusto;
+    }
+
+    public void setPrecoCusto(Double precoCusto) {
+        this.precoCusto = precoCusto;
     }
 }

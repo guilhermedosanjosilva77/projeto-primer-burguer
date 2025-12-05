@@ -41,7 +41,8 @@ public class IngredienteController {
                     ingrediente.getId(),
                     ingrediente.getNome(),
                     ingrediente.getUnidadeMedida(),
-                    ingrediente.getEstoqueAtual()
+                    ingrediente.getEstoqueAtual(),
+                    ingrediente.getPrecoCusto()
             );
             return ResponseEntity.ok(response);
         } catch (NoSuchElementException e) {

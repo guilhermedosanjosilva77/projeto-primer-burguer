@@ -3,7 +3,7 @@ package com.spring.primeburguer.service;
 import com.spring.primeburguer.dto.ItemPedidoRequestDTO;
 import com.spring.primeburguer.dto.PedidoRequestDTO;
 import com.spring.primeburguer.dto.PedidoResponseDTO;
-import com.spring.primeburguer.entity.*; 
+import com.spring.primeburguer.entity.*;
 import com.spring.primeburguer.entity.enums.StatusPedido;
 import com.spring.primeburguer.repository.ClienteRepository;
 import com.spring.primeburguer.repository.PedidoRepository;
@@ -11,8 +11,13 @@ import com.spring.primeburguer.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
+
+// 🎯 Novas Importações Necessárias para o Caixa
+import com.spring.primeburguer.entity.enums.TipoMovimentacao;
+import com.spring.primeburguer.dto.MovimentacaoCaixaRequestDTO;
 
 @Service
 public class PedidoService {
@@ -23,21 +28,25 @@ public class PedidoService {
     private final ProdutoIngredienteService produtoIngredienteService;
     private final IngredienteService ingredienteService;
 
+    // 🎯 Nova Injeção
+    private final MovimentacaoCaixaService movimentacaoCaixaService;
+
     public PedidoService(
             PedidoRepository pedidoRepository,
             ClienteRepository clienteRepository,
             ProdutoRepository produtoRepository,
-            ProdutoIngredienteService produtoIngredienteService, 
-            IngredienteService ingredienteService 
+            ProdutoIngredienteService produtoIngredienteService,
+            IngredienteService ingredienteService,
+            MovimentacaoCaixaService movimentacaoCaixaService
     ) {
         this.pedidoRepository = pedidoRepository;
         this.clienteRepository = clienteRepository;
         this.produtoRepository = produtoRepository;
         this.produtoIngredienteService = produtoIngredienteService;
         this.ingredienteService = ingredienteService;
+        this.movimentacaoCaixaService = movimentacaoCaixaService;
     }
 
-    //Mapeador
     private PedidoResponseDTO toResponseDto(Pedido pedido) {
         return new PedidoResponseDTO(
                 pedido.getId(),
@@ -49,7 +58,7 @@ public class PedidoService {
         );
     }
 
-    // POST: Cria um novo Pedido (com baixa de estoque de INGREDIENTES)
+    // POST: Cria um novo Pedido (com baixa de estoque de INGREDIENTES e registro no Caixa)
     @Transactional
     public PedidoResponseDTO criarPedido(PedidoRequestDTO dto) {
         Cliente cliente = clienteRepository.findById(dto.clienteId())
@@ -57,7 +66,12 @@ public class PedidoService {
 
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
-        pedido.setStatus(StatusPedido.PENDENTE); 
+        pedido.setStatus(StatusPedido.PENDENTE);
+
+        // 🎯 Opcional: Salvar método de pagamento e observações no objeto Pedido (se a entidade Pedido suportar)
+        // Se a entidade Pedido tiver os campos 'metodoPagamento' e 'observacoes', descomente:
+        // pedido.setMetodoPagamento(dto.metodoPagamento());
+        // pedido.setObservacoes(dto.observacoes());
 
         double valorTotal = 0.0;
         int quantidadeTotalItens = 0;
@@ -96,7 +110,37 @@ public class PedidoService {
         pedido.setQuantidade(quantidadeTotalItens);
         pedido.setValorTotal(valorTotal);
 
-        return toResponseDto(pedidoRepository.save(pedido));
+        Pedido pedidoSalvo = pedidoRepository.save(pedido); // Salva para obter o ID
+
+        // 🎯 LÓGICA DE REGISTRO NO CAIXA
+        // 1. Define o ID do Caixa principal (assumindo ID=1)
+        Long caixaIdPrincipal = 1L;
+
+        // 2. Cria o DTO de Movimentação com os dados da transação
+        // 🚨 ORDEM DOS PARÂMETROS CORRIGIDA para corresponder ao seu MovimentacaoCaixaRequestDTO
+        MovimentacaoCaixaRequestDTO movimentacaoDto = new MovimentacaoCaixaRequestDTO(
+                TipoMovimentacao.ENTRADA, // 1. tipo (TipoMovimentacao)
+                valorTotal,              // 2. valor (double)
+                // 3. descricao (String)
+                String.format("Venda - Pedido #%d | Cliente ID: %d | Pagamento: %s | Obs: %s",
+                        pedidoSalvo.getId(),
+                        pedidoSalvo.getCliente().getId(),
+                        dto.metodoPagamento(),
+                        dto.observacoes().isEmpty() ? "Nenhuma" : dto.observacoes()
+                ),
+                LocalDateTime.now(),     // 4. data (LocalDateTime) - Incluído para corresponder ao seu DTO
+                caixaIdPrincipal         // 5. caixaId (Long)
+        );
+
+
+        try {
+            movimentacaoCaixaService.criarMovimentacao(movimentacaoDto);
+        } catch (NoSuchElementException e) {
+            System.err.println("AVISO: Caixa principal (ID 1) não encontrado. Movimentação do pedido não registrada.");
+        }
+
+
+        return toResponseDto(pedidoSalvo);
     }
 
     // GET: Busca Pedido por ID
@@ -105,7 +149,6 @@ public class PedidoService {
                 .orElseThrow(() -> new NoSuchElementException("Pedido não encontrado com ID: " + id));
         return toResponseDto(pedido);
     }
-
     // GET: Busca todos os Pedidos
     public List<PedidoResponseDTO> buscarTodos() {
         return pedidoRepository.findAll().stream().map(this::toResponseDto).toList();

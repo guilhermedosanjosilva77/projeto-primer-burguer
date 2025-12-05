@@ -3,7 +3,6 @@ import toast from 'react-hot-toast';
 import { cadastrarIngrediente, buscarIngredientes, atualizarEstoque } from '../../api/ingrediente.js'; 
 import './Estoque.css'; 
 
-
 export default function Estoque() {
     // --- ESTADO GERAL ---
     const [ingredientes, setIngredientes] = useState([]);
@@ -14,6 +13,7 @@ export default function Estoque() {
     const [nome, setNome] = useState('');
     const [unidadeMedida, setUnidadeMedida] = useState('unidade'); 
     const [estoqueInicial, setEstoqueInicial] = useState('');
+    const [precoCusto, setPrecoCusto] = useState(''); // Estado para Preço de Custo
     const UNIDADES_VALIDAS = ['g', 'ml', 'unidade', 'kg', 'l'];
 
     // --- ESTADO DA ATUALIZAÇÃO DE ESTOQUE (por linha) ---
@@ -23,7 +23,6 @@ export default function Estoque() {
         setLoadingList(true);
         try {
             const response = await buscarIngredientes();
-            // Assumindo que a resposta do GET /ingredientes é um array em response.data
             setIngredientes(response.data);
         } catch (error) {
             toast.error("Falha ao carregar ingredientes. Verifique a API.");
@@ -41,15 +40,16 @@ export default function Estoque() {
     const handleCadastroSubmit = async (event) => {
         event.preventDefault();
 
-        if (!nome || !unidadeMedida || estoqueInicial === '') {
-            toast.error("Por favor, preencha todos os campos.");
+        if (!nome || !unidadeMedida || estoqueInicial === '' || precoCusto === '') {
+            toast.error("Por favor, preencha todos os campos, incluindo o Preço de Custo.");
             return;
         }
 
         const dadosCadastro = {
             nome,
             unidadeMedida,
-            estoqueAtual: parseFloat(estoqueInicial) || 0, // Garantir que é número
+            estoqueAtual: parseFloat(estoqueInicial) || 0,
+            precoCusto: parseFloat(precoCusto) || 0,
         };
 
         setLoading(true);
@@ -58,9 +58,9 @@ export default function Estoque() {
             await cadastrarIngrediente(dadosCadastro);
             toast.success(`Ingrediente "${nome}" cadastrado com sucesso!`);
             
-            // Limpar formulário e atualizar lista
             setNome('');
             setEstoqueInicial('');
+            setPrecoCusto('');
             await fetchIngredientes();
 
         } catch (error) {
@@ -84,21 +84,18 @@ export default function Estoque() {
         const quantidade = parseFloat(estoqueUpdate[id]);
 
         if (isNaN(quantidade) || quantidade <= 0) {
-            toast.error("A quantidade deve ser um número positivo.");
+            toast.error("A quantidade deve ser um número positivo maior que zero.");
             return;
         }
         
-        // Se for "SAÍDA", a quantidade deve ser negativa para a API
         const quantidadeApi = tipo === 'SAIDA' ? -quantidade : quantidade;
 
-        // Desabilita o campo de input e botão da linha
         setEstoqueUpdate(prev => ({ ...prev, [id]: 'loading' })); 
 
         try {
-            // Chamada à API (a API já trata se o valor é positivo ou negativo)
             await atualizarEstoque(id, quantidadeApi); 
 
-            toast.success(`Estoque atualizado com sucesso!`);
+            toast.success(`Estoque e Caixa atualizados com sucesso!`);
 
             setEstoqueUpdate(prev => {
                 const newState = { ...prev };
@@ -117,19 +114,17 @@ export default function Estoque() {
             toast.error(mensagemErro);
             console.error("Erro ao atualizar estoque:", error);
             
-            // Se falhar, reabilita o campo
             setEstoqueUpdate(prev => ({ ...prev, [id]: '' })); 
         }
     };
 
     // --- FUNÇÕES DE RENDERIZAÇÃO ---
     
-    // Renderiza o corpo da tabela de ingredientes
     const renderTableBody = () => {
         if (loadingList) {
             return (
                 <tr>
-                    <td colSpan="5" style={{ textAlign: 'center', backgroundColor: '#fff', padding: '20px' }}>
+                    <td colSpan="6" style={{ textAlign: 'center', backgroundColor: '#fff', padding: '20px' }}>
                         Carregando ingredientes...
                     </td>
                 </tr>
@@ -139,7 +134,7 @@ export default function Estoque() {
         if (ingredientes.length === 0) {
             return (
                 <tr>
-                    <td colSpan="5" style={{ textAlign: 'center', color: '#888', backgroundColor: '#fff', padding: '20px' }}>
+                    <td colSpan="6" style={{ textAlign: 'center', color: '#888', backgroundColor: '#fff', padding: '20px' }}>
                         Nenhum ingrediente cadastrado.
                     </td>
                 </tr>
@@ -150,10 +145,19 @@ export default function Estoque() {
             <tr key={ingrediente.id}>
                 <td>{ingrediente.id}</td>
                 <td>{ingrediente.nome}</td>
+                {/* 🎯 CORREÇÃO 1: Renderização do Preço Custo */}
+                <td>
+                    {ingrediente.precoCusto > 0 ? 
+                        `R$ ${ingrediente.precoCusto.toFixed(2).replace('.', ',')}` 
+                        : 'R$ 0,00' 
+                    }
+                </td>
+                {/* 🎯 ESTOQUE ATUAL */}
                 <td>
                     {ingrediente.estoqueAtual} {ingrediente.unidadeMedida}
                 </td>
                 <td>{ingrediente.unidadeMedida}</td>
+                {/* 🎯 ATUALIZAÇÃO DE ESTOQUE */}
                 <td>
                     <div className="estoque-input-group">
                         <input
@@ -161,6 +165,7 @@ export default function Estoque() {
                             min="0.01"
                             step="0.01"
                             placeholder="Qtd."
+                            // Lógica para o valor do input de atualização
                             value={estoqueUpdate[ingrediente.id] === 'loading' ? '' : (estoqueUpdate[ingrediente.id] || '')}
                             onChange={(e) => setEstoqueUpdate(prev => ({ ...prev, [ingrediente.id]: e.target.value }))}
                             disabled={estoqueUpdate[ingrediente.id] === 'loading'}
@@ -191,7 +196,7 @@ export default function Estoque() {
         <div className="ingredientes-panel">
     
             <div className="ingrediente-card cadastro-card">
-                <h2>Cadastrar Novo Ingrediente</h2>
+                <h2 style={{ color: '#d32f2f' }}>Cadastrar Novo Ingrediente</h2>
                 
                 <form onSubmit={handleCadastroSubmit}>
                     
@@ -218,6 +223,19 @@ export default function Estoque() {
                             ))}
                         </select>
                     </label>
+                    
+                    <label>
+                        Preço de Custo Unitário (R$):
+                        <input 
+                            type="number"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="Ex: 5.50" 
+                            value={precoCusto}
+                            onChange={(e) => setPrecoCusto(e.target.value)}
+                            disabled={loading}
+                        />
+                    </label>
 
                     <label>
                         Estoque Inicial (Opcional, 0 se vazio):
@@ -239,16 +257,17 @@ export default function Estoque() {
             </div>
 
             <div className="ingrediente-card visualizacao-estoque">
-                <h2>Inventário de Ingredientes</h2>
+                <h2 style={{ color: '#d32f2f' }}>Inventário de Ingredientes</h2>
                 
                 <table className="ingrediente-tabela">
                     <thead>
                         <tr>
                             <th style={{ width: '5%' }}>ID</th>
-                            <th style={{ width: '25%' }}>Nome</th>
-                            <th style={{ width: '15%' }}>Estoque</th>
+                            <th style={{ width: '20%' }}>Nome</th>
+                            <th style={{ width: '15%' }}>Preço Custo</th>
+                            <th style={{ width: '15%' }}>Estoque Atual</th>
                             <th style={{ width: '10%' }}>Medida</th>
-                            <th style={{ width: '45%' }}>Atualizar Estoque</th>
+                            <th style={{ width: '35%' }}>Atualizar Estoque</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -263,7 +282,7 @@ export default function Estoque() {
                         disabled={loadingList}
                         style={{ background: '#00bcd4', boxShadow: '0 4px 10px rgba(0, 188, 212, 0.3)', width: 'auto', padding: '10px 20px', fontSize: '14px' }}
                     >
-                        {loadingList ? 'Atualizando...' : 'Recarregar Lista'}
+                        {loadingList ? 'Recarregando...' : 'Recarregar Lista'}
                     </button>
                 </div>
             </div>

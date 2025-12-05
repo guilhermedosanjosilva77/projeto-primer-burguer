@@ -1,4 +1,5 @@
-* Reset Básico */ * {
+/* Reset Básico */ 
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -120,6 +121,15 @@
     border-bottom: 2px solid #eee;
 }
 
+/* Ajuste das larguras para acomodar a coluna "Preço Custo" */
+.ingrediente-tabela thead tr th:nth-child(1) { width: 5%; }   /* ID */
+.ingrediente-tabela thead tr th:nth-child(2) { width: 20%; }  /* Nome */
+.ingrediente-tabela thead tr th:nth-child(3) { width: 15%; }  /* Preço Custo */
+.ingrediente-tabela thead tr th:nth-child(4) { width: 15%; }  /* Estoque Atual */
+.ingrediente-tabela thead tr th:nth-child(5) { width: 10%; }  /* Medida */
+.ingrediente-tabela thead tr th:nth-child(6) { width: 35%; }  /* Atualizar Estoque */
+
+
 .ingrediente-tabela td {
     background-color: #fafafa;
     padding: 15px;
@@ -153,6 +163,7 @@
 .estoque-input-group input {
     flex-grow: 1;
     margin-top: 0;
+    min-width: 50px; /* Para garantir que o campo não encolha demais */
 }
 
 .estoque-input-group button {
@@ -174,5 +185,14 @@
     .ingrediente-card, .visualizacao-estoque {
         max-width: 90%;
         width: 100%;
+    }
+    
+    /* Rolagem horizontal para tabelas em telas pequenas */
+    .visualizacao-estoque {
+        overflow-x: auto;
+    }
+    
+    .ingrediente-tabela {
+        min-width: 700px; /* Garante que a tabela não quebre */
     }
 }

@@ -1,0 +1,224 @@
+:root {
+    --primary-color: #3498db; 
+    --success-color: #2ecc71; 
+    --danger-color: #e74c3c; 
+    --text-dark: #2c3e50;
+    --text-medium: #7f8c8d;
+    --bg-light: #f4f7f6;
+    --card-bg: #ffffff;
+}
+
+
+.caixa-page-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.caixa-page-container h2 {
+    color: var(--text-dark);
+    font-size: 2rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.caixa-details {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 30px;
+}
+
+@media (min-width: 900px) {
+    .caixa-details {
+        grid-template-columns: 350px 1fr; 
+    }
+}
+
+
+.caixa-card.saldo-card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); 
+    border-left: 6px solid var(--success-color); 
+    text-align: center;
+    height: fit-content; 
+    transition: transform 0.3s ease;
+}
+
+.caixa-card.saldo-card:hover {
+    transform: translateY(-3px); 
+}
+
+.caixa-card.saldo-card h3 {
+    font-size: 1.4rem;
+    color: var(--text-medium);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.saldo-value {
+    font-size: 3.5rem; 
+    font-weight: 900;
+    color: var(--success-color); 
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+
+.btn-action {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.1s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-action.adicionar-movimentacao,
+.btn-action.criar-caixa {
+    background-color: var(--primary-color); 
+    color: white;
+    margin-bottom: 30px;
+}
+
+.btn-action.adicionar-movimentacao:hover,
+.btn-action.criar-caixa:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.movimentacoes-section h3 {
+    color: var(--text-dark);
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 5px; 
+}
+
+.movimentacoes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.movimentacao-item {
+    display: flex;
+    align-items: center;
+    padding: 18px 25px; 
+    border-bottom: 1px solid #ebf0f1; 
+    transition: background-color 0.2s;
+}
+
+.movimentacao-item:last-child {
+    border-bottom: none; 
+}
+
+.movimentacao-item:hover {
+    background-color: var(--bg-light); 
+}
+
+
+.mov-icon {
+    font-size: 1.5rem;
+    padding: 8px; 
+    border-radius: 50%;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.movimentacao-item.entrada .mov-icon {
+    color: var(--success-color); 
+    background-color: #e8f7ed; 
+}
+
+.movimentacao-item.saida .mov-icon {
+    color: var(--danger-color); 
+    background-color: #fee9e9;
+}
+
+.mov-details {
+    flex-grow: 1;
+}
+
+.mov-descricao {
+    display: block;
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    margin-bottom: 2px;
+}
+
+.mov-data {
+    font-size: 0.8rem;
+    color: var(--text-medium);
+}
+
+.mov-valor {
+    font-size: 1.3rem; 
+    font-weight: 800;
+    min-width: 120px; 
+    text-align: right;
+}
+
+.movimentacao-item.entrada .mov-valor {
+    color: var(--success-color);
+}
+
+.movimentacao-item.saida .mov-valor {
+    color: var(--danger-color);
+}
+
+
+.modal-actions button.entrada {
+    background-color: var(--success-color);
+}
+
+.modal-actions button.entrada:hover:not(:disabled) {
+    background-color: #27ae60;
+}
+
+.modal-actions button.saida {
+    background-color: var(--danger-color);
+}
+
+.modal-actions button.saida:hover:not(:disabled) {
+    background-color: #c0392b;
+}
+
+.error-message {
+    padding: 15px;
+    background-color: #fcebeb;
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.btn-action.criar-caixa {
+    font-size: 1.2rem;
+}
