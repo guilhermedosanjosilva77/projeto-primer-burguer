@@ -12,6 +12,8 @@ export function Register() {
  const [senha, setSenha] = useState('');
  const [confirmarSenha, setConfirmarSenha] = useState('');
  const [loading, setLoading] = useState(false);
+
+ const API_BASE_URL = "http://localhost:8080"; // Ajuste conforme sua API
  
  const navigate = useNavigate(); 
 
@@ -38,6 +40,25 @@ export function Register() {
     senha: senha,
    };
 
+   const response = await fetch(`http://localhost:8080/users`,{
+    method:"POST",
+    headers:{
+      "Content-type":"application/json"
+    },
+    body:JSON.stringify(userData),
+})
+
+   if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      if (response.status === 409) {
+        throw new Error("Este email já está cadastrado. Tente outro.");
+      }
+      throw new Error(errorData.message || "Falha ao cadastrar usuário.");
+    }
+
+    toast.success("Usuário cadastrado com sucesso!");
+
+
    await registrarUsuario(userData);
 
    // Sucesso
@@ -48,13 +69,6 @@ export function Register() {
    setSenha('');
    setConfirmarSenha('');
 
-   const emailAdmin = "adminprimerburguer@gmail.com";
-
-   if (userData.email.toLowerCase() === emailAdmin) {
-      navigate("/homeAdmin");
-    } else {
-      navigate("/autenticacao", { state: { registeredEmail: userData.email } });
-    }
 
    
   } catch (error) {

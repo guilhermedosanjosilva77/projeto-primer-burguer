@@ -145,14 +145,13 @@ function Layout({
        location.pathname.startsWith("/Caixa");
 
   // Páginas especiais sem Nav/Footer
-  const isCadastroPage = location.pathname === "/registro";
   const isClientRegistrationPage = location.pathname === "/cadastroCliente" || 
                                      location.pathname === "/autenticacao";
   const isMeusPedidosPage = location.pathname === "/meusPedidos";
   const isCaixaPage = location.pathname === "/Caixa";
 
   // Ocultar Nav e Footer em páginas específicas
-  const hideNavAndFooter = isAdminPage || isCadastroPage || isClientRegistrationPage || isMeusPedidosPage || isCaixaPage;
+  const hideNavAndFooter = isAdminPage || isClientRegistrationPage || isMeusPedidosPage || isCaixaPage;
 
   return (
     <>
