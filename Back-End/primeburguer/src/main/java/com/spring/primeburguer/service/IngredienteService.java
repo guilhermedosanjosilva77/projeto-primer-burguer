@@ -33,6 +33,7 @@ public class IngredienteService {
         ingrediente.setNome(requestDTO.nome());
         ingrediente.setUnidadeMedida(requestDTO.unidadeMedida());
         ingrediente.setEstoqueAtual(requestDTO.estoqueAtual());
+        ingrediente.setPrecoCusto(requestDTO.precoCusto());
 
         Ingrediente salvarIngrediente = ingredienteRepository.save(ingrediente);
         return new IngredienteResponseDTO(
@@ -50,7 +51,7 @@ public class IngredienteService {
                         ingrediente.getNome(),
                         ingrediente.getUnidadeMedida(),
                         ingrediente.getEstoqueAtual(),
-                        ingrediente.getPrecoCusto())) // Incluído o precoCusto
+                        ingrediente.getPrecoCusto()))
                 .collect(Collectors.toList());
     }
 
@@ -70,50 +71,44 @@ public class IngredienteService {
                     ". Necessário: " + (-quantidadeVariacao) + ". Disponível: " + ingrediente.getEstoqueAtual());
         }
 
-        // 1. Lógica para Entrada de Estoque (Compra)
-        if (quantidadeVariacao > 0) {
-            if (ingrediente.getPrecoCusto() == null || ingrediente.getPrecoCusto() <= 0) {
-                throw new IllegalArgumentException("Não é possível dar entrada no estoque de " + ingrediente.getNome() +
-                        ". Preço de Custo (precoCusto) não definido ou inválido.");
-            }
+        if (quantidadeVariacao != 0 && (ingrediente.getPrecoCusto() == null || ingrediente.getPrecoCusto() <= 0)) {
+            String tipoMov = quantidadeVariacao > 0 ? "dar entrada (compra)" : "dar saída (uso)";
+            throw new IllegalArgumentException("Não é possível " + tipoMov + " no estoque de " + ingrediente.getNome() +
+                    ". Preço de Custo (precoCusto) não definido ou inválido.");
+        }
 
-            // Saída de caixa (Custo da compra)
+        // 3. Lógica de Caixa e Movimentação
+
+        if (quantidadeVariacao > 0) {
             double valorTotalCompra = quantidadeVariacao * ingrediente.getPrecoCusto();
 
             MovimentacaoCaixaRequestDTO movimentacaoDTO = new MovimentacaoCaixaRequestDTO(
-                    TipoMovimentacao.SAIDA, // É uma SAÍDA no CAIXA
+                    TipoMovimentacao.SAIDA,
                     valorTotalCompra,
                     "Compra de " + quantidadeVariacao + ingrediente.getUnidadeMedida() + " de " + ingrediente.getNome(),
                     LocalDateTime.now(),
-                    ID_CAIXA_PRINCIPAL);
+                    ID_CAIXA_PRINCIPAL
+            );
 
             movimentacaoCaixaService.criarMovimentacao(movimentacaoDTO);
         }
 
         else if (quantidadeVariacao < 0) {
-
-            if (ingrediente.getPrecoCusto() == null || ingrediente.getPrecoCusto() <= 0) {
-                throw new IllegalArgumentException("Não é possível dar saída no estoque de " + ingrediente.getNome() +
-                        ". Preço de Custo (precoCusto) não definido ou inválido.");
-            }
-
-            // O valor variavel (quantidadeVariacao) é negativo, então multiplicamos por -1
-            // para obter o valor positivo
             double quantidadeVendida = -quantidadeVariacao;
             double valorCustoVendido = quantidadeVendida * ingrediente.getPrecoCusto();
 
             MovimentacaoCaixaRequestDTO movimentacaoDTO = new MovimentacaoCaixaRequestDTO(
-                    TipoMovimentacao.ENTRADA, // É uma ENTRADA no CAIXA (representa o CMV do item vendido)
+                    TipoMovimentacao.ENTRADA,
                     valorCustoVendido,
-                    "Custo de Venda (CMV) de " + quantidadeVendida + ingrediente.getUnidadeMedida() + " de "
-                            + ingrediente.getNome(),
+                    "Custo de Venda de " + quantidadeVendida + ingrediente.getUnidadeMedida() + " de " + ingrediente.getNome(),
                     LocalDateTime.now(),
-                    ID_CAIXA_PRINCIPAL);
+                    ID_CAIXA_PRINCIPAL
+            );
 
             movimentacaoCaixaService.criarMovimentacao(movimentacaoDTO);
         }
 
-        // Finalmente, atualiza o estoque
+        // 4. ATUALIZAÇÃO DO ESTOQUE
         ingrediente.setEstoqueAtual(novoEstoque);
         ingredienteRepository.save(ingrediente);
     }

@@ -1,6 +1,7 @@
 package com.spring.primeburguer.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.primeburguer.entity.enums.TipoMovimentacao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,8 @@ public class MovimentacaoCaixa {
 
     private double valor;
     private String descricao;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime data;
 
     @ManyToOne

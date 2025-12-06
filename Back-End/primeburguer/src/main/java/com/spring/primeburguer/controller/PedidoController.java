@@ -2,6 +2,7 @@ package com.spring.primeburguer.controller;
 
 import com.spring.primeburguer.dto.PedidoRequestDTO;
 import com.spring.primeburguer.dto.PedidoResponseDTO;
+import com.spring.primeburguer.dto.PedidoStatusUpdateDto;
 import com.spring.primeburguer.entity.enums.StatusPedido;
 import com.spring.primeburguer.service.PedidoService;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/pedidos")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PedidoController {
 
     private final PedidoService pedidoService;
@@ -40,12 +42,23 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}/status")
-    public ResponseEntity<PedidoResponseDTO> atualizarStatus(@PathVariable Long id, @RequestParam StatusPedido status) {
+// 🎯 Agora recebe o DTO de status
+    public ResponseEntity<PedidoResponseDTO> atualizarStatus(
+            @PathVariable Long id,
+            @RequestBody PedidoStatusUpdateDto dto) {
+
         try {
-            PedidoResponseDTO response = pedidoService.atualizarStatus(id, status);
+            String statusString = dto.status().trim().toUpperCase();
+
+            StatusPedido novoStatus = StatusPedido.valueOf(statusString);
+
+            PedidoResponseDTO response = pedidoService.atualizarStatus(id, novoStatus);
             return ResponseEntity.ok(response);
         } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            System.err.println("Status inválido recebido: " + dto.status());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
@@ -55,14 +68,22 @@ public class PedidoController {
             List<PedidoResponseDTO> pedidos = pedidoService.buscarPedidosPorClienteId(clienteId);
             
             if (pedidos.isEmpty()) {
-                // Retorna 204 No Content se o cliente existir, mas não tiver pedidos
                 return ResponseEntity.noContent().build(); 
             }
-            return ResponseEntity.ok(pedidos); // Retorna 200 OK com a lista de pedidos
+            return ResponseEntity.ok(pedidos);
             
         } catch (NoSuchElementException e) {
-            // Retorna 404 Not Found se o clienteId não for válido
             return ResponseEntity.notFound().build(); 
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarPedido(@PathVariable Long id) {
+        try {
+            pedidoService.deletarPedido(id);
+            return ResponseEntity.noContent().build();
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 }

@@ -163,7 +163,7 @@
 .estoque-input-group input {
     flex-grow: 1;
     margin-top: 0;
-    min-width: 50px; /* Para garantir que o campo não encolha demais */
+    min-width: 80px; /* Para garantir que o campo não encolha demais */
 }
 
 .estoque-input-group button {

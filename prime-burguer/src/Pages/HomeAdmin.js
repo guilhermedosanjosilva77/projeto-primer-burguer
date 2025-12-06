@@ -31,16 +31,14 @@ function HomeAdmin() {
               <button onClick={()=>Componente("/lista")}>Gerenciamento do cardápio</button>
             </li>
             <li>
-              <button>
-                Gerenciamento de pedidos (pedidos diários e histórico)
-              </button>
+              <button onClick={() => Componente("/listaPedidos")}>Gerenciamento de pedidos pedidos diários e histórico</button>
             </li>
             {/* feito */}
             <li>
               <button onClick={()=>Componente("/cadastrar")}>Criação de Itens</button>
             </li>
             <li>
-              <button>Caixa</button>
+              <button onClick={()=>Componente("/caixa")}>Caixa</button>
             </li>
           </ul>
         </article>

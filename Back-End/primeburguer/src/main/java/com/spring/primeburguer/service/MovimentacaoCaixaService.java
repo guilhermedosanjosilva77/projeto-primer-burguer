@@ -27,19 +27,17 @@ public class MovimentacaoCaixaService {
         this.caixaRepository = caixaRepository;
     }
 
-    // --- Mapeador (Função auxiliar para DTO) ---
     private MovimentacaoCaixaResponseDTO toResponseDto(MovimentacaoCaixa mov) {
         return new MovimentacaoCaixaResponseDTO(
                 mov.getId(), mov.getTipo(), mov.getValor(), mov.getDescricao(), mov.getData()
         );
     }
-    // -------------------------------------------
 
     // Função auxiliar para atualizar o saldo do Caixa
     private void atualizarSaldo(Caixa caixa, TipoMovimentacao tipo, double valor, boolean reverter) {
         double multiplicador = (tipo == TipoMovimentacao.ENTRADA) ? 1 : -1;
         if (reverter) {
-            multiplicador *= -1; // Inverte o sinal para desfazer a operação
+            multiplicador *= -1;
         }
         caixa.setSaldoAtual(caixa.getSaldoAtual() + (valor * multiplicador));
         caixaRepository.save(caixa);

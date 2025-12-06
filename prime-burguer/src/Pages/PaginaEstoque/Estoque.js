@@ -4,19 +4,16 @@ import { cadastrarIngrediente, buscarIngredientes, atualizarEstoque } from '../.
 import './Estoque.css'; 
 
 export default function Estoque() {
-    // --- ESTADO GERAL ---
     const [ingredientes, setIngredientes] = useState([]);
     const [loading, setLoading] = useState(false); 
     const [loadingList, setLoadingList] = useState(true); 
 
-    // --- ESTADO DO FORMULÁRIO DE CADASTRO ---
     const [nome, setNome] = useState('');
     const [unidadeMedida, setUnidadeMedida] = useState('unidade'); 
     const [estoqueInicial, setEstoqueInicial] = useState('');
-    const [precoCusto, setPrecoCusto] = useState(''); // Estado para Preço de Custo
+    const [precoCusto, setPrecoCusto] = useState('');
     const UNIDADES_VALIDAS = ['g', 'ml', 'unidade', 'kg', 'l'];
 
-    // --- ESTADO DA ATUALIZAÇÃO DE ESTOQUE (por linha) ---
     const [estoqueUpdate, setEstoqueUpdate] = useState({}); 
 
     const fetchIngredientes = useCallback(async () => {
@@ -49,7 +46,7 @@ export default function Estoque() {
             nome,
             unidadeMedida,
             estoqueAtual: parseFloat(estoqueInicial) || 0,
-            precoCusto: parseFloat(precoCusto) || 0,
+            precoCusto: parseFloat(precoCusto),
         };
 
         setLoading(true);
@@ -118,7 +115,6 @@ export default function Estoque() {
         }
     };
 
-    // --- FUNÇÕES DE RENDERIZAÇÃO ---
     
     const renderTableBody = () => {
         if (loadingList) {
@@ -145,7 +141,6 @@ export default function Estoque() {
             <tr key={ingrediente.id}>
                 <td>{ingrediente.id}</td>
                 <td>{ingrediente.nome}</td>
-                {/* 🎯 CORREÇÃO 1: Renderização do Preço Custo */}
                 <td>
                     {ingrediente.precoCusto > 0 ? 
                         `R$ ${ingrediente.precoCusto.toFixed(2).replace('.', ',')}` 
@@ -165,7 +160,6 @@ export default function Estoque() {
                             min="0.01"
                             step="0.01"
                             placeholder="Qtd."
-                            // Lógica para o valor do input de atualização
                             value={estoqueUpdate[ingrediente.id] === 'loading' ? '' : (estoqueUpdate[ingrediente.id] || '')}
                             onChange={(e) => setEstoqueUpdate(prev => ({ ...prev, [ingrediente.id]: e.target.value }))}
                             disabled={estoqueUpdate[ingrediente.id] === 'loading'}

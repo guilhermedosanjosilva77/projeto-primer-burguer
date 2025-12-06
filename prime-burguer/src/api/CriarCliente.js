@@ -26,11 +26,7 @@ export async function criarCliente(clienteData) {
     }
 }
 
-/**
- * Busca um cliente pelo ID (útil para verificar se o cadastro está completo).
- * @param {number} id - ID do cliente.
- * @returns {Promise<object>} ClienteResponseDTO
- */
+
 export async function buscarClientePorId(id) {
     const url = `${API_BASE_URL}/clientes/${id}`;
 
@@ -43,7 +39,6 @@ export async function buscarClientePorId(id) {
         });
 
         if (response.status === 404) {
-             // Cliente não encontrado/cadastrado
              return null; 
         }
 
@@ -56,6 +51,33 @@ export async function buscarClientePorId(id) {
         return await response.json();
     } catch (error) {
         console.error("Erro ao buscar cliente:", error);
+        throw error;
+    }
+
+    
+}
+
+
+export async function buscarTodosClientes() {
+    const url = `${API_BASE_URL}/clientes`;
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.json().catch(() => ({}));
+            const errorMessage = errorBody.message || `Erro HTTP ${response.status}: Falha ao buscar a lista de clientes.`;
+            throw new Error(errorMessage);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Erro ao buscar todos os clientes:", error);
         throw error;
     }
 }

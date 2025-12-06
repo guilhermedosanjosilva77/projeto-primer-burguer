@@ -1,5 +1,6 @@
 package com.spring.primeburguer.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.primeburguer.entity.enums.StatusPedido;
 import jakarta.persistence.Entity;
@@ -34,9 +35,11 @@ public class Pedido {
     // Cria a data automaticamente
     @CreationTimestamp
     @Column(updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "America/Sao_Paulo")
     private Instant data;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status", length = 20)
     private StatusPedido status;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
