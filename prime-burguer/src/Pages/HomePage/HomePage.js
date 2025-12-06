@@ -49,7 +49,7 @@ function HomePage({ adicionarAoCarrinho }) {
     carregarProdutos();
   }, []);
 
-  const secoes = [
+  const secoes  = [
     { key: 'Lanche', title: 'Lanches ', component: ArticleLanches },
     { key: 'Acompanhamento', title: 'Acompanhamentos ', component: ArticleLanches },
     { key: 'Bebida', title: 'Bebidas ', component: ArticleLanches },

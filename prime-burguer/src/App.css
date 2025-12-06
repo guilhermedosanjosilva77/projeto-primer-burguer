@@ -169,11 +169,11 @@ h1, h2 {
 }
 
 .lanche1,
-.sobremesa,
-.bebida{
+.sobremesa1,
+.bebida1,
+.acompanhamento1{
   display: grid;
-  grid-auto-columns: minmax(300px,);
-  
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-items: center;
   gap: 40px;
   max-width: 1200px;
