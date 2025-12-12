@@ -60,7 +60,7 @@ Este projeto foi desenvolvido utilizando uma arquitetura moderna Full-Stack, com
 
 - Java JDK 21+
 - Node.js (LTS) e npm
-- MySQL Server
+- MySQL
 
 ### 1. Clone o Repositório
 ```bash
