@@ -1,39 +1,40 @@
 🍔 Prime Burguer
 🚀 Visão Geral do Projeto
-O Prime Burguer é um sistema Full-Stack completo desenvolvido para revolucionar a operação e a experiência digital de uma hamburgueria. Criado para atender à demanda por soluções tecnológicas no setor de alimentação , o sistema oferece ferramentas robustas para gerenciamento interno e uma interface amigável para o cliente final.
+O Prime Burguer é um sistema Full-Stack completo desenvolvido para revolucionar a operação e a experiência digital de uma hamburgueria. Criado para atender à demanda por soluções tecnológicas no setor de alimentação , o sistema oferece ferramentas robustas para gerenciamento interno e uma interface agradável para o cliente final.
 
 
 
 
-Ele visa facilitar o controle de estoque, otimizar a gestão de pedidos e melhorar a experiência do cliente, proporcionando maior previsibilidade e um atendimento ágil e eficiente.
+
+Ele visa facilitar o controle de estoque, otimizar a gestão de pedidos e melhorar a experiência do cliente , proporcionando maior previsibilidade e um atendimento ágil e eficiente nas unidades.
+
 
 ✨ Funcionalidades Principais
 O sistema é dividido em dois módulos principais: Painel Administrativo (Backoffice) e Interface do Cliente (Front-end).
 
-🧑‍💻 Experiência do Cliente
+👤 Experiência do Cliente
 
-Visualização de Cardápio: Navegação pelos lanches e bebidas disponíveis.
-
-
-Montagem e Pedido: Liberdade total para montar o pedido e selecionar produtos.
+Visualização de Cardápio: O cliente tem total liberdade para montar o seu pedido, explorando e selecionando os produtos que desejar.
 
 
-Carrinho: Reúne todos os itens selecionados, pronto para pagamento imediato, garantindo um fluxo de compra rápido e sem complicações.
+Montagem e Pedido: Após a escolha, todos os itens são reunidos no Carrinho.
 
 
-Dados de Entrega: Tela dedicada para atualização de informações (Nome, Telefone, Endereço) antes da finalização.
+Carrinho: Fica pronto para o pagamento imediato, garantindo um fluxo de compra rápido e sem complicações.
+
+
+Dados de Entrega: Tela dedicada para atualizar Dados de Entrega (Nome, Telefone, Endereço de Entrega, Rua, Número, Bairro, Cidade).
+
+
 
 ⚙️ Painel Administrativo
-O painel funciona como a central de controle, garantindo a eficiência operacional e a manutenção ágil.
+O Painel Administrativo funciona como a central de controle, garantindo a eficiência operacional e a manutenção ágil.
 
 
-
-Gerenciamento do Cardápio: Central de controle para gerenciar e criar itens para o catálogo, permitindo criar, visualizar, editar e excluir produtos com agilidade.
-
+Gerenciamento do Cardápio: Permite ao administrador ter acesso imediato para gerenciar e criar itens para o catálogo: criar, visualizar, editar e excluir produtos com apenas um clique.
 
 
-Módulo de Inventário: Coração da gestão de estoque, permitindo o cadastro de ingredientes (Nome, Unidade, Preço de Custo) e a manutenção do inventário.
-
+Módulo de Inventário: Essa tela é o coração da gestão de estoque, permitindo o cadastro de ingredientes e mantendo o inventário sob controle total.
 
 💻 Tecnologias Utilizadas
 Este projeto foi desenvolvido utilizando uma arquitetura moderna Full-Stack, com as seguintes tecnologias:
