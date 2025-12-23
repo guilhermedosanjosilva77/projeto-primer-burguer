@@ -1,6 +1,6 @@
 # 🍔 Prime Burguer
 
-## 🚀 Visão Geral do Projeto
+##  Visão Geral do Projeto
 
 O **Prime Burguer** é um sistema Full-Stack completo desenvolvido para revolucionar a operação e a experiência digital de uma hamburgueria. Criado para atender à demanda por soluções tecnológicas no setor de alimentação, o sistema oferece ferramentas robustas para gerenciamento interno e uma interface agradável para o cliente final. 
 
@@ -8,11 +8,11 @@ Ele visa facilitar o controle de estoque, otimizar a gestão de pedidos e melhor
 
 ---
 
-## ✨ Funcionalidades Principais
+##  Funcionalidades Principais
 
 O sistema é dividido em dois módulos principais: **Painel Administrativo (Backoffice)** e **Interface do Cliente (Front-end)**.
 
-### 👤 Experiência do Cliente
+### Experiência do Cliente
 
 **Visualização de Cardápio**  
 O cliente tem total liberdade para montar o seu pedido, explorando e selecionando os produtos que desejar.
@@ -26,7 +26,7 @@ Fica pronto para o pagamento imediato, garantindo um fluxo de compra rápido e s
 **Dados de Entrega**  
 Tela dedicada para atualizar Dados de Entrega (Nome, Telefone, Endereço de Entrega, Rua, Número, Bairro, Cidade).
 
-### ⚙️ Painel Administrativo
+### Painel Administrativo
 
 O Painel Administrativo funciona como a central de controle, garantindo a eficiência operacional e a manutenção ágil.
 
@@ -38,7 +38,7 @@ Essa tela é o coração da gestão de estoque, permitindo o cadastro de ingredi
 
 ---
 
-## 💻 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 Este projeto foi desenvolvido utilizando uma arquitetura moderna Full-Stack, com as seguintes tecnologias:
 
@@ -54,7 +54,7 @@ Este projeto foi desenvolvido utilizando uma arquitetura moderna Full-Stack, com
 
 ---
 
-## 🛠️ Instalação e Execução
+## Instalação e Execução
 
 ### Pré-requisitos
 
